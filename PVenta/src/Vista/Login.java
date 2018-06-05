@@ -3,6 +3,7 @@ package Vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -133,7 +134,15 @@ public class Login extends JFrame {
         P.add(pi);
         P.add(v5);
         P.add(v6);
-
+        Dimension d=this.getSize();
+        double t= d.getWidth()/20;
+        int ft= (int)((t*12)/20);
+        System.out.println();
+        Font fuente=new Font("Arial", Font.BOLD, ft);
+        n.setFont(fuente);
+        u.setFont(fuente);
+        p.setFont(fuente);
+        c.setFont(fuente);
         setContentPane(P);
         validate();
 
