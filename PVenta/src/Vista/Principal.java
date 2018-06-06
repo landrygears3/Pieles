@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public class Principal extends JFrame{
     private Dimension dim;
     JMenu ar, s;
-    JMenuItem m, m1, m2, m3;
+    JMenuItem m, m1, m2, m3, m4;
     
     public Principal(){
         super("ELEGANPIEL");
@@ -30,11 +30,13 @@ public class Principal extends JFrame{
         m = new JMenuItem("Vender");
         m1 = new JMenuItem("Ver inventario");
         m2 = new JMenuItem("Devoluciones");
+        m4 = new JMenuItem("Cerrar sesión");
         m3 = new JMenuItem("Salir");
         
         ar.add(m);
         ar.add(m1);
         ar.add(m2);
+        s.add(m4);
         s.add(m3);
         mb.add(ar);
         mb.add(s);
@@ -50,7 +52,7 @@ public class Principal extends JFrame{
         m1.addActionListener(b);
         m2.addActionListener(b);
         m3.addActionListener(b);
-        
+        validate();
         
     }
     
@@ -62,6 +64,10 @@ public class Principal extends JFrame{
                 System.exit(0);
             }
            
+            else if (e.getSource().equals(m4)) {
+                new Login();
+                //System.class.
+            }
 
         }
 
