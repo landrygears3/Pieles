@@ -1,0 +1,7 @@
+Inventario requiere
+Producto
+Cantidad
+Precio
+Precio Unitario
+Precio mayoreo
+Sucursal

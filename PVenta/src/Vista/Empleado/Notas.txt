@@ -1,0 +1,11 @@
+Empleado requiere:
+Nombre
+Telefono
+Usuario
+Contraseña
+TipoU
+Sucursal
+
+Notas requiere:
+Notas(TextArea)
+Empleado(Combobox)

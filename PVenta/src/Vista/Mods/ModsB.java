@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package Vista.Mods;
 
 /**
  *
  * @author landr
  */
-public class Mods {
+public class ModsB {
     
 }
