@@ -2,9 +2,17 @@
 package Main;
 
 import Vista.Login;
+import Vista.Principal;
+import javax.swing.SwingUtilities;
 
 public class Main {
     public static void main(String[] args) {
-          new Login();
+          SwingUtilities.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                new Principal();
+            }
+        });
     }
 }
