@@ -1,10 +1,10 @@
 
 package Vista;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -25,6 +25,7 @@ public class Principal extends JFrame{
         
         JPanel p = new JPanel();
         JMenuBar mb = new JMenuBar();
+        mb.setLayout(new BorderLayout());
         ar = new JMenu("Nuevo");
         s = new JMenu("Salir");
         m = new JMenuItem("Vender");
@@ -32,14 +33,14 @@ public class Principal extends JFrame{
         m2 = new JMenuItem("Devoluciones");
         m4 = new JMenuItem("Cerrar sesión");
         m3 = new JMenuItem("Salir");
-        
+       
         ar.add(m);
         ar.add(m1);
         ar.add(m2);
         s.add(m4);
         s.add(m3);
         mb.add(ar);
-        mb.add(s);
+        mb.add(s,BorderLayout.LINE_END);
         p.add(mb);
         
         mb.setVisible(true);
