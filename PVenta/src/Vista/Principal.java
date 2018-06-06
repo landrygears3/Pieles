@@ -1,9 +1,9 @@
 package Vista;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -46,6 +46,10 @@ public class Principal extends JFrame {
 
         inv = new JPanel();
         mb = new JMenuBar();
+        
+        
+        JMenuBar mb = new JMenuBar();
+        mb.setLayout(new BorderLayout());
         ar = new JMenu("Nuevo");
         s = new JMenu("Salir");
         m = new JMenuItem("Vender");
@@ -53,6 +57,7 @@ public class Principal extends JFrame {
         m2 = new JMenuItem("Devoluciones");
         m4 = new JMenuItem("Cerrar sesión");
         m3 = new JMenuItem("Salir");
+
         a = new JButton();
         ca = new JButton();
         id = new JLabel("ID");
@@ -83,7 +88,6 @@ public class Principal extends JFrame {
         s.add(m4);
         s.add(m3);
         mb.add(ar);
-        mb.add(s);
 
         inv.add(id);
         inv.add(ID);
@@ -105,8 +109,12 @@ public class Principal extends JFrame {
         inv.add(ma);
         inv.add(MA);
         inv.add(SU);
-        setContentPane(inv);
+        
+        
+        
+        mb.add(s,BorderLayout.LINE_END);
         setJMenuBar(mb);
+        setContentPane(inv);
         validate();
         
         
@@ -123,10 +131,15 @@ public class Principal extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource().equals(m3)) {
                 System.exit(0);
-            } else if (e.getSource().equals(m4)) {
-                
+            } else if (e.getSource().equals(m)) {
+                Principal.this.setContentPane(inv);
+                /*No puedo hacer que se cargue este panel. Por eso lo puse 
+                en el renglón 117
+                */
             }
 
+            
+            
         }
 
     }
