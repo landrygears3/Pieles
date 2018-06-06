@@ -1,7 +1,5 @@
 package Vista;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -9,12 +7,12 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -23,123 +21,75 @@ import javax.swing.JTextField;
  */
 public class Login extends JFrame {
 
+    private JPanel P = new JPanel();
+    private JPanel pi = new JPanel();
     private Dimension dim;
-    JPanel P = new JPanel();
-    JButton a, ca;
+    private JButton a, ca;
+    private JLabel v1;
+    private JLabel v2;
+    private JLabel v3;
+    private JLabel v4;
+    private JLabel v5;
+    private JLabel v6;
+    private JLabel vacio;
+    private JLabel n, p;
+    private JTextField u;
+    private JPasswordField c;
 
     public Login() {
-        //con esto obtienes en tamano en en x y y de tu monitor
         dim = super.getToolkit().getScreenSize();
         super.setSize(dim);
         super.setUndecorated(true);//Sin marco
         super.setVisible(true);
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        GridBagConstraints gbc = new GridBagConstraints();
+        crea();
+        estiliza();
+        agrega();
+        setContentPane(P);
+        validate();
+        boton b = new boton();
+        ca.addActionListener(b);
 
-        JPanel pi = new JPanel();
+    }
 
-        pi.setLayout(new GridBagLayout()); // Le ponemos el GridBagLayout
-        JLabel n, p;
-        JTextField u, c;
-
+    private void crea() {
         a = new JButton();
         ca = new JButton();
         u = new JTextField();
-        c = new JTextField();
+        c = new JPasswordField();
         n = new JLabel("Usuario");
-        n.setHorizontalAlignment(JLabel.CENTER);
         p = new JLabel("Contraseña");
+        v1 = new JLabel();
+        v2 = new JLabel();
+        v3 = new JLabel();
+        v4 = new JLabel();
+        v5 = new JLabel();
+        v6 = new JLabel();
+        vacio = new JLabel();
+        n.setHorizontalAlignment(JLabel.CENTER);
         p.setHorizontalAlignment(JLabel.CENTER);
+    }
+
+    private GridBagConstraints estilo(int pox, int poy, int tax, int tay) {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = pox;
+        gbc.gridy = poy;
+        gbc.gridwidth = tax;
+        gbc.gridheight = tay;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+
+        return gbc;
+    }
+
+    private void estiliza() {
+        pi.setLayout(new GridBagLayout());
         P.setLayout(new java.awt.GridLayout(3, 3));
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 2;
-        gbc.gridheight = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        pi.add(n, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridwidth = 2;
-        gbc.gridheight = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        pi.add(u, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        gbc.gridheight = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        pi.add(p, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.gridwidth = 2;
-        gbc.gridheight = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        pi.add(c, gbc);
-
-        JLabel vacio = new JLabel();
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        pi.add(vacio, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 5;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        pi.add(a, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 5;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        pi.add(ca, gbc);
-
-        JLabel v1 = new JLabel();
-        JLabel v2 = new JLabel();
-        JLabel v3 = new JLabel();
-        JLabel v4 = new JLabel();
-        JLabel v5 = new JLabel();
-        JLabel v6 = new JLabel();
-        P.add(v1);
-        P.add(v2);
-        P.add(v3);
-        P.add(v4);
-        P.add(pi);
-        P.add(v5);
-        P.add(v6);
         Dimension d = this.getSize();
         ImageIcon imagen = new ImageIcon("Recursos\\Img\\Logo.jpg");
-        imagen = new ImageIcon(imagen.getImage().getScaledInstance(d.width/3, d.height/3, Image.SCALE_DEFAULT));
+        imagen = new ImageIcon(imagen.getImage().getScaledInstance(d.width / 3, d.height / 3, Image.SCALE_DEFAULT));
         v2.setIcon(imagen);
         double t = d.getWidth() / 20;
         int ft = (int) ((t * 12) / 20);
@@ -149,12 +99,23 @@ public class Login extends JFrame {
         u.setFont(fuente);
         p.setFont(fuente);
         c.setFont(fuente);
-        setContentPane(P);
-        validate();
+    }
 
-        boton b = new boton();
-        ca.addActionListener(b);
-
+    private void agrega() {
+        pi.add(n, estilo(0, 0, 2, 1));
+        pi.add(u, estilo(0, 1, 2, 1));
+        pi.add(p, estilo(0, 2, 2, 1));
+        pi.add(c, estilo(0, 3, 2, 1));
+        pi.add(vacio, estilo(0, 4, 1, 1));
+        pi.add(a, estilo(0, 5, 1, 1));
+        pi.add(ca, estilo(1, 5, 1, 1));
+        P.add(v1);
+        P.add(v2);
+        P.add(v3);
+        P.add(v4);
+        P.add(pi);
+        P.add(v5);
+        P.add(v6);
     }
 
     private class boton implements ActionListener {
