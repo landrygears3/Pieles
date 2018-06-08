@@ -1,4 +1,4 @@
-package Vista.Provedor;
+package Vista.Proveedor;
 
 /**
  *
@@ -10,16 +10,16 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
-public class ProovedorA {
+public class ProveedorA {
     public JLabel id, n, c, co;
     public JTextField ID, N, C;
     public JTextArea CO;
     
-    public ProovedorA(){
+    public ProveedorA(){
         
         
         id = new JLabel ("Empresa");
-        n = new JLabel ("Nombre proovedor");
+        n = new JLabel ("Nombre proveedor");
         c = new JLabel("Número o correo");
         co = new JLabel ("Comentarios");
         

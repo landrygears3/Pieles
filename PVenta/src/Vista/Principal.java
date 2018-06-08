@@ -9,8 +9,8 @@ import javax.swing.JButton;
 import Vista.PRoducto.ProductoA;
 import Vista.Ventas.VentaA;
 import Vista.Empleado.EmpleadoA;
-import Vista.Provedor.ProovedorA;
-import Vista.Login;
+import Vista.Proveedor.ProveedorA;
+import Vista.Errores.ErrorA;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -20,14 +20,15 @@ public class Principal extends JFrame {
 
     private Dimension dim;
     JMenu ar, s;
-    JMenuItem m, m1, m2, m3, m4, m5;
+    JMenuItem m, m1, m2, m3, m4, m5, m6;
     JButton a, ca;
     JPanel inv;
     JMenuBar mb;
     ProductoA pa = new ProductoA();
     VentaA va = new VentaA();
     EmpleadoA ea = new EmpleadoA();
-    ProovedorA ha = new ProovedorA();
+    ProveedorA ha = new ProveedorA();
+    ErrorA ra = new ErrorA();
 
     public Principal() {
         super("ELEGANPIEL");
@@ -47,6 +48,7 @@ public class Principal extends JFrame {
         m1 = new JMenuItem("Producto");
         m2 = new JMenuItem("Empleados");
         m5 = new JMenuItem("Proovedores");
+        m6 = new JMenuItem("Devoluciones y defectos");
         m4 = new JMenuItem("Cerrar sesión");
         m3 = new JMenuItem("Salir");
 
@@ -57,6 +59,7 @@ public class Principal extends JFrame {
         ar.add(m1);
         ar.add(m2);
         ar.add(m5);
+        ar.add(m6);
         s.add(m4);
         s.add(m3);
         mb.add(ar);
@@ -73,6 +76,7 @@ public class Principal extends JFrame {
         m3.addActionListener(b);
         m4.addActionListener(b);
         m5.addActionListener(b);
+        m6.addActionListener(b);
     }
 
     private class boton implements ActionListener {
@@ -157,6 +161,18 @@ public class Principal extends JFrame {
                 inv.add(ha.C);
                 inv.add(ha.co);
                 inv.add(ha.CO);
+                validate();
+            }else if (e.getSource().equals(m6)) {
+                inv.removeAll();
+                inv.repaint();
+                inv.add(ra.id);
+                inv.add(ra.ID);
+                inv.add(ra.p);
+                inv.add(ra.P);
+                inv.add(ra.c);
+                inv.add(ra.C);
+                inv.add(ra.d);
+                inv.add(ra.D);
                 validate();
             }
 
