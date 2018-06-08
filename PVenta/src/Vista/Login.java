@@ -53,8 +53,8 @@ public class Login extends JFrame {
     }
 
     private void crea() {
-        a = new JButton();
-        ca = new JButton();
+        a = new JButton("Ingresar");
+        ca = new JButton("Cancelar");
         u = new JTextField();
         c = new JPasswordField();
         n = new JLabel("Usuario");
