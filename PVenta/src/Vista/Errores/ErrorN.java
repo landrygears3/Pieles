@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.Ventas;
+package Vista.Errores;
 
 /**
  *
- * @author win 10
+ * @author landr
  */
-public class VentaB {
+public class ErrorN {
     
 }
