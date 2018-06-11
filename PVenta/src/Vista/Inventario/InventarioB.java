@@ -9,6 +9,6 @@ package Vista.Inventario;
  *
  * @author landr
  */
-public class InventarioB {
+public class InventarioB extends VistasGenerales.Panel{
     
 }

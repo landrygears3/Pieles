@@ -9,6 +9,6 @@ package Vista.Mods;
  *
  * @author landr
  */
-public class ModsA {
+public class ModsA extends VistasGenerales.Panel{
     
 }

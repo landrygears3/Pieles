@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
-public class ProveedorA {
+public class ProveedorA extends VistasGenerales.Panel{
     public JLabel id, n, c, co;
     public JTextField ID, N, C;
     public JTextArea CO;

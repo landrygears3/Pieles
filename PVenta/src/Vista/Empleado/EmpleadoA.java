@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 
-public class EmpleadoA {
+public class EmpleadoA extends VistasGenerales.Panel{
     public JLabel n, t, c, u;
     public JTextField N, T, U;
     public JComboBox TU, S;

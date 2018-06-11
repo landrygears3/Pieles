@@ -2,6 +2,6 @@
 package Vista.PRoducto;
 
 
-public class ProductoM {
+public class ProductoM extends VistasGenerales.Panel{
     
 }

@@ -9,6 +9,6 @@ package Vista.Cliente;
  *
  * @author landr
  */
-public class ClienteA {
+public class ClienteA extends VistasGenerales.Panel{
     
 }

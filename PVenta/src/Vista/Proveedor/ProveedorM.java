@@ -1,6 +1,6 @@
 
 package Vista.Proveedor;
 
-public class ProveedorM {
+public class ProveedorM extends VistasGenerales.Panel{
     
 }

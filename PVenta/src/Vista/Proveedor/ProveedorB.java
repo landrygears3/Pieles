@@ -9,6 +9,6 @@ package Vista.Proveedor;
  *
  * @author landr
  */
-public class ProveedorB {
+public class ProveedorB extends VistasGenerales.Panel{
     
 }

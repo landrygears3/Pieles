@@ -9,6 +9,11 @@ package Vista.Empleado;
  *
  * @author landr
  */
-public class EmpleadoM extends VistasGenerales.Panel{
-    
+public class EmpleadoAcceso {
+
+    EmpleadoA agrega = new EmpleadoA();
+    EmpleadoM modifica = new EmpleadoM();
+    EmpleadoB elimina = new EmpleadoB();
+    NotasA NotaA = new NotasA();
+    NotasV NotaV = new NotasV();
 }

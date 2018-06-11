@@ -1,10 +1,7 @@
 
 package Vista;
 
-/**
- *
- * @author landr
- */
-public class Compra {
+
+public class Compra extends VistasGenerales.Panel{
     
 }

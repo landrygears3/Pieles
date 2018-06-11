@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  * @author win 10
  */
 
-public class VentaA {
+public class VentaA extends VistasGenerales.Panel{
 
     public JLabel id, t, tp, mo, col, des, pv, can,
             im, ma, su, pi, PRO, IM, nc, cc;

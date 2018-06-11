@@ -9,6 +9,6 @@ package Vista.Empleado;
  *
  * @author landr
  */
-public class EmpleadoB {
+public class EmpleadoB extends VistasGenerales.Panel{
     
 }

@@ -9,6 +9,6 @@ package Vista.Ventas;
  *
  * @author win 10
  */
-public class VentaC {
+public class VentaC extends VistasGenerales.Panel{
     
 }
