@@ -10,7 +10,8 @@ public class Menubar extends JMenuBar {
     JMenu ve, inv, pro, cli, err, con, s, pi, mo, ti, emp, not, prd, com;
     JMenuItem vev, vec, ina, inb, inm, cs, sa, pra, prb, prm,
             cla, clb, clm, pia, pim, pib, moa, mom, mob, tia,
-            tib, tim, ema, emb, emm, noa, nov, pda, pdm, pdb, cmc, cmv;
+            tib, tim, ema, emb, emm, noa, nov, pda, pdm, pdb,
+            cmc, cmv, era, erc;
 
     public Menubar() {
         crea();
@@ -26,11 +27,11 @@ public class Menubar extends JMenuBar {
         //Ventas
         ve = new JMenu("Ventas");
         vev = new JMenuItem("Vende");
-        vec = new JMenuItem("Consulta");
+        vec = new JMenuItem("Historial");
         //Compras
         com = new JMenu("Compras");
         cmc = new JMenuItem("Comprar");
-        cmv = new JMenuItem("Consulta");
+        cmv = new JMenuItem("Historial");
         //Inventario
         inv = new JMenu("Inventario");
         ina = new JMenuItem("Agrega");
@@ -43,6 +44,8 @@ public class Menubar extends JMenuBar {
         pdm = new JMenuItem("Modificar");
         //Errores
         err = new JMenu("Errores");
+        era = new JMenuItem("Alta");
+        erc = new JMenuItem("Historial");
         //Proveedores
         pro = new JMenu("Proveedores");
         pra = new JMenuItem("Agrega");
@@ -126,6 +129,9 @@ public class Menubar extends JMenuBar {
         emp.add(ema);
         emp.add(emb);
         emp.add(emm);
+        //Errores
+        err.add(era);
+        err.add(erc);
         //MenuBar
         add(ve);
         add(com);

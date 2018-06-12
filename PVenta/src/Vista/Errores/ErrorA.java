@@ -6,15 +6,20 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-public class ErrorA {
+public class ErrorA extends VistasGenerales.Panel{
     
     public JLabel id, p, d, c;
     public JTextField ID, P, C;
     public JTextArea D;
     
     public ErrorA(){
-        id = new JLabel ("ID");
-        p = new JLabel ("Proovedor");
+        crea();
+        agrega();
+        
+    }
+    private void crea(){
+    id = new JLabel ("ID");
+        p = new JLabel ("Proveedor");
         d = new JLabel ("Descripción del defecto");
         c = new JLabel ("Cantidad");
         
@@ -26,7 +31,15 @@ public class ErrorA {
         D.setColumns(15);
         D.setRows(10);
         D.setBorder(new LineBorder(Color.BLACK));
-        
     }
-    
+    private void agrega(){
+    add(id);
+    add(p);
+    add(d);
+    add(c);
+    add(ID);
+    add(P);
+    add(D);
+    add(C);
+    }
 }

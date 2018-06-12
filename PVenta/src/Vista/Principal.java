@@ -17,7 +17,7 @@ public class Principal extends JFrame {
     Vista.Compra.CompraAcceso compras = new Vista.Compra.CompraAcceso();
     Vista.Inventario.InventarioAcceso inventario = new Vista.Inventario.InventarioAcceso();
     Vista.PRoducto.ProductoAcceso producto = new Vista.PRoducto.ProductoAcceso();
-    //Errores pendiete
+    Vista.Errores.ErrorAcceso errores = new Vista.Errores.ErrorAcceso();
     Vista.Proveedor.ProvedorAcceso proveedor = new Vista.Proveedor.ProvedorAcceso();
     Vista.Cliente.ClienteAcceso cliente = new Vista.Cliente.ClienteAcceso();
     Vista.Mods.Piel piel = new Vista.Mods.Piel();
@@ -68,6 +68,8 @@ public class Principal extends JFrame {
         mb.emm.addActionListener(b);
         mb.noa.addActionListener(b);
         mb.nov.addActionListener(b);
+        mb.era.addActionListener(b);
+        mb.erc.addActionListener(b);
 
     }
 
@@ -102,11 +104,13 @@ public class Principal extends JFrame {
         gral.add(empleado.modifica);
         gral.add(compras.comprar);
         gral.add(compras.vista);
+        gral.add(errores.agrega);
+        gral.add(errores.consulta);
 
     }
 
     private void ver(int d) {
-        boolean dat[] = new boolean[30];
+        boolean dat[] = new boolean[32];
         for (int i = 0; i < dat.length; i++) {
             dat[i] = false;
         }
@@ -141,7 +145,8 @@ public class Principal extends JFrame {
         empleado.modifica.setVisible(dat[27]);
         compras.comprar.setVisible(dat[28]);
         compras.vista.setVisible(dat[29]);
-
+        errores.agrega.setVisible(dat[30]);
+        errores.consulta.setVisible(dat[31]);
         validate();
 
     }
@@ -253,6 +258,13 @@ public class Principal extends JFrame {
             }
             if (e.getSource().equals(mb.cmv)) {
                 ver(29);
+            }
+             //Erroes
+            if (e.getSource().equals(mb.era)) {
+                ver(30);
+            }
+            if (e.getSource().equals(mb.erc)) {
+                ver(31);
             }
 
         }
