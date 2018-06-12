@@ -10,7 +10,7 @@ public class Menubar extends JMenuBar {
     JMenu ve, inv, pro, cli, err, con, s, pi, mo, ti, emp, not, prd, com;
     JMenuItem vev, vec, ina, inb, inm, cs, sa, pra, prb, prm,
             cla, clb, clm, pia, pim, pib, moa, mom, mob, tia,
-            tib, tim, ema, emb, emm, noa, nov, pda, pdm, pdb, cmc,cmv;
+            tib, tim, ema, emb, emm, noa, nov, pda, pdm, pdb, cmc, cmv;
 
     public Menubar() {
         crea();

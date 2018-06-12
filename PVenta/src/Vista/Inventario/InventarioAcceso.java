@@ -2,7 +2,8 @@ package Vista.Inventario;
 
 public class InventarioAcceso {
 
-    InventarioA agrega = new InventarioA();
-    InventarioB elimina = new InventarioB();
-    InventarioM modifica = new InventarioM();
+    public InventarioA agrega = new InventarioA();
+    public InventarioB elimina = new InventarioB();
+    public InventarioM modifica = new InventarioM();
+
 }

@@ -11,9 +11,9 @@ package Vista.Empleado;
  */
 public class EmpleadoAcceso {
 
-    EmpleadoA agrega = new EmpleadoA();
-    EmpleadoM modifica = new EmpleadoM();
-    EmpleadoB elimina = new EmpleadoB();
-    NotasA NotaA = new NotasA();
-    NotasV NotaV = new NotasV();
+   public EmpleadoA agrega = new EmpleadoA();
+   public EmpleadoM modifica = new EmpleadoM();
+   public EmpleadoB elimina = new EmpleadoB();
+   public NotasA NotaA = new NotasA();
+   public NotasV NotaV = new NotasV();
 }

@@ -14,8 +14,7 @@ import javax.swing.JTextField;
  *
  * @author win 10
  */
-
-public class VentaA extends VistasGenerales.Panel{
+public class VentaA extends VistasGenerales.Panel {
 
     public JLabel id, t, tp, mo, col, des, pv, can,
             im, ma, su, pi, PRO, IM, nc, cc;
@@ -32,11 +31,15 @@ public class VentaA extends VistasGenerales.Panel{
     public JCheckBox MA;
 
     public VentaA() {
-        MA = new JCheckBox();
+        crea();
+        agrega();
+    }
 
+    private void crea() {
+        MA = new JCheckBox();
         id = new JLabel("ID");                  //id venta
-        pv = new JLabel("Precio de venta");     
-        can = new JLabel("Cantidad");           
+        pv = new JLabel("Precio de venta");
+        can = new JLabel("Cantidad");
         nc = new JLabel("Cliente");             //Nombre cliente
         cc = new JLabel("Contacto");            //forma de contacto
         im = new JLabel("(Insertar imagen)");
@@ -54,6 +57,30 @@ public class VentaA extends VistasGenerales.Panel{
         DES = new JComboBox(Des);
         SU = new JComboBox(Suc);
         PI = new JComboBox(piel);
+    }
 
+    private void agrega() {
+       add(MA);
+       add(id);
+       add(pv);
+       add(can);
+       add(nc);
+       add(cc);
+       add(im);
+       add(ma);
+       add(ID);
+       add(CAN);
+       add(PV);
+       add(NC);
+       add(CC);
+       add(IM);
+       add(T);
+       add(TP);
+       add(MO);
+       add(COL);
+       add(DES);
+       add(SU);
+       add(PI);
+       
     }
 }

@@ -3,6 +3,7 @@ package Vista.Ventas;
 
 
 public class VentaAcceso {
-    VentaA agrega=new VentaA();
-    VentaC consulta=new VentaC();
+   public VentaA agrega=new VentaA();
+   public VentaC consulta=new VentaC();
+    
 }

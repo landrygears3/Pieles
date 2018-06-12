@@ -1,9 +1,9 @@
-
 package Vista.Proveedor;
 
-
 public class ProvedorAcceso {
-    ProveedorA agrega=new ProveedorA();
-    ProveedorB elimina=new ProveedorB();
-    ProveedorM modifica=new ProveedorM();
+
+    public ProveedorA agrega = new ProveedorA();
+    public ProveedorB elimina = new ProveedorB();
+    public ProveedorM modifica = new ProveedorM();
+
 }

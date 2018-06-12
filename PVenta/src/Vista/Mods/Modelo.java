@@ -2,7 +2,7 @@ package Vista.Mods;
 
 public class Modelo {
 
-    ModsA agrega = new ModsA();
-    ModsB elimina = new ModsB();
-    ModsM modifica = new ModsM();
+   public ModsA agrega = new ModsA();
+   public ModsB elimina = new ModsB();
+   public ModsM modifica = new ModsM();
 }
