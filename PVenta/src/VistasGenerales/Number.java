@@ -23,7 +23,10 @@ public class Number implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode()==8){
+        }else{
         e.consume();
+        }
     }
 
     @Override

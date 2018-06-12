@@ -108,47 +108,6 @@ public class Principal extends JFrame {
 
     }
 
-    private void ver(int d) {
-        boolean dat[] = new boolean[32];
-        for (int i = 0; i < dat.length; i++) {
-            dat[i] = false;
-        }
-        dat[d] = true;
-        venta.agrega.setVisible(dat[0]);
-        venta.consulta.setVisible(dat[1]);
-        inventario.agrega.setVisible(dat[2]);
-        inventario.modifica.setVisible(dat[3]);
-        inventario.elimina.setVisible(dat[4]);
-        producto.agrega.setVisible(dat[5]);
-        producto.elimina.setVisible(dat[6]);
-        producto.modifica.setVisible(dat[7]);
-        proveedor.agrega.setVisible(dat[8]);
-        proveedor.elimina.setVisible(dat[9]);
-        proveedor.modifica.setVisible(dat[10]);
-        cliente.agrega.setVisible(dat[11]);
-        cliente.elimina.setVisible(dat[12]);
-        cliente.modifica.setVisible(dat[13]);
-        piel.agrega.setVisible(dat[14]);
-        piel.elimina.setVisible(dat[15]);
-        piel.modifica.setVisible(dat[16]);
-        modelo.agrega.setVisible(dat[17]);
-        modelo.elimina.setVisible(dat[18]);
-        modelo.modifica.setVisible(dat[19]);
-        tipos.agrega.setVisible(dat[20]);
-        tipos.elimina.setVisible(dat[21]);
-        tipos.modifica.setVisible(dat[22]);
-        empleado.NotaA.setVisible(dat[23]);
-        empleado.NotaV.setVisible(dat[24]);
-        empleado.agrega.setVisible(dat[25]);
-        empleado.elimina.setVisible(dat[26]);
-        empleado.modifica.setVisible(dat[27]);
-        compras.comprar.setVisible(dat[28]);
-        compras.vista.setVisible(dat[29]);
-        errores.agrega.setVisible(dat[30]);
-        errores.consulta.setVisible(dat[31]);
-        validate();
-
-    }
 
     private class boton implements ActionListener {
 
@@ -160,112 +119,112 @@ public class Principal extends JFrame {
             }
             //ventas
             if (e.getSource().equals(mb.vev)) {
-                ver(0);
+               setContentPane(venta.agrega);
             }
             if (e.getSource().equals(mb.vec)) {
-                ver(1);
+                setContentPane(venta.consulta);
             }
             //inventario
             if (e.getSource().equals(mb.ina)) {
-                ver(2);
+                setContentPane(inventario.agrega);
             }
             if (e.getSource().equals(mb.inm)) {
-                ver(3);
+                setContentPane(inventario.modifica);
             }
             if (e.getSource().equals(mb.inb)) {
-                ver(4);
+                setContentPane(inventario.elimina);
             }
             //productos
             if (e.getSource().equals(mb.pda)) {
-                ver(5);
+                setContentPane(producto.agrega);
             }
             if (e.getSource().equals(mb.pdb)) {
-                ver(6);
+                setContentPane(producto.elimina);
             }
             if (e.getSource().equals(mb.pdm)) {
-                ver(7);
+                setContentPane(producto.modifica);
             }
             //proveedor
             if (e.getSource().equals(mb.pra)) {
-                ver(8);
+                setContentPane(proveedor.agrega);
             }
             if (e.getSource().equals(mb.prb)) {
-                ver(9);
+                setContentPane(proveedor.elimina);
             }
             if (e.getSource().equals(mb.prm)) {
-                ver(10);
+                setContentPane(proveedor.modifica);
             }
             //Cliente
             if (e.getSource().equals(mb.cla)) {
-                ver(11);
+               setContentPane(cliente.agrega);
             }
             if (e.getSource().equals(mb.clb)) {
-                ver(12);
+                setContentPane(cliente.elimina);
             }
             if (e.getSource().equals(mb.clm)) {
-                ver(13);
+                setContentPane(cliente.modifica);
             }
             //Piel
             if (e.getSource().equals(mb.pia)) {
-                ver(14);
+                setContentPane(piel.agrega);
             }
             if (e.getSource().equals(mb.pib)) {
-                ver(15);
+                setContentPane(piel.elimina);
             }
             if (e.getSource().equals(mb.pim)) {
-                ver(16);
+                setContentPane(piel.modifica);
             }
             //Modelo
             if (e.getSource().equals(mb.moa)) {
-                ver(17);
+                setContentPane(modelo.agrega);
             }
             if (e.getSource().equals(mb.mob)) {
-                ver(18);
+                setContentPane(modelo.elimina);
             }
             if (e.getSource().equals(mb.mom)) {
-                ver(19);
+               setContentPane(modelo.modifica);
             }
             //productos
             if (e.getSource().equals(mb.tia)) {
-                ver(20);
+                setContentPane(producto.agrega);
             }
             if (e.getSource().equals(mb.tib)) {
-                ver(21);
+               setContentPane(producto.elimina);
             }
             if (e.getSource().equals(mb.tim)) {
-                ver(22);
+               setContentPane(producto.modifica);
             }
             //empleados
             if (e.getSource().equals(mb.noa)) {
-                ver(23);
+                setContentPane(empleado.NotaA);
             }
             if (e.getSource().equals(mb.nov)) {
-                ver(24);
+                setContentPane(empleado.NotaV);
             }
             if (e.getSource().equals(mb.ema)) {
-                ver(25);
+                setContentPane(empleado.agrega);
             }
             if (e.getSource().equals(mb.emb)) {
-                ver(26);
+                setContentPane(empleado.elimina);
             }
             if (e.getSource().equals(mb.emm)) {
-                ver(27);
+                setContentPane(empleado.modifica);
             }
             //Compras
             if (e.getSource().equals(mb.cmc)) {
-                ver(28);
+                setContentPane(compras.comprar);
             }
             if (e.getSource().equals(mb.cmv)) {
-                ver(29);
+               setContentPane(compras.vista);
             }
              //Erroes
             if (e.getSource().equals(mb.era)) {
-                ver(30);
+                setContentPane(errores.agrega);
             }
             if (e.getSource().equals(mb.erc)) {
-                ver(31);
+                setContentPane(errores.consulta);
             }
-
+            validate();
         }
 
     }
