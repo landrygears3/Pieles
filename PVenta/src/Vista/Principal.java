@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
-;
-
 public class Principal extends JFrame {
 
     private Dimension dim;
@@ -23,6 +21,7 @@ public class Principal extends JFrame {
     Vista.Mods.Modelo modelo = new Vista.Mods.Modelo();
     Vista.Mods.Tipo tipos = new Vista.Mods.Tipo();
     Vista.Empleado.EmpleadoAcceso empleado = new Vista.Empleado.EmpleadoAcceso();
+    
 
     public Principal() {
         dim = super.getToolkit().getScreenSize();
@@ -117,9 +116,13 @@ public class Principal extends JFrame {
             if (e.getSource().equals(mb.sa)) {
                 System.exit(0);
             }
+            if (e.getSource().equals(mb.cs)) {
+                
+            }
             //ventas
             if (e.getSource().equals(mb.vev)) {
-               setContentPane(venta.agrega);
+               setContentPane(venta.agrega.Pr);
+               validate();
             }
             if (e.getSource().equals(mb.vec)) {
                 setContentPane(venta.consulta);
@@ -146,7 +149,7 @@ public class Principal extends JFrame {
             }
             //proveedor
             if (e.getSource().equals(mb.pra)) {
-                setContentPane(proveedor.agrega);
+                setContentPane(proveedor.agrega.P);
             }
             if (e.getSource().equals(mb.prb)) {
                 setContentPane(proveedor.elimina);
@@ -176,7 +179,7 @@ public class Principal extends JFrame {
             }
             //Modelo
             if (e.getSource().equals(mb.moa)) {
-                setContentPane(modelo.agrega);
+                setContentPane(modelo.agrega.P);
             }
             if (e.getSource().equals(mb.mob)) {
                 setContentPane(modelo.elimina);
