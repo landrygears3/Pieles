@@ -1,5 +1,7 @@
 package Vista.Compra;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -8,9 +10,10 @@ import javax.swing.JPanel;
 
 public class CompraC extends VistasGenerales.Panel {
 
-    final String cols[] = {"Codigo","Producto", "Cantidad", "Descripción"};
+    final String cols[] = {"Codigo", "Producto", "Cantidad", "Descripción"};
 
     JPanel P = new JPanel();
+    JPanel inter1 = new JPanel();
     VistasGenerales.Tabla tab;
     JLabel lproducto;
     JLabel lcantidad;
@@ -20,8 +23,9 @@ public class CompraC extends VistasGenerales.Panel {
     VistasGenerales.Number cantidad;
 
     public CompraC() {
-        this.setLayout(new GridLayout(2, 1));
+        this.setLayout(new GridBagLayout());
         P.setLayout(new GridLayout(2, 2));
+        inter1.setLayout(new GridLayout(5, 2));
         crea();
         agrega();
 
@@ -35,25 +39,46 @@ public class CompraC extends VistasGenerales.Panel {
         lcantidad = new JLabel("Cantidad");
         producto = new JComboBox();
         cantidad = new VistasGenerales.Number();
-        acepta=new JButton("Compra");
-        agrega =new JButton("Agrega");
+        acepta = new JButton("Compra");
+        agrega = new JButton("Agrega");
+    }
+
+    private GridBagConstraints estilo(int pox, int poy, int tax, int tay) {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = pox;
+        gbc.gridy = poy;
+        gbc.gridwidth = tax;
+        gbc.gridheight = tay;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+
+        return gbc;
     }
 
     private void agrega() {
-        JPanel inter1=new JPanel();
-        inter1.setLayout(new GridLayout(1,2));
+        JLabel v1 = new JLabel();
+        JLabel v2 = new JLabel();
+         JLabel v3 = new JLabel();
+        JLabel v4 = new JLabel();
         inter1.add(lproducto);
         inter1.add(producto);
-        JPanel inter2=new JPanel();
-        inter2.setLayout(new GridLayout(1,2));
-        inter2.add(lcantidad);
-        inter2.add(cantidad.tf);
-       
-        P.add(inter2);
+        inter1.add(v1);
+        inter1.add(v2);
+        inter1.add(lcantidad);
+        inter1.add(cantidad.tf);
+        inter1.add(v3);
+        inter1.add(v4);
+        inter1.add(agrega);
+        inter1.add(acepta);
         P.add(inter1);
-        P.add(agrega);
-        P.add(acepta);
-        add(P);
-        add(tab);
+        
+
+        GridBagConstraints gbc;
+        gbc = estilo(0, 0, 4, 2);
+        add(P, gbc);
+        gbc = estilo(0, 2, 4, 4);
+        add(tab, gbc);
     }
 }
