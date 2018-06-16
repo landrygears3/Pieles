@@ -88,7 +88,7 @@ public class Login extends JFrame {
         pi.setLayout(new GridBagLayout());
         P.setLayout(new java.awt.GridLayout(3, 3));
         Dimension d = this.getSize();
-        ImageIcon imagen = new ImageIcon("Recursos\\Img\\Logo.jpg");
+        ImageIcon imagen = new ImageIcon("Recursos\\Img\\Logo.png");
         imagen = new ImageIcon(imagen.getImage().getScaledInstance(d.width / 3, d.height / 3, Image.SCALE_DEFAULT));
         v2.setIcon(imagen);
         double t = d.getWidth() / 20;

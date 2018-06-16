@@ -35,21 +35,25 @@ public class CompraC extends VistasGenerales.Panel {
         tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
 
-        lproducto = new JLabel("Producto");
-        lcantidad = new JLabel("Cantidad");
+        lproducto = new JLabel("Producto   ");
+        lproducto.setHorizontalAlignment(JLabel.RIGHT);
+        lcantidad = new JLabel("Cantidad   ");
+        lcantidad.setHorizontalAlignment(JLabel.RIGHT);
         producto = new JComboBox();
         cantidad = new VistasGenerales.Number();
         acepta = new JButton("Compra");
+        acepta.setFocusable(false);
         agrega = new JButton("Agrega");
+        agrega.setFocusable(false);
     }
 
-    private GridBagConstraints estilo(int pox, int poy, int tax, int tay) {
+    private GridBagConstraints estilo(int pox, int poy, int tax, int tay, int fill) {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = pox;
         gbc.gridy = poy;
         gbc.gridwidth = tax;
         gbc.gridheight = tay;
-        gbc.fill = GridBagConstraints.BOTH;
+        gbc.fill = fill;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
@@ -76,9 +80,9 @@ public class CompraC extends VistasGenerales.Panel {
         
 
         GridBagConstraints gbc;
-        gbc = estilo(0, 0, 4, 2);
+        gbc = estilo(0, 0, 4, 2,GridBagConstraints.PAGE_START);
         add(P, gbc);
-        gbc = estilo(0, 2, 4, 4);
+        gbc = estilo(0, 2, 4, 4, GridBagConstraints.BOTH);
         add(tab, gbc);
     }
 }
