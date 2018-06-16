@@ -1,5 +1,8 @@
 package Vista;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.util.Date;
 import javax.swing.Box;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -7,7 +10,7 @@ import javax.swing.JMenuItem;
 
 public class Menubar extends JMenuBar {
 
-    JMenu ve, inv, err, s, emp, not, com;
+    JMenu ve, inv, err, s, emp, not, com, dat;
     JMenuItem vev, vec, inm, cs, sa, ema, emb, emm, noa, nov,
             cmc, cmv, era, erc;
 
@@ -48,6 +51,11 @@ public class Menubar extends JMenuBar {
         not = new JMenu("Notas");
         noa = new JMenuItem("Agregar");
         nov = new JMenuItem("Revisar");
+        //date
+        Date d=new Date();
+        dat= new JMenu(d.getDate()+"/"+d.getMonth()+"/"+d.getYear());
+        dat.setEnabled(false);
+        
     }
 
     private void agrega() {
@@ -80,6 +88,7 @@ public class Menubar extends JMenuBar {
         add(err);
         add(emp);
         add(Box.createHorizontalGlue());
+        add(dat);
         add(s);
     }
 }
