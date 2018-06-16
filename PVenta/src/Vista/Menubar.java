@@ -7,10 +7,8 @@ import javax.swing.JMenuItem;
 
 public class Menubar extends JMenuBar {
 
-    JMenu ve, inv, pro, cli, err, con, s, pi, mo, ti, emp, not, prd, com;
-    JMenuItem vev, vec, ina, inb, inm, cs, sa, pra, prb, prm,
-            cla, clb, clm, pia, pim, pib, moa, mom, mob, tia,
-            tib, tim, ema, emb, emm, noa, nov, pda, pdm, pdb,
+    JMenu ve, inv, err, s, emp, not, com;
+    JMenuItem vev, vec, inm, cs, sa, ema, emb, emm, noa, nov,
             cmc, cmv, era, erc;
 
     public Menubar() {
@@ -34,44 +32,14 @@ public class Menubar extends JMenuBar {
         cmv = new JMenuItem("Historial");
         //Inventario
         inv = new JMenu("Inventario");
-        ina = new JMenuItem("Agrega");
-        inb = new JMenuItem("Eliminar");
-        inm = new JMenuItem("Modificar");
-        //productos
-        prd = new JMenu("Productos");
-        pda = new JMenuItem("Agrega");
-        pdb = new JMenuItem("Eliminar");
-        pdm = new JMenuItem("Modificar");
+        inm = new JMenuItem("Consultas");
+        
         //Errores
         err = new JMenu("Errores");
         era = new JMenuItem("Alta");
         erc = new JMenuItem("Historial");
-        //Proveedores
-        pro = new JMenu("Proveedores");
-        pra = new JMenuItem("Agrega");
-        prb = new JMenuItem("Eliminar");
-        prm = new JMenuItem("Modificar");
-        //Clientes
-        cli = new JMenu("Clientes");
-        cla = new JMenuItem("Agrega");
-        clb = new JMenuItem("Eliminar");
-        clm = new JMenuItem("Modificar");
-
-        //Conceptos
-        con = new JMenu("Conceptos");
-        pi = new JMenu("Tipos de Piel");
-        pia = new JMenuItem("Agrega");
-        pib = new JMenuItem("Eliminar");
-        pim = new JMenuItem("Modificar");
-        mo = new JMenu("Modelos");
-        moa = new JMenuItem("Agrega");
-        mob = new JMenuItem("Eliminar");
-        mom = new JMenuItem("Modificar");
-        ti = new JMenu("Productos");
-        tia = new JMenuItem("Agrega");
-        tib = new JMenuItem("Eliminar");
-        tim = new JMenuItem("Modificar");
-
+        
+        
         //Empleados
         emp = new JMenu("Empleados");
         ema = new JMenuItem("Agrega");
@@ -93,35 +61,8 @@ public class Menubar extends JMenuBar {
         com.add(cmc);
         com.add(cmv);
         //Inventario
-        inv.add(ina);
-        inv.add(inb);
         inv.add(inm);
-        //Producto
-        prd.add(pda);
-        prd.add(pdb);
-        prd.add(pdm);
-        //Proveedores
-        pro.add(pra);
-        pro.add(prb);
-        pro.add(prm);
-        //Clientes
-        cli.add(cla);
-        cli.add(clb);
-        cli.add(clm);
-        cli.add(pro);
-        //Conceptos
-        con.add(pi);
-        pi.add(pia);
-        pi.add(pib);
-        pi.add(pim);
-        con.add(mo);
-        mo.add(moa);
-        mo.add(mob);
-        mo.add(mom);
-        con.add(ti);
-        ti.add(tia);
-        ti.add(tib);
-        ti.add(tim);
+       
         //Empleados
         not.add(noa);
         not.add(nov);
@@ -136,11 +77,7 @@ public class Menubar extends JMenuBar {
         add(ve);
         add(com);
         add(inv);
-        add(prd);
         add(err);
-        add(pro);
-        add(cli);
-        add(con);
         add(emp);
         add(Box.createHorizontalGlue());
         add(s);

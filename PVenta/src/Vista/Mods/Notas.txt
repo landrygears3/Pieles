@@ -1,5 +1,0 @@
-Mods requiere:
-Descripción
-
-(Esta será utilizada para dar de alta, 
-eliminar y modificar Tipos, Tipos de piel y modelos)

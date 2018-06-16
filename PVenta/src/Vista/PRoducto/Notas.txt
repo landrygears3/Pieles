@@ -1,8 +1,0 @@
-Producto requiere:
-Tipo
-Modelo
-Tipo piel
-Proovedor
-Color
-Descripción
-Imagen
