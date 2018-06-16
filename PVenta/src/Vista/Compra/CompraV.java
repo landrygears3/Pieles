@@ -10,8 +10,10 @@ import javax.swing.JTextField;
 
 public class CompraV extends VistasGenerales.Panel {
 
-    final String cols[] = {"Codigo", "Producto", "Cantidad", "Descripción"};
-    final Object o[]={"Tipo de busqueda","Codigo", "Producto", "Cantidad", "Descripción"};
+    final String cols[] = {"Codigo", "Producto", "Cantidad", 
+        "Tipo", "Piel", "Modelo","Color","proveedor","Descripción" };
+    final Object o[]={"Tipo de busqueda","Codigo", "Producto", 
+        "Proveedor","Modelo", "Piel", "Tipo","Color"};
 
     JPanel P = new JPanel();
     JPanel inter1 = new JPanel();

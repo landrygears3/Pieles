@@ -6,7 +6,7 @@ import javax.swing.JTextField;
 
 public class Number implements KeyListener {
 
-    public JTextField tf = new JTextField(20);
+    public JTextField tf = new JTextField();
 
     public Number() {
         tf.addKeyListener(this);
