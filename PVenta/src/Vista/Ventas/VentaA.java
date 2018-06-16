@@ -20,19 +20,14 @@ import javax.swing.JTextField;
 public class VentaA extends VistasGenerales.Panel {
 
     public JLabel id, t, tp, mo, col, des, pv, can,
-            im, ma, su, pi, PRO, IM, nc, cc;
+            im, ma, su, pi, PRO, IM, nc, cc, st;
     
-    private JLabel v2, v3, v4, v5, v6, v10, v11, v13,
-            v14, v15, v16, v17, v18, v19, v20, v21, v22;
-    public JTextField CAN, PV, NC, CC;
-    public String Prod[] = {"Tipo de producto"};
+    private JLabel v2, v3, v4, v5, v6, v7, v11, v13,
+            v14, v1;
+    public JTextField CAN, NC, CC;
     public String Pago[] = {"Tipo de pago"};
-    public String Mod[] = {"Modelo"};
-    public String Color[] = {"Color"};
-    public String Des[] = {"Descripción"};
     public String Suc[] = {"Sucursal"};
-    public String piel[] = {"Tipo de piel"};
-    public JComboBox T, TP, MO, COL, DES, SU, PI, ID;
+    public JComboBox TP, SU, ID;
     JComboBox idproducto;
     public Panel P = new Panel();
     public Panel Pr = new Panel();
@@ -59,34 +54,30 @@ public class VentaA extends VistasGenerales.Panel {
         Pr.setLayout(new GridBagLayout());
         v2 = new JLabel();      v3 = new JLabel();      
         v4 = new JLabel();      v5 = new JLabel();
-        v6 = new JLabel();      v10 = new JLabel();
-        v11 = new JLabel();      
-        v13 = new JLabel();      v14 = new JLabel();
-        v15 = new JLabel();      v16 = new JLabel();
-        v17 = new JLabel();      v18 = new JLabel();
-        v19 = new JLabel();      v20 = new JLabel();
-        v21 = new JLabel();      v22 = new JLabel();
+        v6 = new JLabel();      v7 = new JLabel();
+        v11 = new JLabel();     v13 = new JLabel();
+        v14 = new JLabel();      v1 = new JLabel();
         MA = new JCheckBox();
         id = new JLabel("ID");                  //id venta
-        pv = new JLabel("Precio de venta");
+        pv = new JLabel("Precio unitario");
+        pv.setHorizontalAlignment(JLabel.CENTER);
         can = new JLabel("Cantidad");
         nc = new JLabel("Cliente");             //Nombre cliente
         cc = new JLabel("Contacto");            //forma de contacto
         im = new JLabel("(Insertar imagen)");
+        pi = new JLabel("Tipo de piel");
+        mo = new JLabel("Modelo");
+        t = new JLabel("Tipo de piel");
+        col = new JLabel("Color");
+        st = new JLabel("Subtotal");
         im.setHorizontalAlignment(JLabel.CENTER);
         ma = new JLabel("Mayoreo");             //CheckBox
         ID = new JComboBox();
         CAN = new JTextField(10);
-        PV = new JTextField(10);
         NC = new JTextField(10);
         CC = new JTextField(10);
-        T = new JComboBox(Prod);
         TP = new JComboBox(Pago);
-        MO = new JComboBox(Mod);
-        COL = new JComboBox(Color);
-        DES = new JComboBox(Des);
         SU = new JComboBox(Suc);
-        PI = new JComboBox(piel);
         tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
         idproducto=new JComboBox();
@@ -111,31 +102,36 @@ public class VentaA extends VistasGenerales.Panel {
 
     private void agrega() {
 
+        P.add(nc, estilo(0,0,1,1));
+        P.add(NC, estilo(1,0,1,1));
+        P.add(cc, estilo(2,0,1,1));
+        P.add(CC, estilo(3,0,1,1));
+        P.add(v1, estilo(0,1,4,1));
         
-        P.add(id, estilo(0,0,1,1));
-        P.add(ID, estilo(1,0,1,1));
-        P.add(pv, estilo(2,0,1,1));
-        P.add(PV, estilo(3,0,1,1));
-        P.add(v3, estilo(0,1,4,1));
-        P.add(can, estilo(0,2,1,1));
-        P.add(CAN, estilo(1,2,1,1));
-        P.add(nc, estilo(2,2,1,1));
-        P.add(NC, estilo(3,2,1,1));
-        P.add(v4, estilo(0,3,4,1));
-        P.add(cc, estilo(0,4,1,1));
-        P.add(CC, estilo(1,4,1,1));
-        P.add(ma, estilo(2,4,1,1));
-        P.add(MA, estilo(3,4,1,1));
-        P.add(v11, estilo (0,5,4,1));
-        Pb.add(T);
-        Pb.add(TP);
-        Pb.add(MO);
-        Pb.add(v13);
-        Pb.add(COL);
-        Pb.add(DES);
-        Pb.add(SU);
-        Pb.add(v14);
-        Pb.add(PI);
+        P.add(id, estilo(0,2,1,1));
+        P.add(ID, estilo(1,2,1,1));
+        P.add(can, estilo(2,2,1,1));
+        P.add(CAN, estilo(3,2,1,1));
+        P.add(v2, estilo(0,3,4,1));
+        
+        P.add(t, estilo(0,4,1,1));
+        P.add(mo, estilo(1,4,1,1));
+        P.add(pi, estilo(2,4,1,1));
+        P.add(col, estilo(3,4,1,1));
+        P.add(v3, estilo(0,4,4,1));
+        
+        Pb.add(v7, estilo(0,0,4,1));
+        Pb.add(TP, estilo(0,1,1,1));
+        Pb.add(pv, estilo(1,1,1,1));
+        Pb.add(SU, estilo(2,1,1,1));
+        Pb.add(v4, estilo(3,1,1,1));
+        
+        Pb.add(ma, estilo(0,2,1,1));
+        Pb.add(MA, estilo(1,2,1,1));
+        Pb.add(v5, estilo(2,2,2,1));
+        Pb.add(v6, estilo(0,3,4,1));
+        Pb.add(st, estilo(3,4,1,1));
+        
         
         
         
