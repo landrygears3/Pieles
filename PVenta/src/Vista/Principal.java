@@ -79,7 +79,7 @@ public class Principal extends JFrame {
                 setContentPane(empleado.NotaV);
             }
             if (e.getSource().equals(mb.ema)) {
-                setContentPane(empleado.agrega);
+                setContentPane(empleado.agrega.Pr);
             }
             if (e.getSource().equals(mb.emb)) {
                 setContentPane(empleado.elimina);
@@ -96,7 +96,7 @@ public class Principal extends JFrame {
             }
              //Erroes
             if (e.getSource().equals(mb.era)) {
-                setContentPane(errores.agrega);
+                setContentPane(errores.agrega.Pr);
             }
             if (e.getSource().equals(mb.erc)) {
                 setContentPane(errores.consulta);
