@@ -30,7 +30,7 @@ public class VentaA extends VistasGenerales.Panel {
     
     private JLabel v2, v3, v4, v5, v6, v7, v1;
     public JTextField CC;
-    public String Pago[] = {"Tipo de pago"};
+    public String Pago[] = {"Tarjeta", "Efectivo", "Envio"};
     public String Suc[] = {"Sucursal"};
     private String Tpi[] = {"Tipo de piel"};
     private String MO[] = {"Modelo"};
