@@ -1,7 +1,5 @@
 package Vista;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.util.Date;
 import javax.swing.Box;
 import javax.swing.JMenu;
@@ -10,9 +8,9 @@ import javax.swing.JMenuItem;
 
 public class Menubar extends JMenuBar {
 
-    JMenu ve, inv, err, s, emp, not, com, dat;
+    JMenu ve, inv, err, s, emp, not, com, dat, gas, otr;
     JMenuItem vev, vec, inm, cs, sa, ema, emb, emm, noa, nov,
-            cmc, cmv, era, erc;
+            cmc, cmv, era, erc, ota, otv;
 
     public Menubar() {
         crea();
@@ -29,20 +27,24 @@ public class Menubar extends JMenuBar {
         ve = new JMenu("Ventas");
         vev = new JMenuItem("Vende");
         vec = new JMenuItem("Historial");
-        //Compras
+        //gastos
+        gas = new JMenu("Gastos");
         com = new JMenu("Compras");
         cmc = new JMenuItem("Comprar");
         cmv = new JMenuItem("Historial");
+        otr = new JMenu("Otros");
+        ota = new JMenuItem("Comprar");
+        otv = new JMenuItem("Historial");
+
         //Inventario
         inv = new JMenu("Inventario");
         inm = new JMenuItem("Consultas");
-        
+
         //Errores
         err = new JMenu("Errores");
         era = new JMenuItem("Alta");
         erc = new JMenuItem("Historial");
-        
-        
+
         //Empleados
         emp = new JMenu("Empleados");
         ema = new JMenuItem("Agrega");
@@ -52,10 +54,10 @@ public class Menubar extends JMenuBar {
         noa = new JMenuItem("Agregar");
         nov = new JMenuItem("Revisar");
         //date
-        Date d=new Date();
-        dat= new JMenu(d.getDate()+"/"+d.getMonth()+"/"+d.getYear());
+        Date d = new Date();
+        dat = new JMenu(d.getDate() + "/" + d.getMonth() + "/" + d.getYear());
         dat.setEnabled(false);
-        
+
     }
 
     private void agrega() {
@@ -65,12 +67,16 @@ public class Menubar extends JMenuBar {
         //Ventas
         ve.add(vev);
         ve.add(vec);
-        //compras
+        //Gastos
         com.add(cmc);
         com.add(cmv);
+        otr.add(ota);
+        otr.add(otv);
+        gas.add(com);
+        gas.add(otr);
         //Inventario
         inv.add(inm);
-       
+
         //Empleados
         not.add(noa);
         not.add(nov);
@@ -83,7 +89,7 @@ public class Menubar extends JMenuBar {
         err.add(erc);
         //MenuBar
         add(ve);
-        add(com);
+        add(gas);
         add(inv);
         add(err);
         add(emp);

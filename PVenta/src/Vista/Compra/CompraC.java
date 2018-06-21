@@ -24,13 +24,13 @@ public class CompraC extends VistasGenerales.Panel {
     JPanel inter1 = new JPanel();
     VistasGenerales.Tabla tab;
     JLabel lproducto, lcantidad, ltipo, lpiel, lproveedor, lcolor,
-            lmodelo, ldescripcion, imagen;
+            lmodelo, ldescripcion, imagen, lcosto;
 
     JComboBox producto, tipo, piel, proveedor, modelo;
     JTextField color, descripcion;
     JButton acepta, agrega, btipo, bpiel, bproveedor, bmodelo;
     JCheckBox nuevo;
-    VistasGenerales.Number cantidad;
+    VistasGenerales.Number cantidad, costo;
 
     public CompraC() {
         this.setLayout(new GridBagLayout());

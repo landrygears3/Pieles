@@ -41,6 +41,8 @@ public class Principal extends JFrame {
         mb.nov.addActionListener(b);
         mb.era.addActionListener(b);
         mb.erc.addActionListener(b);
+        mb.ota.addActionListener(b);
+        mb.otv.addActionListener(b);
 
     }
 
@@ -93,6 +95,12 @@ public class Principal extends JFrame {
             }
             if (e.getSource().equals(mb.cmv)) {
                setContentPane(compras.vista);
+            }
+            if (e.getSource().equals(mb.ota)) {
+                setContentPane(compras.gasto);
+            }
+            if (e.getSource().equals(mb.otv)) {
+               setContentPane(compras.vistaG);
             }
              //Erroes
             if (e.getSource().equals(mb.era)) {
