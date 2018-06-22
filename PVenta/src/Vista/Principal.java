@@ -75,7 +75,7 @@ public class Principal extends JFrame {
             }
             //empleados
             if (e.getSource().equals(mb.noa)) {
-                setContentPane(empleado.NotaA);
+                setContentPane(empleado.NotaA.P);
             }
             if (e.getSource().equals(mb.nov)) {
                 setContentPane(empleado.NotaV);
