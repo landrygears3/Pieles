@@ -3,7 +3,6 @@ package Vista.Compra;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -71,6 +70,9 @@ public class CompraC extends VistasGenerales.Panel {
         lcantidad = new JLabel("Cantidad   ");
         lcantidad.setHorizontalAlignment(JLabel.RIGHT);
         cantidad = new VistasGenerales.Number();
+        lcosto = new JLabel("Precio  ");
+        lcosto.setHorizontalAlignment(JLabel.RIGHT);
+        costo = new VistasGenerales.Number("D");
         acepta = new JButton("Compra");
         acepta.setFocusable(false);
         agrega = new JButton("Agrega");
@@ -196,9 +198,15 @@ public class CompraC extends VistasGenerales.Panel {
         inter1.add(ldescripcion, gbc);
         gbc = estilo(8, 6, 2, 1, GridBagConstraints.BOTH);
         inter1.add(descripcion, gbc);
-
-        gbc = estilo(11, 6, 1, 1, GridBagConstraints.BOTH);
+        //Agrega
+        gbc = estilo(10, 8, 2, 1, GridBagConstraints.BOTH);
         inter1.add(agrega, gbc);
+
+        //costo
+        gbc = estilo(10, 6, 1, 1, GridBagConstraints.BOTH);
+        inter1.add(lcosto, gbc);
+        gbc = estilo(11, 6, 1, 1, GridBagConstraints.BOTH);
+        inter1.add(costo.tf, gbc);
 
         gbc = estilo(0, 0, 5, 2, GridBagConstraints.BOTH);
         add(inter1, gbc);
