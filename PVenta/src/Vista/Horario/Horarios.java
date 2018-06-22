@@ -5,7 +5,7 @@ package Vista.Horario;
  */
 public class Horarios {
     
-    public HorarioA ag = new HorarioA();
-   public HorarioV mod = new HorarioV();
+    public HorarioA agrega = new HorarioA();
+   public HorarioV modifica = new HorarioV();
     
 }

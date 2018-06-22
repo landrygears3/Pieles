@@ -9,6 +9,6 @@ package Vista.Horario;
  *
  * @author win 10
  */
-public class HorarioV {
+public class HorarioV extends VistasGenerales.Panel{
     
 }

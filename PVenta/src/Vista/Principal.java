@@ -15,14 +15,14 @@ public class Principal extends JFrame {
     Vista.Inventario.InventarioM inventario = new Vista.Inventario.InventarioM();
     Vista.Errores.ErrorAcceso errores = new Vista.Errores.ErrorAcceso();
     Vista.Empleado.EmpleadoAcceso empleado = new Vista.Empleado.EmpleadoAcceso();
-    //Vista.Horario.Horarios horario = new Vista.Horario.Horarios();
+    Vista.Horario.Horarios horario = new Vista.Horario.Horarios();
     
 
     public Principal() {
         dim = super.getToolkit().getScreenSize();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setSize(dim);
-        super.setUndecorated(true);
+        //super.setUndecorated(true);
         super.setVisible(true);
 
         setJMenuBar(mb);
@@ -106,8 +106,8 @@ public class Principal extends JFrame {
                setContentPane(compras.vistaG);
             }
             //Horarios
-            if (e.getSource().equals(mb.hor)) {
-               //setContentPane(horario.ag);
+            if (e.getSource().equals(mb.hra)) {
+               setContentPane(horario.agrega);
             }
              //Erroes
             if (e.getSource().equals(mb.era)) {

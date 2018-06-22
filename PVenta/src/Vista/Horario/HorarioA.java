@@ -1,22 +1,32 @@
 package Vista.Horario;
 
-import java.util.Date;
-import javax.swing.JLabel;
+import VistasGenerales.TimeChoser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
-/**
- *
- * @author win 10
- */
-public class HorarioA {
-    JLabel i, f;
-    Date d;
+public class HorarioA extends VistasGenerales.Panel {
+    TimeChoser tc=new TimeChoser();
+    JButton test;
+    public HorarioA() {
+        crea();
+        agrega();
+        test.addActionListener(new ActionListener(){
+        public void actionPerformed(ActionEvent a){
     
-    public HorarioA(){
-    d = new Date();
-    d.setTime(999999999);
-    
-        System.out.println(d.getHours() + ":" + d.getMinutes());
-            }
-    
-    
+        tc.setVisible(true);
+        }
+        });
+        
+    }
+
+    private void crea() {
+        
+        test=new JButton("prueba");
+    }
+
+    private void agrega() {
+        add(test);
+        add(tc);
+    }
 }
