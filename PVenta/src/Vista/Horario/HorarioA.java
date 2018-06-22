@@ -3,30 +3,32 @@ package Vista.Horario;
 import VistasGenerales.TimeChoser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import javax.swing.JButton;
 
 public class HorarioA extends VistasGenerales.Panel {
-    TimeChoser tc=new TimeChoser();
-    JButton test;
+   TimeChoser tc=new TimeChoser();
+   JButton time=new JButton("T");
+   Date d;
     public HorarioA() {
-        crea();
+       
         agrega();
-        test.addActionListener(new ActionListener(){
-        public void actionPerformed(ActionEvent a){
-    
-        tc.setVisible(true);
-        }
+        time.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+            d=tc.getTime();
+                System.out.println(d.getHours()+" : "+d.getMinutes());
+            }
         });
         
-    }
-
-    private void crea() {
         
-        test=new JButton("prueba");
     }
+    
 
+   
     private void agrega() {
-        add(test);
         add(tc);
+        add(time);
     }
+    
 }
