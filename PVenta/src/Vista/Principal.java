@@ -15,6 +15,7 @@ public class Principal extends JFrame {
     Vista.Inventario.InventarioM inventario = new Vista.Inventario.InventarioM();
     Vista.Errores.ErrorAcceso errores = new Vista.Errores.ErrorAcceso();
     Vista.Empleado.EmpleadoAcceso empleado = new Vista.Empleado.EmpleadoAcceso();
+    //Vista.Horario.Horarios horario = new Vista.Horario.Horarios();
     
 
     public Principal() {
@@ -43,6 +44,8 @@ public class Principal extends JFrame {
         mb.erc.addActionListener(b);
         mb.ota.addActionListener(b);
         mb.otv.addActionListener(b);
+        mb.hra.addActionListener(b);
+        mb.hrv.addActionListener(b);
 
     }
 
@@ -101,6 +104,10 @@ public class Principal extends JFrame {
             }
             if (e.getSource().equals(mb.otv)) {
                setContentPane(compras.vistaG);
+            }
+            //Horarios
+            if (e.getSource().equals(mb.hor)) {
+               //setContentPane(horario.ag);
             }
              //Erroes
             if (e.getSource().equals(mb.era)) {

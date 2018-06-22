@@ -8,9 +8,9 @@ import javax.swing.JMenuItem;
 
 public class Menubar extends JMenuBar {
 
-    JMenu ve, inv, err, s, emp, not, com, dat, gas, otr;
+    JMenu ve, inv, err, s, emp, not, com, dat, gas, otr, hor;
     JMenuItem vev, vec, inm, cs, sa, ema, emb, emm, noa, nov,
-            cmc, cmv, era, erc, ota, otv;
+            cmc, cmv, era, erc, ota, otv, hra, hrv;
 
     public Menubar() {
         crea();
@@ -57,6 +57,10 @@ public class Menubar extends JMenuBar {
         Date d = new Date();
         dat = new JMenu(d.getDate() + "/" + d.getMonth() + "/" + d.getYear());
         dat.setEnabled(false);
+        //Horarios
+        hor = new JMenu("Horario");
+        hra = new JMenuItem("Nuevo");
+        hrv = new JMenuItem("Consultar");
 
     }
 
@@ -87,12 +91,16 @@ public class Menubar extends JMenuBar {
         //Errores
         err.add(era);
         err.add(erc);
+        //Horario
+        hor.add(hra);
+        hor.add(hrv);
         //MenuBar
         add(ve);
         add(gas);
         add(inv);
         add(err);
         add(emp);
+        add(hor);
         add(Box.createHorizontalGlue());
         add(dat);
         add(s);
