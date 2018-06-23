@@ -1,6 +1,7 @@
 package VistasGenerales;
 
 
+import com.sun.awt.AWTUtilities;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -27,9 +28,8 @@ public class PanelTimeChoser extends JDialog implements KeyListener, ActionListe
         this.setModal(true);
         this.setResizable(false);
         this.setUndecorated(true);
-
+        AWTUtilities.setWindowOpaque(this, false);
         P.setLayout(new GridBagLayout());
-        P.setBackground(Color.BLACK);
         P.setFocusable(true);
         crea();
         agrega();
