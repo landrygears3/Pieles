@@ -18,7 +18,7 @@ import javax.swing.JPasswordField;
 public class EmpleadoA extends VistasGenerales.Panel {
 
     public JLabel n, t, c, u, l, v1, v2, v3, v4, v5, v6, v7,
-            v8, v9, v10, v11, v12, va, vb, vc, vd, ve, vf, vg;
+            v8, v9, v10, v11, v12, va, vb, vc, vd, ve, vf, vg, vh;
     public JTextField N, T, U;
     public JComboBox TU, S;
     public JPasswordField C;
@@ -48,13 +48,14 @@ public class EmpleadoA extends VistasGenerales.Panel {
         c.setHorizontalAlignment(JLabel.CENTER);
         u = new JLabel("Usuario");
         u.setHorizontalAlignment(JLabel.CENTER);
-        N = new JTextField(10);
+        N = new JTextField();
         CAN = new VistasGenerales.Number();
-        C = new JPasswordField(10);
-        U = new JTextField(10);
+        C = new JPasswordField();
+        U = new JTextField();
         TU = new JComboBox(Tu);
         S = new JComboBox(Su);
-        l = new JLabel ("Información dle empleado");
+        
+        l = new JLabel ("Información del empleado");
         l.setHorizontalAlignment(JLabel.CENTER);
         con.setLayout(new GridBagLayout());
         P.setLayout(new GridBagLayout());
@@ -72,7 +73,7 @@ public class EmpleadoA extends VistasGenerales.Panel {
         va = new JLabel(" ");       vb = new JLabel(" ");
         vc = new JLabel(" ");       vd = new JLabel(" ");
         ve = new JLabel(" ");       vf = new JLabel(" ");
-        vg = new JLabel(" ");
+        vg = new JLabel(" ");       vh = new JLabel();
     }
     
     private GridBagConstraints estilo(int pox, int poy, int tax, int tay) {
@@ -100,11 +101,11 @@ public class EmpleadoA extends VistasGenerales.Panel {
         con.add(CAN.tf, estilo(1,5,1,1));
         con.add(v7, estilo(0,6,2,1));
         
-        P.add(c, estilo(0,1,1,1));
-        P.add(C, estilo(1,1,1,1));
+        P.add(u, estilo(0,1,1,1));
+        P.add(U, estilo(1,1,1,1));
         P.add(v9, estilo(0,2,2,1));
-        P.add(u, estilo(0,3,1,1));
-        P.add(U, estilo(1,3,1,1));
+        P.add(c, estilo(0,3,1,1));
+        P.add(C, estilo(1,3,1,1));
         P.add(v10, estilo(0,4,2,1));
         P.add(TU, estilo(0,5,1,1));
         P.add(S, estilo(1,5,1,1));
@@ -118,7 +119,8 @@ public class EmpleadoA extends VistasGenerales.Panel {
         Pb.add(vg, estilo(0,3,3,1));
         Pb.add(vd, estilo(0,4,1,1));
         Pb.add(ca, estilo(1,4,1,1));
-        Pb.add(vf, estilo(2,4,1,1));
+        Pb.add(vf, estilo(0,4,3,1));
+        Pb.add(vh, estilo(0,5,3,1));
         
         
         Pr.add(v1);

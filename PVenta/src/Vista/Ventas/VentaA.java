@@ -30,7 +30,7 @@ public class VentaA extends VistasGenerales.Panel {
     
     private JLabel v2, v3, v4, v5, v6, v7, v1;
     public JTextField CC;
-    public String Pago[] = {"Tarjeta", "Efectivo", "Envio"};
+    public String Pago[] = {"Tipo de pago"};
     public String Suc[] = {"Sucursal"};
     private String Tpi[] = {"Tipo de piel"};
     private String MO[] = {"Modelo"};
@@ -150,12 +150,12 @@ public class VentaA extends VistasGenerales.Panel {
         
         P.add(pi, estilo(0,2,1,1));
         P.add(mo, estilo(1,2,1,1));
-        P.add(can, estilo(2,2,1,1));
-        P.add(CAN.tf, estilo(3,2,1,1));
+        P.add(col, estilo(2,2,1,1));
+        P.add(TP, estilo(3,2,1,1));
         P.add(v2, estilo(0,3,4,1));
         
-        P.add(TP, estilo(0,4,1,1));
-        P.add(col, estilo(1,4,1,1));
+        P.add(can, estilo(0,4,1,1));
+        P.add(CAN.tf, estilo(1,4,1,1));
         P.add(c5, estilo(2,4,1,1));
         P.add(pv, estilo(3,4,1,1));
         P.add(v3, estilo(0,4,4,1));
@@ -173,7 +173,6 @@ public class VentaA extends VistasGenerales.Panel {
         Pr.add(v5, estilo(0, 1, 1, 1));
         Pr.add(Pb, estilo(2, 1, 1, 1));
         Pr.add(tab, estilo(0, 2, 3, 1));
-        validate();
         
         
     }
