@@ -8,7 +8,6 @@ import VistasGenerales.Panel;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -30,6 +29,8 @@ public class EmpleadoA extends VistasGenerales.Panel {
     VistasGenerales.Number CAN;
     Container con = new Container();
     JButton ag, ca;
+    VistasGenerales.Tabla tab;
+    final String cols[] = {"Empleado", "Teléfono", "Usuario", "Contraseña"};
 
     public EmpleadoA() {
 
@@ -59,10 +60,10 @@ public class EmpleadoA extends VistasGenerales.Panel {
         l.setHorizontalAlignment(JLabel.CENTER);
         con.setLayout(new GridBagLayout());
         P.setLayout(new GridBagLayout());
-        Pr.setLayout(new GridLayout(3,3));
+        Pr.setLayout(new GridBagLayout());
         Pb.setLayout(new GridBagLayout());
         ag = new JButton("Crear usuario");
-        ca = new JButton("Cancelar");
+        ca = new JButton("Borrar");
         
         v1 = new JLabel(" ");       v2 = new JLabel(" ");
         v3 = new JLabel(" ");       v4 = new JLabel(" ");
@@ -74,6 +75,10 @@ public class EmpleadoA extends VistasGenerales.Panel {
         vc = new JLabel(" ");       vd = new JLabel(" ");
         ve = new JLabel(" ");       vf = new JLabel(" ");
         vg = new JLabel(" ");       vh = new JLabel();
+        
+        
+        tab = new VistasGenerales.Tabla();
+        tab.setColum(cols);
     }
     
     private GridBagConstraints estilo(int pox, int poy, int tax, int tay) {
@@ -111,24 +116,22 @@ public class EmpleadoA extends VistasGenerales.Panel {
         P.add(S, estilo(1,5,1,1));
         P.add(v11, estilo(0,6,2,1));
         
-        Pb.add(va, estilo(0,0,3,1));
-        Pb.add(vb, estilo(0,1,3,1));
+        Pb.add(va, estilo(0,0,3,2));
         Pb.add(vc, estilo(0,2,1,1));
         Pb.add(ag, estilo(1,2,1,1));
         Pb.add(ve, estilo(2,2,1,1));
-        Pb.add(vg, estilo(0,3,3,1));
-        Pb.add(vd, estilo(0,4,1,1));
-        Pb.add(ca, estilo(1,4,1,1));
-        Pb.add(vf, estilo(0,4,3,1));
-        Pb.add(vh, estilo(0,5,3,1));
+        Pb.add(vg, estilo(0,3,3,2));
+        Pb.add(ca, estilo(1,5,1,1));
+        Pb.add(vf, estilo(2,5,1,1));
+        Pb.add(vh, estilo(0,6,3,2));
+        Pb.add(vd, estilo(0,8,1,1));
         
         
-        Pr.add(v1);
-        Pr.add(con);
-        Pr.add(v3);
-        Pr.add(v4);
-        Pr.add(P);
-        Pr.add(Pb);
-        Pr.add(v6);
+        Pr.add(v1, estilo(0,0,1,1));
+        Pr.add(con, estilo(1,0,1,1));
+        Pr.add(v3, estilo(0,1,1,1));
+        Pr.add(P, estilo(1,1,1,1));
+        Pr.add(Pb, estilo(2,1,1,1));
+        Pr.add(tab, estilo(0,2,3,1));
     }
 }
