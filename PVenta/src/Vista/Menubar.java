@@ -8,9 +8,9 @@ import javax.swing.JMenuItem;
 
 public class Menubar extends JMenuBar {
 
-    JMenu ve, inv, err, s, emp, not, com, dat, gas, otr, hor;
+    JMenu ve, inv, err, s, emp, not, com, dat, gas, otr, per;
     JMenuItem vev, vec, inm, cs, sa, ema, emb, emm, noa, nov,
-            cmc, cmv, era, erc, ota, otv, hra, hrv;
+            cmc, cmv, era, erc, ota, otv, pea, peb, pem, peh;
 
     public Menubar() {
         crea();
@@ -53,14 +53,17 @@ public class Menubar extends JMenuBar {
         not = new JMenu("Notas");
         noa = new JMenuItem("Agregar");
         nov = new JMenuItem("Revisar");
+        //Permisos
+        per = new JMenu("Permisos");
+        pea = new JMenuItem("Agrega");
+        peb = new JMenuItem("Eliminar");
+        pem = new JMenuItem("Modificar");
+        peh = new JMenuItem("Historial");
+
         //date
         Date d = new Date();
         dat = new JMenu(d.getDate() + "/" + d.getMonth() + "/" + d.getYear());
         dat.setEnabled(false);
-        //Horarios
-        hor = new JMenu("Horario");
-        hra = new JMenuItem("Nuevo");
-        hrv = new JMenuItem("Consultar");
 
     }
 
@@ -80,7 +83,6 @@ public class Menubar extends JMenuBar {
         gas.add(otr);
         //Inventario
         inv.add(inm);
-
         //Empleados
         not.add(noa);
         not.add(nov);
@@ -88,19 +90,22 @@ public class Menubar extends JMenuBar {
         emp.add(ema);
         emp.add(emb);
         emp.add(emm);
+        //Permisos
+        per.add(pea);
+        per.add(peb);
+        per.add(pem);
+        per.add(peh);
         //Errores
         err.add(era);
         err.add(erc);
-        //Horario
-        hor.add(hra);
-        hor.add(hrv);
+
         //MenuBar
         add(ve);
         add(gas);
         add(inv);
         add(err);
         add(emp);
-        add(hor);
+        add(per);
         add(Box.createHorizontalGlue());
         add(dat);
         add(s);

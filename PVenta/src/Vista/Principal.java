@@ -15,7 +15,7 @@ public class Principal extends JFrame {
     Vista.Inventario.InventarioM inventario = new Vista.Inventario.InventarioM();
     Vista.Errores.ErrorAcceso errores = new Vista.Errores.ErrorAcceso();
     Vista.Empleado.EmpleadoAcceso empleado = new Vista.Empleado.EmpleadoAcceso();
-    
+    Vista.Permisos.PermisoAcceso permisos = new Vista.Permisos.PermisoAcceso();
 
     public Principal() {
         dim = super.getToolkit().getScreenSize();
@@ -43,11 +43,12 @@ public class Principal extends JFrame {
         mb.erc.addActionListener(b);
         mb.ota.addActionListener(b);
         mb.otv.addActionListener(b);
+        mb.pea.addActionListener(b);
+        mb.peb.addActionListener(b);
+        mb.pem.addActionListener(b);
+        mb.peh.addActionListener(b);
 
     }
-
-   
-
 
     private class boton implements ActionListener {
 
@@ -58,18 +59,18 @@ public class Principal extends JFrame {
                 System.exit(0);
             }
             if (e.getSource().equals(mb.cs)) {
-                
+
             }
             //ventas
             if (e.getSource().equals(mb.vev)) {
-               setContentPane(venta.agrega.Pr);
-               validate();
+                setContentPane(venta.agrega.Pr);
+                validate();
             }
             if (e.getSource().equals(mb.vec)) {
                 setContentPane(venta.consulta);
             }
             //inventario
-            
+
             if (e.getSource().equals(mb.inm)) {
                 setContentPane(inventario);
             }
@@ -89,20 +90,33 @@ public class Principal extends JFrame {
             if (e.getSource().equals(mb.emm)) {
                 setContentPane(empleado.modifica.Pr);
             }
+            //Permisos
+            if (e.getSource().equals(mb.pea)) {
+                setContentPane(permisos.agrega);
+            }
+            if (e.getSource().equals(mb.peb)) {
+                setContentPane(permisos.elimina);
+            }
+            if (e.getSource().equals(mb.pem)) {
+                setContentPane(permisos.modifica);
+            }
+            if (e.getSource().equals(mb.peh)) {
+                setContentPane(permisos.historial);
+            }
             //Compras
             if (e.getSource().equals(mb.cmc)) {
                 setContentPane(compras.comprar);
             }
             if (e.getSource().equals(mb.cmv)) {
-               setContentPane(compras.vista);
+                setContentPane(compras.vista);
             }
             if (e.getSource().equals(mb.ota)) {
                 setContentPane(compras.gasto);
             }
             if (e.getSource().equals(mb.otv)) {
-               setContentPane(compras.vistaG);
+                setContentPane(compras.vistaG);
             }
-             //Erroes
+            //Erroes
             if (e.getSource().equals(mb.era)) {
                 setContentPane(errores.agrega.Pr);
             }
