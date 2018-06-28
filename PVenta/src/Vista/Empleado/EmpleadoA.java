@@ -5,6 +5,7 @@ package Vista.Empleado;
  * @author landr
  */
 import VistasGenerales.Panel;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -16,7 +17,7 @@ import javax.swing.JPasswordField;
 
 public class EmpleadoA extends VistasGenerales.Panel {
 
-    public JLabel n, t, c, u, l, v1, v2, v3, v4, v5, v6, v7,
+    public JLabel n, t, c, u, l, v1, v2, v3, v4, v5, v6, v7, vz, vy,
             v8, v9, v10, v11, v12, va, vb, vc, vd, ve, vf, vg, vh;
     public JTextField N, T, U;
     public JComboBox TU, S;
@@ -28,8 +29,11 @@ public class EmpleadoA extends VistasGenerales.Panel {
     public Panel Pb = new Panel();
     VistasGenerales.Number CAN;
     Container con = new Container();
+    Container ti = new Container();
     JButton ag, ca;
     VistasGenerales.Tabla tab;
+    VistasGenerales.TimeChoser horae, horas;
+    JDateChooser fecha;
     final String cols[] = {"Empleado", "Teléfono", "Usuario", "Contraseña"};
 
     public EmpleadoA() {
@@ -55,10 +59,16 @@ public class EmpleadoA extends VistasGenerales.Panel {
         U = new JTextField();
         TU = new JComboBox(Tu);
         S = new JComboBox(Su);
+        
+        
+        horae = new VistasGenerales.TimeChoser();
+        horas = new VistasGenerales.TimeChoser();
+        fecha = new JDateChooser();
 
         l = new JLabel("Información del empleado");
         l.setHorizontalAlignment(JLabel.CENTER);
         con.setLayout(new GridBagLayout());
+        ti.setLayout(new GridBagLayout());
         P.setLayout(new GridBagLayout());
         Pr.setLayout(new GridBagLayout());
         Pb.setLayout(new GridBagLayout());
@@ -84,7 +94,9 @@ public class EmpleadoA extends VistasGenerales.Panel {
         ve = new JLabel(" ");
         vf = new JLabel(" ");
         vg = new JLabel(" ");
-        vh = new JLabel();
+        vh = new JLabel(" ");
+        vz = new JLabel(" ");
+        vy = new JLabel(" ");
 
         tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
@@ -105,6 +117,12 @@ public class EmpleadoA extends VistasGenerales.Panel {
     }
 
     private void agrega() {
+        
+        ti.add(vz, estilo(0,0,1,1));
+        ti.add(fecha, estilo(1,0,1,1));
+        ti.add(horae, estilo(1,1,1,1));
+        ti.add(vy, estilo(2,1,1,1));
+        ti.add(horas, estilo(1,2,1,1));
 
         con.add(l, estilo(0, 1, 2, 1));
         con.add(v8, estilo(0, 2, 2, 1));
@@ -137,8 +155,8 @@ public class EmpleadoA extends VistasGenerales.Panel {
 
         Pr.add(v1, estilo(0, 0, 1, 1));
         Pr.add(con, estilo(1, 0, 1, 1));
-        Pr.add(v3, estilo(0, 1, 1, 1));
         Pr.add(P, estilo(1, 1, 1, 1));
+        Pr.add(ti, estilo(2, 0, 1, 1));
         Pr.add(Pb, estilo(2, 1, 1, 1));
         Pr.add(tab, estilo(0, 2, 3, 1));
     }

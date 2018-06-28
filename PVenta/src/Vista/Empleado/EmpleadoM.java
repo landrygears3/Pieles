@@ -6,6 +6,7 @@
 package Vista.Empleado;
 
 import VistasGenerales.Panel;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -25,14 +26,18 @@ public class EmpleadoM extends VistasGenerales.Panel{
     final String ns[] = {"Nombre"};
     VistasGenerales.Tabla tab;
     JButton c, ca;
-    JLabel u, no, v1, v2, p, v3, v4, v5, v6, va, vb, vc, vd, ve, vf, el;
+    JLabel u, no, v1, v2, p, v3, v4, v5, v6, va, vb, vc, vd, ve, vf,
+            el, vz, vy, vx, vw, vv, vu;
     JTextField U, NO, P;
     JComboBox n;
     public Panel Pr = new Panel();
     public Panel Pb = new Panel();
     Container co2 = new Container();
     Container co = new Container();
+    Container ti = new Container();
     VistasGenerales.Number CAN;
+    VistasGenerales.TimeChoser horae, horas;
+    JDateChooser fecha;
     
     public EmpleadoM(){
         crea();
@@ -57,12 +62,21 @@ public class EmpleadoM extends VistasGenerales.Panel{
         P = new JTextField(10);
         
         
+        horae = new VistasGenerales.TimeChoser();
+        horas = new VistasGenerales.TimeChoser();
+        fecha = new JDateChooser();
+        
+        
+        
         v1 = new JLabel(" ");       v2 = new JLabel(" ");
         v3 = new JLabel(" ");       v4 = new JLabel(" ");
         v5 = new JLabel(" ");       v6 = new JLabel(" ");
         va = new JLabel(" ");       vb = new JLabel(" ");
         vc = new JLabel(" ");       vd = new JLabel(" ");
         ve = new JLabel(" ");       vf = new JLabel(" ");
+        vz = new JLabel(" ");       vy = new JLabel(" ");
+        vu = new JLabel(" ");       vv = new JLabel(" ");
+        vw = new JLabel(" ");       vx = new JLabel(" ");
         
     tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
@@ -71,6 +85,7 @@ public class EmpleadoM extends VistasGenerales.Panel{
         Pb.setLayout(new GridLayout(1,2));
         co2.setLayout(new GridLayout(7,1));
         co.setLayout(new GridLayout(8,1));
+        ti.setLayout(new GridBagLayout());
     }
     
     private GridBagConstraints estilo(int pox, int poy, int tax, int tay) {
@@ -89,6 +104,16 @@ public class EmpleadoM extends VistasGenerales.Panel{
 
     
     private void carga(){
+        
+        ti.add(vx, estilo(0,0,3,1));
+        ti.add(vz, estilo(0,1,1,1));
+        ti.add(fecha, estilo(1,1,1,1));
+        ti.add(vw, estilo(0,2,3,1));
+        ti.add(horae, estilo(1,3,1,1));
+        ti.add(vy, estilo(2,3,1,1));
+        ti.add(vv, estilo(0,4,3,1));
+        ti.add(horas, estilo(1,5,1,1));
+        ti.add(vu, estilo(0,6,3,1));
         
         co.add(n);
         co.add(u);
@@ -113,7 +138,7 @@ public class EmpleadoM extends VistasGenerales.Panel{
         Pr.add(va, estilo(0,0,3,1));
         Pr.add(vd, estilo(0,1,1,1));
         Pr.add(Pb, estilo(1,1,1,1));
-        Pr.add(ve, estilo(2,1,1,1));
+        Pr.add(ti, estilo(2,1,1,1));
         Pr.add(tab, estilo(0,2,3,1));
         
     }
