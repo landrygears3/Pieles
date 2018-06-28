@@ -1,14 +1,15 @@
 package VistasGenerales;
 
-
 import com.sun.awt.AWTUtilities;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -31,6 +32,8 @@ public class PanelTimeChoser extends JDialog implements KeyListener, ActionListe
         AWTUtilities.setWindowOpaque(this, false);
         P.setLayout(new GridBagLayout());
         P.setFocusable(true);
+        //P.setOpaque(true);
+        //P.setBackground(null);
         crea();
         agrega();
         this.pack();
@@ -44,6 +47,7 @@ public class PanelTimeChoser extends JDialog implements KeyListener, ActionListe
     }
 
     private void crea() {
+        ImageIcon image;
         hora = new Number("T");
         hora.tf.setBorder(null);
         hora.tf.setHorizontalAlignment(JTextField.CENTER);
@@ -56,14 +60,76 @@ public class PanelTimeChoser extends JDialog implements KeyListener, ActionListe
         puntos.setBackground(Color.white);
         puntos.setOpaque(true);
         puntos.setHorizontalAlignment(JLabel.CENTER);
+        //Minuto ariba
+        int tx = 50, ty = 25;
         mu = new JButton();
+        image = new ImageIcon("Recursos\\Img\\arriba.png");
+        image = new ImageIcon(image.getImage().getScaledInstance(tx, ty, Image.SCALE_DEFAULT));
+        mu.setIcon(image);
+        image = new ImageIcon(image.getImage().getScaledInstance((int) (tx * .9), (int) (ty * .9), Image.SCALE_DEFAULT));
+        mu.setPressedIcon(image);
+        image = new ImageIcon("Recursos\\Img\\arribaB.png");
+        image = new ImageIcon(image.getImage().getScaledInstance(tx, ty, Image.SCALE_DEFAULT));
+        mu.setRolloverIcon(image);
+        mu.setBorder(null);
+        mu.setBorderPainted(false);
+        mu.setContentAreaFilled(false);
         mu.setFocusable(false);
-        md = new JButton();
-        md.setFocusable(false);
+        mu.setBackground(null);
+        mu.setOpaque(true);
+        //hora arriba
         hu = new JButton();
+        hu.setHorizontalAlignment(JButton.CENTER);
+        hu.setVerticalAlignment(JButton.CENTER);
+        image = new ImageIcon("Recursos\\Img\\arriba.png");
+        image = new ImageIcon(image.getImage().getScaledInstance(tx, ty, Image.SCALE_DEFAULT));
+        hu.setIcon(image);
+        image = new ImageIcon(image.getImage().getScaledInstance((int) (tx * .9), (int) (ty * .9), Image.SCALE_DEFAULT));
+        hu.setPressedIcon(image);
+        image = new ImageIcon("Recursos\\Img\\arribaB.png");
+        image = new ImageIcon(image.getImage().getScaledInstance(tx, ty, Image.SCALE_DEFAULT));
+        hu.setRolloverIcon(image);
+        hu.setBorder(null);
+        hu.setBorderPainted(false);
+        hu.setContentAreaFilled(false);
         hu.setFocusable(false);
+        hu.setBackground(null);
+        mu.setOpaque(true);
+
+        //Minuto abajo
+        md = new JButton();
+        image = new ImageIcon("Recursos\\Img\\abajo.png");
+        image = new ImageIcon(image.getImage().getScaledInstance(tx, ty, Image.SCALE_DEFAULT));
+        md.setIcon(image);
+        image = new ImageIcon(image.getImage().getScaledInstance((int) (tx * .9), (int) (ty * .9), Image.SCALE_DEFAULT));
+        md.setPressedIcon(image);
+        image = new ImageIcon("Recursos\\Img\\abajoB.png");
+        image = new ImageIcon(image.getImage().getScaledInstance(tx, ty, Image.SCALE_DEFAULT));
+        md.setRolloverIcon(image);
+        md.setBorder(null);
+        md.setBorderPainted(false);
+        md.setContentAreaFilled(false);
+        md.setFocusable(false);
+        md.setBackground(null);
+        md.setOpaque(true);
+        
+        //Hora abajo
         hd = new JButton();
+        image = new ImageIcon("Recursos\\Img\\abajo.png");
+        image = new ImageIcon(image.getImage().getScaledInstance(tx, ty, Image.SCALE_DEFAULT));
+        hd.setIcon(image);
+        image = new ImageIcon(image.getImage().getScaledInstance((int) (tx * .9), (int) (ty * .9), Image.SCALE_DEFAULT));
+        hd.setPressedIcon(image);
+        image = new ImageIcon("Recursos\\Img\\abajoB.png");
+        image = new ImageIcon(image.getImage().getScaledInstance(tx, ty, Image.SCALE_DEFAULT));
+        hd.setRolloverIcon(image);
+        hd.setBorder(null);
+        hd.setBorderPainted(false);
+        hd.setContentAreaFilled(false);
         hd.setFocusable(false);
+        hd.setBackground(null);
+        hd.setOpaque(true);
+
     }
 
     private void agrega() {
@@ -144,9 +210,10 @@ public class PanelTimeChoser extends JDialog implements KeyListener, ActionListe
             }
         }
     }
-    public String getTime(){
-    String aux=hora.tf.getText()+" : "+minuto.tf.getText();
-    return aux;
+
+    public String getTime() {
+        String aux = hora.tf.getText() + " : " + minuto.tf.getText();
+        return aux;
     }
 
     private GridBagConstraints estilo(int pox, int poy, int tax, int tay, int fill) {
@@ -186,7 +253,7 @@ public class PanelTimeChoser extends JDialog implements KeyListener, ActionListe
     public void keyReleased(KeyEvent ke) {
 
         if (ke.getSource().equals(hora.tf)) {
-            int aux=0;
+            int aux = 0;
             if (!hora.tf.getText().equals("")) {
                 aux = Integer.parseInt(hora.tf.getText());
             }
@@ -196,9 +263,9 @@ public class PanelTimeChoser extends JDialog implements KeyListener, ActionListe
                 hora.tf.setText(auxv);
             }
         }
-        
+
         if (ke.getSource().equals(minuto.tf)) {
-            int aux=0;
+            int aux = 0;
             if (!minuto.tf.getText().equals("")) {
                 aux = Integer.parseInt(minuto.tf.getText());
             }

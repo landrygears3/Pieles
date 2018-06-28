@@ -21,7 +21,9 @@ public class Tabla extends JScrollPane {
         }
         tab.setModel(md);
     }
-
+public int DatosC(){
+return tab.getRowCount();
+}
     public void setRow(Object o[][]) {
         for (int i = 0; i < o.length; i++) {
             Object aux[] = new Object[o[i].length];
@@ -31,5 +33,16 @@ public class Tabla extends JScrollPane {
             }
             md.addRow(aux);
         }
+    }
+    
+    public Object[][] getD(){
+    Object[][] o=new Object[tab.getRowCount()][tab.getColumnCount()];
+        for (int i = 0; i < o.length; i++) {
+            for (int j = 0; j < o[i].length; j++) {
+               o[i][j]=md.getValueAt(i, j);
+            }
+            
+        }
+    return o;
     }
 }

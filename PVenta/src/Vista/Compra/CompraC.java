@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -14,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CompraC extends VistasGenerales.Panel {
+public class CompraC extends VistasGenerales.Panel implements ActionListener {
 
     final String cols[] = {"Codigo", "Producto", "Cantidad",
         "Tipo", "Piel", "Modelo", "Color", "proveedor", "Descripción"};
@@ -28,6 +30,8 @@ public class CompraC extends VistasGenerales.Panel {
     JComboBox producto, tipo, piel, proveedor, modelo;
     JTextField color, descripcion;
     JButton acepta, agrega, btipo, bpiel, bproveedor, bmodelo;
+    Nuevos ntipo, npiel, nmodelo;
+    Nproveedor nproveedor;
     JCheckBox nuevo;
     VistasGenerales.Number cantidad, costo;
 
@@ -37,6 +41,10 @@ public class CompraC extends VistasGenerales.Panel {
         crea();
         agrega();
         tooltip();
+        btipo.addActionListener(this);
+        bmodelo.addActionListener(this);
+        bpiel.addActionListener(this);
+        bproveedor.addActionListener(this);
 
     }
 
@@ -85,15 +93,20 @@ public class CompraC extends VistasGenerales.Panel {
         bproveedor.setFocusable(false);
         bmodelo = new JButton("+");
         bmodelo.setFocusable(false);
+        ntipo = new Nuevos("Tipo Producto");
+        npiel = new Nuevos("Tipo Piel");
+        nmodelo = new Nuevos("Modelo");
+        nproveedor = new Nproveedor();
+
     }
 
     private void tooltip() {
-        color.setToolTipText("Color del\n producto");
-        descripcion.setToolTipText("Especificación\n del producto");
-        btipo.setToolTipText("Agrega un tipo\nde producto.");
-        bpiel.setToolTipText("Agrega un tipo\nde piel.");
-        bproveedor.setToolTipText("Agrega un\nproveedor");
-        bmodelo.setToolTipText("Agrega un\nmodelo");
+        color.setToolTipText("Color del producto");
+        descripcion.setToolTipText("Especificación del producto");
+        btipo.setToolTipText("Agrega un tipo de producto.");
+        bpiel.setToolTipText("Agrega un tipo de piel.");
+        bproveedor.setToolTipText("Agrega un proveedor");
+        bmodelo.setToolTipText("Agrega un modelo");
         nuevo.setToolTipText("Selecciona si el producto aun no existe.");
     }
 
@@ -213,5 +226,23 @@ public class CompraC extends VistasGenerales.Panel {
         gbc = estilo(0, 2, 5, 4, GridBagConstraints.BOTH);
         add(tab, gbc);
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource().equals(btipo)) {
+            ntipo.setVisible(true);
+        }
+
+        if (ae.getSource().equals(bmodelo)) {
+            nmodelo.setVisible(true);
+        }
+
+        if (ae.getSource().equals(bpiel)) {
+            npiel.setVisible(true);
+        }
+        if (ae.getSource().equals(bproveedor)) {
+            nproveedor.setVisible(true);
+        }
     }
 }

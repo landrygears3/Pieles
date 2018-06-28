@@ -53,7 +53,7 @@ public class Number implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if ((e.getKeyCode() == 8)) {
+        if ((e.getKeyCode() == 8)||(e.getKeyCode() == 10)) {
         } else {
             e.consume();
         }
@@ -61,7 +61,10 @@ public class Number implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if(!(e.getKeyCode()==10)){
         e.consume();
+        }
+        
 
     }
 
