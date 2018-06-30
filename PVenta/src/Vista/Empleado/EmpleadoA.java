@@ -4,32 +4,28 @@ package Vista.Empleado;
  *
  * @author landr
  */
-import VistasGenerales.Panel;
+import VistasGenerales.*;
 import com.toedter.calendar.JDateChooser;
-import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.JPasswordField;
 
 public class EmpleadoA extends VistasGenerales.Panel {
 
-    public JLabel n, t, c, u, l, v1, v2, v3, v4, v5, v6, v7, vz, vy,
-            v8, v9, v10, v11, v12, va, vb, vc, vd, ve, vf, vg, vh;
+    public JLabel n, t, c, cc, u, l, f, he, hs, s, tu, v1, v2, v3, v4, v5;
     public JTextField N, T, U;
     public JComboBox TU, S;
-    public JPasswordField C;
+    public Contrasena C, CC;
     String Tu[] = {"Tipo de usuario"};
     String Su[] = {"Sucursal"};
-    public Panel P = new Panel();
-    public Panel Pr = new Panel();
-    public Panel Pb = new Panel();
-    VistasGenerales.Number CAN;
-    Container con = new Container();
-    Container ti = new Container();
+    private Panel P = new Panel();
+    Panel hora;
+    Panel contrasenas;
+    VistasGenerales.Number tel;
     JButton ag, ca;
     VistasGenerales.Tabla tab;
     VistasGenerales.TimeChoser horae, horas;
@@ -37,7 +33,7 @@ public class EmpleadoA extends VistasGenerales.Panel {
     final String cols[] = {"Empleado", "Teléfono", "Usuario", "Contraseña"};
 
     public EmpleadoA() {
-
+        this.setLayout(new GridBagLayout());
         crea();
         agrega();
         validate();
@@ -45,71 +41,55 @@ public class EmpleadoA extends VistasGenerales.Panel {
     }
 
     private void crea() {
+        hora = new Panel();
+        hora.setBorder(BorderFactory.createTitledBorder("Horario"));
+        hora.setLayout(new GridBagLayout());
+        contrasenas = new Panel();
+        contrasenas.setBorder(BorderFactory.createTitledBorder("Contraseña"));
+        contrasenas.setLayout(new GridBagLayout());
         n = new JLabel("Nombre");
-        n.setHorizontalAlignment(JLabel.CENTER);
         t = new JLabel("Teléfono");
-        t.setHorizontalAlignment(JLabel.CENTER);
-        c = new JLabel("Contraseña");
-        c.setHorizontalAlignment(JLabel.CENTER);
+        c = new JLabel("Nueva");
+        cc = new JLabel("Contraseña");
         u = new JLabel("Usuario");
-        u.setHorizontalAlignment(JLabel.CENTER);
         N = new JTextField();
-        CAN = new VistasGenerales.Number();
-        C = new JPasswordField();
+        tel = new VistasGenerales.Number();
+        C = new Contrasena();
+        CC = new Contrasena();
         U = new JTextField();
         TU = new JComboBox(Tu);
         S = new JComboBox(Su);
-        
-        
         horae = new VistasGenerales.TimeChoser();
         horas = new VistasGenerales.TimeChoser();
         fecha = new JDateChooser();
-
         l = new JLabel("Información del empleado");
         l.setHorizontalAlignment(JLabel.CENTER);
-        con.setLayout(new GridBagLayout());
-        ti.setLayout(new GridBagLayout());
         P.setLayout(new GridBagLayout());
-        Pr.setLayout(new GridBagLayout());
-        Pb.setLayout(new GridBagLayout());
         ag = new JButton("Crear usuario");
         ca = new JButton("Borrar");
-
+        f = new JLabel("Fecha");
+        he = new JLabel("Entrada");
+        hs = new JLabel("Salida");
+        s = new JLabel("Sucursal");
         v1 = new JLabel(" ");
         v2 = new JLabel(" ");
         v3 = new JLabel(" ");
         v4 = new JLabel(" ");
         v5 = new JLabel(" ");
-        v6 = new JLabel(" ");
-        v7 = new JLabel(" ");
-        v8 = new JLabel(" ");
-        v9 = new JLabel(" ");
-        v10 = new JLabel(" ");
-        v11 = new JLabel(" ");
-        v12 = new JLabel(" ");
-        va = new JLabel(" ");
-        vb = new JLabel(" ");
-        vc = new JLabel(" ");
-        vd = new JLabel(" ");
-        ve = new JLabel(" ");
-        vf = new JLabel(" ");
-        vg = new JLabel(" ");
-        vh = new JLabel(" ");
-        vz = new JLabel(" ");
-        vy = new JLabel(" ");
+        tu = new JLabel("Tipo de usuario");
 
         tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
     }
 
-    private GridBagConstraints estilo(int pox, int poy, int tax, int tay) {
+    private GridBagConstraints estilo(int pox, int poy, int tax, int tay, int fill, int anchor) {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = pox;
         gbc.gridy = poy;
         gbc.gridwidth = tax;
         gbc.gridheight = tay;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = fill;
+        gbc.anchor = anchor;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
 
@@ -117,47 +97,36 @@ public class EmpleadoA extends VistasGenerales.Panel {
     }
 
     private void agrega() {
-        
-        ti.add(vz, estilo(0,0,1,1));
-        ti.add(fecha, estilo(1,0,1,1));
-        ti.add(horae, estilo(1,1,1,1));
-        ti.add(vy, estilo(2,1,1,1));
-        ti.add(horas, estilo(1,2,1,1));
-
-        con.add(l, estilo(0, 1, 2, 1));
-        con.add(v8, estilo(0, 2, 2, 1));
-        con.add(n, estilo(0, 3, 1, 1));
-        con.add(N, estilo(1, 3, 1, 1));
-        con.add(v2, estilo(0, 4, 2, 1));
-        con.add(t, estilo(0, 5, 1, 1));
-        con.add(CAN.tf, estilo(1, 5, 1, 1));
-        con.add(v7, estilo(0, 6, 2, 1));
-
-        P.add(u, estilo(0, 1, 1, 1));
-        P.add(U, estilo(1, 1, 1, 1));
-        P.add(v9, estilo(0, 2, 2, 1));
-        P.add(c, estilo(0, 3, 1, 1));
-        P.add(C, estilo(1, 3, 1, 1));
-        P.add(v10, estilo(0, 4, 2, 1));
-        P.add(TU, estilo(0, 5, 1, 1));
-        P.add(S, estilo(1, 5, 1, 1));
-        P.add(v11, estilo(0, 6, 2, 1));
-
-        Pb.add(va, estilo(0, 0, 3, 2));
-        Pb.add(vc, estilo(0, 2, 1, 1));
-        Pb.add(ag, estilo(1, 2, 1, 1));
-        Pb.add(ve, estilo(2, 2, 1, 1));
-        Pb.add(vg, estilo(0, 3, 3, 2));
-        Pb.add(ca, estilo(1, 5, 1, 1));
-        Pb.add(vf, estilo(2, 5, 1, 1));
-        Pb.add(vh, estilo(0, 6, 3, 2));
-        Pb.add(vd, estilo(0, 8, 1, 1));
-
-        Pr.add(v1, estilo(0, 0, 1, 1));
-        Pr.add(con, estilo(1, 0, 1, 1));
-        Pr.add(P, estilo(1, 1, 1, 1));
-        Pr.add(ti, estilo(2, 0, 1, 1));
-        Pr.add(Pb, estilo(2, 1, 1, 1));
-        Pr.add(tab, estilo(0, 2, 3, 1));
+        P.add(l, estilo(0, 0, 8, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(n, estilo(1, 1, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(N, estilo(1, 2, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(u, estilo(1, 3, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(U, estilo(1, 4, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        contrasenas.add(c, estilo(0, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        contrasenas.add(C, estilo(0, 1, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        contrasenas.add(cc, estilo(0, 2, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        contrasenas.add(CC, estilo(0, 3, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(contrasenas, estilo(1, 6, 1, 4, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(v1, estilo(2, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(t, estilo(3, 1, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(tel.tf, estilo(3, 2, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(f, estilo(3, 3, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(fecha, estilo(3, 4, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(s, estilo(3, 5, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(S, estilo(3, 6, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(tu, estilo(3, 7, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(TU, estilo(3, 8, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(v2, estilo(4, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        hora.add(he, estilo(0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
+        hora.add(horae, estilo(0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
+        hora.add(hs, estilo(0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
+        hora.add(horas, estilo(0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
+        P.add(hora, estilo(5, 1, 1, 4, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(ag, estilo(5, 5, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
+        P.add(ca, estilo(5, 6, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
+        P.add(v3, estilo(0, 10, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(v4, estilo(8, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        add(P, estilo(0, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        add(tab, estilo(0, 1, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
     }
 }

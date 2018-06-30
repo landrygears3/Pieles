@@ -32,8 +32,6 @@ public class PanelTimeChoser extends JDialog implements KeyListener, ActionListe
         AWTUtilities.setWindowOpaque(this, false);
         P.setLayout(new GridBagLayout());
         P.setFocusable(true);
-        //P.setOpaque(true);
-        //P.setBackground(null);
         crea();
         agrega();
         this.pack();

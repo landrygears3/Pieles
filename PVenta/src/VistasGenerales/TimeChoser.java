@@ -31,7 +31,7 @@ public class TimeChoser extends JPanel implements KeyListener {
         despliega.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
                 Point punto = MouseInfo.getPointerInfo().getLocation();
-                select.setBounds(punto.x, punto.y, 200, 100);
+                select.setBounds((despliega.getLocationOnScreen().x-(200-despliega.getSize().width)), (despliega.getLocationOnScreen().y+(despliega.getSize().height)), 200, 100);
                 select.setVisible(true);
             }
         });
