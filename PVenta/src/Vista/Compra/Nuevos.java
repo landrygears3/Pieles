@@ -13,7 +13,7 @@ public class Nuevos extends JDialog implements ActionListener {
 
     JLabel lnombre;
     JTextField nombre;
-    JButton aceptar;
+    JButton aceptar, cancelar;
     private String Name;
 
     public Nuevos(String Name) {
@@ -27,6 +27,7 @@ public class Nuevos extends JDialog implements ActionListener {
         crea();
         agrega();
         aceptar.addActionListener(this);
+        cancelar.addActionListener(this);
 
     }
 
@@ -34,14 +35,20 @@ public class Nuevos extends JDialog implements ActionListener {
         lnombre = new JLabel("Nombre del " + Name);
         nombre = new JTextField(25);
         aceptar = new JButton("Agregar");
+        cancelar = new JButton("Cancelar");
     }
 
     private void agrega() {
         JLabel v = new JLabel("  ");
-        add(lnombre, estilo(0, 0, 1, 1, GridBagConstraints.CENTER));
-        add(nombre, estilo(0, 1, 1, 1, GridBagConstraints.BOTH));
-        add(v, estilo(0, 2, 1, 1, GridBagConstraints.CENTER));
-        add(aceptar, estilo(0, 3, 1, 1, GridBagConstraints.CENTER));
+        JLabel v1 = new JLabel("  ");
+        JLabel v2 = new JLabel("  ");
+        add(v1, estilo(0, 0, 1, 1, GridBagConstraints.CENTER));
+        add(v2, estilo(5, 0, 1, 1, GridBagConstraints.CENTER));
+        add(lnombre, estilo(1, 1, 3, 1, GridBagConstraints.CENTER));
+        add(nombre, estilo(1, 2, 3, 1, GridBagConstraints.BOTH));
+        add(v, estilo(1, 3, 3, 1, GridBagConstraints.CENTER));
+        add(aceptar, estilo(1, 4, 1, 1, GridBagConstraints.CENTER));
+        add(cancelar, estilo(3, 4, 1, 1, GridBagConstraints.CENTER));
     }
 
     private GridBagConstraints estilo(int pox, int poy, int tax, int tay, int fill) {
@@ -60,7 +67,12 @@ public class Nuevos extends JDialog implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        this.dispose();
+        if (ae.getSource().equals(aceptar)) {
+            this.dispose();
+        }
+        if (ae.getSource().equals(cancelar)) {
+            this.dispose();
+        }
     }
 
 }

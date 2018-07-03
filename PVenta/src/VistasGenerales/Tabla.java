@@ -45,4 +45,11 @@ return tab.getRowCount();
         }
     return o;
     }
+    
+    public void limpa(){
+        while(md.getRowCount()!=0){
+        md.removeRow(0);
+        }
+        
+    }
 }

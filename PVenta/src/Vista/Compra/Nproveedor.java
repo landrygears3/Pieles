@@ -31,7 +31,7 @@ public class Nproveedor extends JDialog implements ActionListener {
         this.setTitle("Proveedor");
         this.setModal(true);
         this.setResizable(true);
-        this.setSize(400, 400);
+        this.setSize(600, 400);
         this.setLayout(new GridBagLayout());
         this.setLocationRelativeTo(null);
         crea();
@@ -62,22 +62,35 @@ public class Nproveedor extends JDialog implements ActionListener {
     }
 
     private void agrega() {
-        JLabel v1 = new JLabel("  ");
-        JLabel v2 = new JLabel("  ");
-        JLabel v3 = new JLabel("  ");
-        add(lnombre, estilo(0, 0, 2, 1, GridBagConstraints.CENTER));
-        add(nombre, estilo(0, 1, 2, 1, GridBagConstraints.BOTH));
-        add(v3, estilo(0, 2, 2, 1, GridBagConstraints.BOTH));
-        add(ltelefonos, estilo(0, 3, 1, 1, GridBagConstraints.CENTER));
-        add(telefonos.tf, estilo(0, 4, 1, 1, GridBagConstraints.BOTH));
-        add(tTelefono, estilo(1, 3, 1, 3, GridBagConstraints.BOTH));
-        add(v1, estilo(0, 5, 1, 1, GridBagConstraints.BOTH));
-        add(lcorreos, estilo(0, 6, 1, 1, GridBagConstraints.CENTER));
-        add(correos, estilo(0, 7, 1, 1, GridBagConstraints.BOTH));
-        add(Tcorreos, estilo(1, 6, 1, 3, GridBagConstraints.BOTH));
-        add(v2, estilo(0, 9, 1, 1, GridBagConstraints.CENTER));
-        add(aceptar, estilo(0, 10, 1, 1, GridBagConstraints.CENTER));
-        add(cancelar, estilo(1, 10, 1, 1, GridBagConstraints.CENTER));
+        JLabel v1 = new JLabel(" ");
+        JLabel v2 = new JLabel(" ");
+        JLabel v3 = new JLabel(" ");
+        JLabel v4 = new JLabel(" ");
+        JLabel v5 = new JLabel(" ");
+        add(v4, estilo(0, 0, 1, 1, GridBagConstraints.CENTER));
+        add(v5, estilo(6, 0, 1, 1, GridBagConstraints.CENTER));
+        add(lnombre, estilo(1, 1, 2, 1, GridBagConstraints.CENTER));
+        add(nombre, estilo(1, 2, 2, 1, GridBagConstraints.BOTH));
+        add(v3, estilo(1, 3, 2, 1, GridBagConstraints.BOTH));
+        add(ltelefonos, estilo(1, 4, 1, 1, GridBagConstraints.CENTER));
+        add(telefonos.tf, estilo(1, 5, 1, 1, GridBagConstraints.BOTH));
+        add(tTelefono, estilo(2, 4, 1, 3, GridBagConstraints.BOTH));
+        add(v1, estilo(1, 6, 1, 1, GridBagConstraints.BOTH));
+        add(lcorreos, estilo(1, 7, 1, 1, GridBagConstraints.CENTER));
+        add(correos, estilo(1, 8, 1, 1, GridBagConstraints.BOTH));
+        add(Tcorreos, estilo(2, 7, 1, 3, GridBagConstraints.BOTH));
+        add(v2, estilo(1, 9, 1, 1, GridBagConstraints.CENTER));
+        add(aceptar, estilo(1, 10, 1, 1, GridBagConstraints.CENTER));
+        add(cancelar, estilo(2, 10, 1, 1, GridBagConstraints.CENTER));
+    }
+
+    private void limpia() {
+        nombre.setText("");
+        telefonos.tf.setText("");
+        correos.setText("");
+        Tcorreos.limpa();
+        tTelefono.limpa();
+
     }
 
     private GridBagConstraints estilo(int pox, int poy, int tax, int tay, int fill) {
@@ -97,12 +110,13 @@ public class Nproveedor extends JDialog implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource().equals(cancelar)) {
+            limpia();
             this.dispose();
         }
         if (ae.getSource().equals(aceptar)) {
             this.dispose();
         }
-        
+
         if (ae.getSource().equals(correos)) {
             if (!correos.getText().equals("")) {
                 boolean d = true;
@@ -115,8 +129,10 @@ public class Nproveedor extends JDialog implements ActionListener {
                     }
                 }
                 if (d) {
+                    
                     Object o[][] = new Object[1][1];
                     o[0][0] = correos.getText();
+                    correos.setText("");
                     Tcorreos.setRow(o);
                 }
             }
@@ -136,6 +152,7 @@ public class Nproveedor extends JDialog implements ActionListener {
                 if (d) {
                     Object o[][] = new Object[1][1];
                     o[0][0] = telefonos.tf.getText();
+                    telefonos.tf.setText("");
                     tTelefono.setRow(o);
                 }
             }
