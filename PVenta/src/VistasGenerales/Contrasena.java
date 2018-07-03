@@ -37,7 +37,9 @@ public class Contrasena extends VistasGenerales.Panel implements ActionListener 
         b.setOpaque(true);
 
     }
-
+    public void setText(String string){
+    pf.setText(string);
+    }
     private void agrega() {
         add(pf,BorderLayout.CENTER);
         add(b,BorderLayout.EAST);

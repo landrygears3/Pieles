@@ -12,6 +12,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -23,8 +25,8 @@ import javax.swing.JTextField;
  *
  * @author win 10
  */
-public class VentaA extends VistasGenerales.Panel {
-
+public class VentaA extends VistasGenerales.Panel implements ActionListener{
+Cliente cliente=new Cliente();
     public JLabel id, col, pv, can, mo, pi,
             im, ma, su,  pro, cc, st;
     
@@ -55,6 +57,7 @@ public class VentaA extends VistasGenerales.Panel {
         crea();
         agrega();
         validate();
+        bcl.addActionListener(this);
     }
 
     private void crea() {
@@ -175,5 +178,16 @@ public class VentaA extends VistasGenerales.Panel {
         Pr.add(tab, estilo(0, 2, 3, 1));
         
         
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    if(e.getSource().equals(bcl)){
+    cliente.setVisible(true);
+    }
+    
+    if(e.getSource().equals(cliente.ac)){
+    
+    }
     }
 }

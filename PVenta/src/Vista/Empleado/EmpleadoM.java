@@ -14,8 +14,9 @@ import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 
 public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
-    
-    Admin ad=new Admin();
+
+    private char def;
+    Admin ad = new Admin();
     private JLabel n, t, c, cc, u, l, a, he, hs, s, tu, v1, v2, v3, v4, v5;
     private JTextField U;
     private JComboBox TU, S, N;
@@ -38,6 +39,8 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
         agrega();
         validate();
         adm.addActionListener(this);
+        ad.ac.addActionListener(this);
+        ca.addActionListener(this);
 
     }
 
@@ -65,6 +68,7 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
         horae = new VistasGenerales.TimeChoser();
         horas = new VistasGenerales.TimeChoser();
         cona = new JPasswordField();
+        def = cona.getEchoChar();
         l = new JLabel(" ");
         l.setHorizontalAlignment(JLabel.CENTER);
         P.setLayout(new GridBagLayout());
@@ -139,10 +143,40 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
         add(v5, estilo(0, 2, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
     }
 
+    private void borra() {
+        cona.setEchoChar(def);
+        cona.setEditable(true);
+        cona.setHorizontalAlignment(JPasswordField.LEFT);
+        cona.setText("");
+        adm.setEnabled(true);
+        N.setEnabled(true);
+        U.setText("");
+        tel.tf.setText("");
+//        TU.setSelectedIndex(0);
+//        S.setSelectedIndex(0);
+//        N.setSelectedIndex(0);
+        C.setText("");
+        CC.setText("");
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource().equals(adm)){
-        ad.setVisible(true);
+        if (ae.getSource().equals(adm)) {
+            ad.setVisible(true);
+        }
+        if (ae.getSource().equals(ca)) {
+            borra();
+        }
+        if (ae.getSource().equals(ad.ac)) {
+            if (ad.Validate()) {
+                cona.setEchoChar((char) 0);
+                cona.setEditable(false);
+                cona.setHorizontalAlignment(JPasswordField.CENTER);
+                cona.setText("VALIDADO");
+                adm.setEnabled(false);
+                N.setEnabled(false);
+            }
         }
     }
 }

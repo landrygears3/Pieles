@@ -17,6 +17,7 @@ public class Admin extends JDialog implements ActionListener {
     JPasswordField ca;
     public JButton ac;
     JButton can;
+    private boolean val=false;
 
     public Admin() {
         this.setTitle("Inicia Administrador");
@@ -28,6 +29,7 @@ public class Admin extends JDialog implements ActionListener {
         crea();
         agrega();
         can.addActionListener(this);
+        ac.addActionListener(this);
     }
 
     private void crea() {
@@ -72,10 +74,20 @@ public class Admin extends JDialog implements ActionListener {
 
         return gbc;
     }
-
+    public boolean Validate(){
+        val=true;
+    return val;
+    }
+    public void close(){
+    val=false;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource().equals(can)) {
+            this.dispose();
+        }
+        if (ae.getSource().equals(ac)) {
             this.dispose();
         }
 
