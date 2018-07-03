@@ -88,7 +88,7 @@ public class Principal extends JFrame {
                 setContentPane(empleado.elimina.Pr);
             }
             if (e.getSource().equals(mb.emm)) {
-                setContentPane(empleado.modifica.Pr);
+                setContentPane(empleado.modifica);
             }
             //Permisos
             if (e.getSource().equals(mb.pea)) {
