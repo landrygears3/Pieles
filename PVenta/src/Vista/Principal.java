@@ -6,24 +6,25 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class Principal extends JFrame {
-
+    private String User=null;
     private Dimension dim;
-    VistasGenerales.Panel gral = new VistasGenerales.Panel();
-    Vista.Menubar mb = new Vista.Menubar();
-    Vista.Ventas.VentaAcceso venta = new Vista.Ventas.VentaAcceso();
-    Vista.Compra.CompraAcceso compras = new Vista.Compra.CompraAcceso();
-    Vista.Inventario.InventarioM inventario = new Vista.Inventario.InventarioM();
-    Vista.Errores.ErrorAcceso errores = new Vista.Errores.ErrorAcceso();
-    Vista.Empleado.EmpleadoAcceso empleado = new Vista.Empleado.EmpleadoAcceso();
-    Vista.Permisos.PermisoAcceso permisos = new Vista.Permisos.PermisoAcceso();
+    VistasGenerales.Panel gral;
+    Vista.Menubar mb;
+    Vista.Ventas.VentaAcceso venta;
+    Vista.Compra.CompraAcceso compras;
+    Vista.Inventario.InventarioM inventario;
+    Vista.Errores.ErrorAcceso errores;
+    Vista.Empleado.EmpleadoAcceso empleado;
+    Vista.Permisos.PermisoAcceso permisos;
 
-    public Principal() {
+    public Principal(String User) {
+        this.User=User;
         dim = super.getToolkit().getScreenSize();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setSize(dim);
         super.setUndecorated(true);
         super.setVisible(true);
-
+        crea();
         setJMenuBar(mb);
         setContentPane(gral);
         validate();
@@ -47,6 +48,18 @@ public class Principal extends JFrame {
         mb.peb.addActionListener(b);
         mb.pem.addActionListener(b);
         mb.peh.addActionListener(b);
+
+    }
+
+    private void crea() {
+        gral = new VistasGenerales.Panel();
+        mb = new Vista.Menubar(User);
+        venta = new Vista.Ventas.VentaAcceso();
+        compras = new Vista.Compra.CompraAcceso();
+        inventario = new Vista.Inventario.InventarioM();
+        errores = new Vista.Errores.ErrorAcceso();
+        empleado = new Vista.Empleado.EmpleadoAcceso();
+        permisos = new Vista.Permisos.PermisoAcceso();
 
     }
 

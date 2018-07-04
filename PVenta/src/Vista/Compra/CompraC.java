@@ -28,7 +28,7 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
             lmodelo, ldescripcion, imagen, lcosto;
 
     JComboBox producto, tipo, piel, proveedor, modelo;
-    JTextField color, descripcion;
+    JTextField color, descripcion, productot;
     JButton acepta, agrega, btipo, bpiel, bproveedor, bmodelo;
     Nuevos ntipo, npiel, nmodelo;
     Nproveedor nproveedor;
@@ -41,11 +41,12 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         crea();
         agrega();
         tooltip();
+        vista(false);
         btipo.addActionListener(this);
         bmodelo.addActionListener(this);
         bpiel.addActionListener(this);
         bproveedor.addActionListener(this);
-
+        nuevo.addActionListener(this);
     }
 
     private void crea() {
@@ -54,6 +55,7 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
         producto = new JComboBox();
+        productot = new JTextField();
         tipo = new JComboBox();
         piel = new JComboBox();
         proveedor = new JComboBox();
@@ -151,6 +153,7 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         inter1.add(lproducto, gbc);
         gbc = estilo(5, 0, 2, 1, GridBagConstraints.BOTH);
         inter1.add(producto, gbc);
+        inter1.add(productot, gbc);
         //cantidad
         gbc = estilo(7, 0, 1, 1, GridBagConstraints.BOTH);
         inter1.add(lcantidad, gbc);
@@ -228,6 +231,20 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
 
     }
 
+    private void vista(boolean b) {
+        producto.setVisible(!b);
+        productot.setVisible(b);
+        bmodelo.setVisible(b);
+        bproveedor.setVisible(b);
+        bpiel.setVisible(b);
+        btipo.setVisible(b);
+        modelo.setEnabled(b);
+        proveedor.setEnabled(b);
+        piel.setEnabled(b);
+        tipo.setEnabled(b);
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource().equals(btipo)) {
@@ -243,6 +260,11 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         }
         if (ae.getSource().equals(bproveedor)) {
             nproveedor.setVisible(true);
+        }
+        if (ae.getSource().equals(nuevo)) {
+
+            vista(nuevo.isSelected());
+
         }
     }
 }

@@ -5,36 +5,51 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/*
+awardspace 	rldlandry55@gmail.com	-	ProyectosLP1
+	phpmyadmin	2761856_elpiel	-	Proyecto1elpiel
+ */
 public class Conexion {
 
-    Connection conexion = null;
-    Statement comando = null;
-    ResultSet registro;
+    Connection connection = null;
 
-    public Connection MySQLConnect() {
-
+    public void connect() {
+        String url = "jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3245955";
+        String user = "sql3245955";
+        String pass = "V9h6CwafcC";
+        System.out.println("Conectando...");
         try {
-            //Driver JDBC
-            Class.forName("com.mysql.jdbc.Driver");
-            String servidor = "databases-auth.000webhost.com/id6095667_elpiel";
-            String usuario = "id6095667_root";
-            String pass = "";
-            conexion = DriverManager.getConnection(servidor, usuario, pass);
+            connection = DriverManager.getConnection(url, user, pass);
+            System.out.println("Conectado!!");
 
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, ex, ex.getMessage(), JOptionPane.ERROR_MESSAGE);
-            conexion = null;
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex, ex.getMessage(), JOptionPane.ERROR_MESSAGE);
-            conexion = null;
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex, ex.getMessage(), JOptionPane.ERROR_MESSAGE);
-            conexion = null;
-        } finally {
-            JOptionPane.showMessageDialog(null, "Conexión Exitosa");
-            return conexion;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
         }
     }
+
+    public void closed() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+        }
+    }
+
+    public ResultSet getConsulta(String tabla, String campos, String condicion) {
+        Statement s;
+        ResultSet r = null;
+        try {
+
+            s = connection.createStatement();
+            String query2 = "SELECT " + campos + " FROM `" + tabla + "`" + condicion;
+            r = s.executeQuery(query2);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return r;
+    }
+
 }

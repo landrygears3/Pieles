@@ -8,11 +8,13 @@ import javax.swing.JMenuItem;
 
 public class Menubar extends JMenuBar {
 
+    private String User = null;
     JMenu ve, inv, err, s, emp, not, com, dat, gas, otr, per;
     JMenuItem vev, vec, inm, cs, sa, ema, emb, emm, noa, nov,
             cmc, cmv, era, erc, ota, otv, pea, peb, pem, peh;
 
-    public Menubar() {
+    public Menubar(String User) {
+        this.User = User;
         crea();
         agrega();
     }
@@ -83,18 +85,7 @@ public class Menubar extends JMenuBar {
         gas.add(otr);
         //Inventario
         inv.add(inm);
-        //Empleados
-        not.add(noa);
-        not.add(nov);
-        emp.add(not);
-        emp.add(ema);
-        emp.add(emb);
-        emp.add(emm);
-        //Permisos
-        per.add(pea);
-        per.add(peb);
-        per.add(pem);
-        per.add(peh);
+
         //Errores
         err.add(era);
         err.add(erc);
@@ -104,8 +95,22 @@ public class Menubar extends JMenuBar {
         add(gas);
         add(inv);
         add(err);
-        add(emp);
-        add(per);
+        if (User.equals("Admin")) {
+            //Empleados
+            not.add(noa);
+            not.add(nov);
+            emp.add(not);
+            emp.add(ema);
+            emp.add(emb);
+            emp.add(emm);
+            //Permisos
+            per.add(pea);
+            per.add(peb);
+            per.add(pem);
+            per.add(peh);
+            add(emp);
+            add(per);
+        }
         add(Box.createHorizontalGlue());
         add(dat);
         add(s);
