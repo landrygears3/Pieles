@@ -12,8 +12,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -25,23 +23,22 @@ import javax.swing.JTextField;
  *
  * @author win 10
  */
-public class VentaA extends VistasGenerales.Panel implements ActionListener{
-Cliente cliente=new Cliente();
-    public JLabel id, col, pv, can, mo, pi,
+public class VentaA extends VistasGenerales.Panel {
+
+    JLabel id, col, pv, can, mo, pi,
             im, ma, su,  pro, cc, st;
     
-    private JLabel v2, v3, v4, v5, v6, v7, v1;
-    public JTextField CC;
-    public String Pago[] = {"Tipo de pago"};
-    public String Suc[] = {"Sucursal"};
-    private String Tpi[] = {"Tipo de piel"};
-    private String MO[] = {"Modelo"};
-    private String c[] = {"Cliente"};
-    public JComboBox TP, SU, ID, nc;
+    JLabel v2, v3, v4, v5, v6, v7, v1;
+    JTextField CC;
+    String Pago[] = {"Tipo de pago"};
+    String Suc[] = {"Sucursal"};
+    String Tpi[] = {"Tipo de piel"};
+    String MO[] = {"Modelo"};
+    String c[] = {"Cliente"};
+    JComboBox TP, SU, ID, nc;
     JComboBox idproducto;
-    public Panel P = new Panel();
-    public Panel Pr = new Panel();
-    public Panel Pb = new Panel();
+    Panel P = new Panel();
+    Panel Pb = new Panel();
     JButton acepta,agrega, btp, bpi, bcl, bmo;
     Container c3, c5;
     
@@ -57,14 +54,13 @@ Cliente cliente=new Cliente();
         crea();
         agrega();
         validate();
-        bcl.addActionListener(this);
     }
 
     private void crea() {
         P.setLayout(new java.awt.GridBagLayout());
         Pb.setLayout(new java.awt.GridBagLayout());
         Pb.setAlignmentX(CENTER_ALIGNMENT);
-        Pr.setLayout(new GridBagLayout());
+        this.setLayout(new GridBagLayout());
         v2 = new JLabel();      v3 = new JLabel();      
         v4 = new JLabel();      v5 = new JLabel();
         v6 = new JLabel();      v7 = new JLabel();
@@ -171,23 +167,11 @@ Cliente cliente=new Cliente();
         Pb.add(st, estilo(3,4,1,1));
         
         
-        Pr.add(im, estilo (0, 0, 1, 1));
-        Pr.add(P, estilo(2, 0, 1, 1));
-        Pr.add(v5, estilo(0, 1, 1, 1));
-        Pr.add(Pb, estilo(2, 1, 1, 1));
-        Pr.add(tab, estilo(0, 2, 3, 1));
+        add(im, estilo (0, 0, 1, 1));
+        add(P, estilo(2, 0, 1, 1));
+        add(v5, estilo(0, 1, 1, 1));
+        add(Pb, estilo(2, 1, 1, 1));
+        add(tab, estilo(0, 2, 3, 1));
         
-        
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-    if(e.getSource().equals(bcl)){
-    cliente.setVisible(true);
-    }
-    
-    if(e.getSource().equals(cliente.ac)){
-    
-    }
     }
 }

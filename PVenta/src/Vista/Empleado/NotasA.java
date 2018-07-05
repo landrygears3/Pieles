@@ -26,7 +26,6 @@ public class NotasA extends VistasGenerales.Panel{
     JTextArea N;
     JComboBox U;
     String[] us = {"Usuarios"};
-    public Panel P = new Panel();
     Container c = new Container();
     Container co = new Container();
     Container co2 = new Container();
@@ -48,7 +47,7 @@ public class NotasA extends VistasGenerales.Panel{
         N.setRows(10);
         N.setColumns(10);
         N.setBorder(new LineBorder(Color.BLACK));
-        P.setLayout(new GridLayout(3,3));
+        setLayout(new GridLayout(3,3));
         c.setLayout(new GridBagLayout());
         co.setLayout(new GridLayout(5,1));
         co2.setLayout(new GridLayout(1,2));
@@ -96,12 +95,12 @@ public class NotasA extends VistasGenerales.Panel{
         co2.add(c);
         co2.add(co);
         
-        P.add(v1);
-        P.add(v2);
-        P.add(v3);
-        P.add(v4);
-        P.add(co2);
-        P.add(v5);
-        P.add(v6);
+        add(v1);
+        add(v2);
+        add(v3);
+        add(v4);
+        add(co2);
+        add(v5);
+        add(v6);
     }
 }

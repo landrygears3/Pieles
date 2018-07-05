@@ -18,7 +18,6 @@ public class ErrorA extends VistasGenerales.Panel{
     public JComboBox ID, P;
     public JTextArea D;
     public Panel Pa = new Panel();
-    public Panel Pr = new Panel();
     public Panel Pb = new Panel();
     Container co = new Container();
     Container co2 = new Container();
@@ -61,7 +60,7 @@ public class ErrorA extends VistasGenerales.Panel{
         ag = new JButton("Guardar defecto");
         ca = new JButton("Borrar");
         
-        Pr.setLayout(new GridBagLayout());
+        setLayout(new GridBagLayout());
         Pa.setLayout(new GridBagLayout());
         Pb.setLayout(new GridBagLayout());
         co.setLayout(new GridBagLayout());
@@ -113,9 +112,9 @@ public class ErrorA extends VistasGenerales.Panel{
         Pb.add(vg, estilo(0,8,1,1));
         
         
-        Pr.add(v3, estilo(0,0,1,1));
-        Pr.add(co, estilo(1,0,1,1));
-        Pr.add(Pb, estilo(2,0,1,1));
-        Pr.add(tab, estilo(0,2,3,1));
+        add(v3, estilo(0,0,1,1));
+        add(co, estilo(1,0,1,1));
+        add(Pb, estilo(2,0,1,1));
+        add(tab, estilo(0,2,3,1));
     }
 }

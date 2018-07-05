@@ -25,7 +25,6 @@ public class EmpleadoB extends VistasGenerales.Panel{
     JButton c, ca;
     JLabel u, no, v1, v2, v3, v4, v5, v6, va, vb, vc, vd, ve, vf, el;
     JComboBox n;
-    public Panel Pr = new Panel();
     public Panel Pb = new Panel();
     Container co2 = new Container();
     Container co = new Container();
@@ -56,7 +55,7 @@ public class EmpleadoB extends VistasGenerales.Panel{
     tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
         
-        Pr.setLayout(new GridBagLayout());
+        setLayout(new GridBagLayout());
         Pb.setLayout(new GridLayout(1,2));
         co2.setLayout(new GridLayout(7,1));
         co.setLayout(new GridLayout(5,1));
@@ -95,11 +94,11 @@ public class EmpleadoB extends VistasGenerales.Panel{
         Pb.add(co);
         Pb.add(co2);
         
-        Pr.add(va, estilo(0,0,3,1));
-        Pr.add(vd, estilo(0,1,1,1));
-        Pr.add(Pb, estilo(1,1,1,1));
-        Pr.add(ve, estilo(2,1,1,1));
-        Pr.add(tab, estilo(0,2,3,1));
+        add(va, estilo(0,0,3,1));
+        add(vd, estilo(0,1,1,1));
+        add(Pb, estilo(1,1,1,1));
+        add(ve, estilo(2,1,1,1));
+        add(tab, estilo(0,2,3,1));
         
     }
     

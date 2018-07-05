@@ -16,10 +16,10 @@ import javax.swing.JComboBox;
 
 public class EmpleadoA extends VistasGenerales.Panel {
 
-    public JLabel n, t, c, cc, u, l, f, he, hs, s, tu, v1, v2, v3, v4, v5;
-    public JTextField N, T, U;
-    public JComboBox TU, S;
-    public Contrasena C, CC;
+    JLabel n, t, c, cc, u, l, f, he, hs, s, tu, v1, v2, v3, v4, v5;
+    JTextField N, T, U;
+    JComboBox TU, S;
+    Contrasena C, CC;
     String Tu[] = {"Tipo de usuario"};
     String Su[] = {"Sucursal"};
     private Panel P = new Panel();

@@ -76,7 +76,7 @@ public class Principal extends JFrame {
             }
             //ventas
             if (e.getSource().equals(mb.vev)) {
-                setContentPane(venta.agrega.Pr);
+                setContentPane(venta.agrega);
                 validate();
             }
             if (e.getSource().equals(mb.vec)) {
@@ -89,7 +89,7 @@ public class Principal extends JFrame {
             }
             //empleados
             if (e.getSource().equals(mb.noa)) {
-                setContentPane(empleado.NotaA.P);
+                setContentPane(empleado.NotaA);
             }
             if (e.getSource().equals(mb.nov)) {
                 setContentPane(empleado.NotaV);
@@ -98,7 +98,7 @@ public class Principal extends JFrame {
                 setContentPane(empleado.agrega);
             }
             if (e.getSource().equals(mb.emb)) {
-                setContentPane(empleado.elimina.Pr);
+                setContentPane(empleado.elimina);
             }
             if (e.getSource().equals(mb.emm)) {
                 setContentPane(empleado.modifica);
@@ -131,7 +131,7 @@ public class Principal extends JFrame {
             }
             //Erroes
             if (e.getSource().equals(mb.era)) {
-                setContentPane(errores.agrega.Pr);
+                setContentPane(errores.agrega);
             }
             if (e.getSource().equals(mb.erc)) {
                 setContentPane(errores.consulta);
