@@ -49,7 +49,7 @@ public class NotasA extends VistasGenerales.Panel{
         N.setBorder(new LineBorder(Color.BLACK));
         setLayout(new GridLayout(3,3));
         c.setLayout(new GridBagLayout());
-        co.setLayout(new GridLayout(5,1));
+        co.setLayout(new GridBagLayout());
         co2.setLayout(new GridLayout(1,2));
         ag = new JButton("Guardar nota");
         bo = new JButton("Borrar nota");
@@ -63,14 +63,14 @@ public class NotasA extends VistasGenerales.Panel{
         vc = new JLabel();      vf = new JLabel();
     }
     
-    private GridBagConstraints estilo(int pox, int poy, int tax, int tay) {
+    private GridBagConstraints estilo(int pox, int poy, int tax, int tay, int fill, int anchor) {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = pox;
         gbc.gridy = poy;
         gbc.gridwidth = tax;
         gbc.gridheight = tay;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = fill;
+        gbc.anchor = anchor;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
 
@@ -79,28 +79,24 @@ public class NotasA extends VistasGenerales.Panel{
     
     private void agrega(){
         
-        co.add(va);
-        co.add(ag);
-        co.add(vb);
-        co.add(bo);
-        co.add(vc);
+        co.add(va,estilo(0,0,1,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER));
+        co.add(ag,estilo(1,1,1,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER));
+        co.add(vb,estilo(1,2,1,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER));
+        co.add(bo,estilo(1,3,1,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER));
+        co.add(vc,estilo(2,4,1,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER));
         
-        c.add(u, estilo(1,0,1,1));
-        c.add(U, estilo(1,1,1,1));
-        c.add(n, estilo(1,2,1,1));
-        c.add(v7, estilo(0,3,1,1));
-        c.add(N, estilo(1,3,1,1));
-        c.add(v8, estilo(2,3,1,1));
+        c.add(u, estilo(1,0,1,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        c.add(U, estilo(1,1,1,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        c.add(n, estilo(1,2,1,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        c.add(v7, estilo(0,3,1,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        c.add(N, estilo(1,3,1,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        c.add(v8, estilo(2,3,1,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         
         co2.add(c);
         co2.add(co);
         
-        add(v1);
-        add(v2);
-        add(v3);
-        add(v4);
-        add(co2);
-        add(v5);
-        add(v6);
+        add(v1, estilo(0,0,3,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        add(co2, estilo(1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.WEST));
+        add(v3, estilo(0,2,3,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
     }
 }

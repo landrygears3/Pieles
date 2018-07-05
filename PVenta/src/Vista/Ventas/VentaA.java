@@ -7,6 +7,7 @@ package Vista.Ventas;
 
 import VistasGenerales.Panel;
 import java.awt.BorderLayout;
+import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -28,7 +29,7 @@ public class VentaA extends VistasGenerales.Panel {
     JLabel id, col, pv, can, mo, pi,
             im, ma, su,  pro, cc, st;
     
-    JLabel v2, v3, v4, v5, v6, v7, v1;
+    JLabel v2, v3, v4, v5, v6, v7, v1, v8;
     JTextField CC;
     String Pago[] = {"Tipo de pago"};
     String Suc[] = {"Sucursal"};
@@ -61,10 +62,10 @@ public class VentaA extends VistasGenerales.Panel {
         Pb.setLayout(new java.awt.GridBagLayout());
         Pb.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new GridBagLayout());
-        v2 = new JLabel();      v3 = new JLabel();      
-        v4 = new JLabel();      v5 = new JLabel();
-        v6 = new JLabel();      v7 = new JLabel();
-        v1 = new JLabel();
+        v2 = new JLabel(" ");      v3 = new JLabel(" ");      
+        v4 = new JLabel(" ");      v5 = new JLabel(" ");
+        v6 = new JLabel(" ");      v7 = new JLabel(" ");
+        v1 = new JLabel(" ");      v8 = new JLabel(" ");
         MA = new JCheckBox();
         id = new JLabel("Producto");                  //id venta
         id.setHorizontalAlignment(JLabel.CENTER);
@@ -85,7 +86,6 @@ public class VentaA extends VistasGenerales.Panel {
         col = new JLabel("Color");
         col.setHorizontalAlignment(JLabel.CENTER);
         st = new JLabel("Subtotal");
-        im.setHorizontalAlignment(JLabel.CENTER);
         ma = new JLabel("Mayoreo");             //CheckBox
         ID = new JComboBox();
         CAN = new VistasGenerales.Number();
@@ -132,7 +132,8 @@ public class VentaA extends VistasGenerales.Panel {
         
         ImageIcon image = new ImageIcon("Recursos\\Img\\Default.jpg");
         Dimension d = super.getToolkit().getScreenSize();
-        image = new ImageIcon(image.getImage().getScaledInstance(((d.width / 12) * 2), ((d.width / 12) * 2), Image.SCALE_DEFAULT));
+        image = new ImageIcon(image.getImage().getScaledInstance(((d.width / 12)
+                * 2), ((d.width / 12) * 2), Image.SCALE_DEFAULT));
         im.setIcon(image);
         
         c3.add(nc, BorderLayout.CENTER);
@@ -141,23 +142,25 @@ public class VentaA extends VistasGenerales.Panel {
         c5.add(ma, BorderLayout.CENTER);
         c5.add(MA, BorderLayout.EAST);
 
-        P.add(c3, estilo(0,0,1,1));
-        P.add(id, estilo(1,0,1,1));
-        P.add(ID, estilo(2,0,1,1));
-        P.add(pro, estilo(3,0,1,1));
-        P.add(v1, estilo(0,1,4,1));
+        P.add(v8, estilo(0,0,2,1));
+        P.add(c3, estilo(0,1,1,1));
+        P.add(id, estilo(1,1,1,1));
+        P.add(ID, estilo(2,1,1,1));
+        P.add(pro, estilo(3,1,1,1));
+        P.add(v1, estilo(0,2,4,1));
         
-        P.add(pi, estilo(0,2,1,1));
-        P.add(mo, estilo(1,2,1,1));
-        P.add(col, estilo(2,2,1,1));
-        P.add(TP, estilo(3,2,1,1));
-        P.add(v2, estilo(0,3,4,1));
+        P.add(pi, estilo(0,3,1,1));
+        P.add(mo, estilo(1,3,1,1));
+        P.add(col, estilo(2,3,1,1));
+        P.add(TP, estilo(3,3,1,1));
+        P.add(v2, estilo(0,4,4,1));
         
-        P.add(can, estilo(0,4,1,1));
-        P.add(CAN.tf, estilo(1,4,1,1));
-        P.add(c5, estilo(2,4,1,1));
-        P.add(pv, estilo(3,4,1,1));
-        P.add(v3, estilo(0,4,4,1));
+        
+        P.add(can, estilo(0,5,1,1));
+        P.add(CAN.tf, estilo(1,5,1,1));
+        P.add(c5, estilo(2,5,1,1));
+        P.add(pv, estilo(3,5,1,1));
+        P.add(v3, estilo(0,6,4,1));
         
         Pb.add(v7, estilo(0,0,4,1));
         Pb.add(v4, estilo(0,1,1,1));
