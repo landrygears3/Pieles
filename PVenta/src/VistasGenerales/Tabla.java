@@ -21,9 +21,11 @@ public class Tabla extends JScrollPane {
         }
         tab.setModel(md);
     }
-public int DatosC(){
-return tab.getRowCount();
-}
+
+    public int DatosC() {
+        return tab.getRowCount();
+    }
+
     public void setRow(Object o[][]) {
         for (int i = 0; i < o.length; i++) {
             Object aux[] = new Object[o[i].length];
@@ -34,22 +36,26 @@ return tab.getRowCount();
             md.addRow(aux);
         }
     }
-    
-    public Object[][] getD(){
-    Object[][] o=new Object[tab.getRowCount()][tab.getColumnCount()];
+
+    public void setRow(Object o[]) {
+        md.addRow(o);
+    }
+
+    public Object[][] getD() {
+        Object[][] o = new Object[tab.getRowCount()][tab.getColumnCount()];
         for (int i = 0; i < o.length; i++) {
             for (int j = 0; j < o[i].length; j++) {
-               o[i][j]=md.getValueAt(i, j);
+                o[i][j] = md.getValueAt(i, j);
             }
-            
+
         }
-    return o;
+        return o;
     }
-    
-    public void limpa(){
-        while(md.getRowCount()!=0){
-        md.removeRow(0);
+
+    public void limpa() {
+        while (md.getRowCount() != 0) {
+            md.removeRow(0);
         }
-        
+
     }
 }

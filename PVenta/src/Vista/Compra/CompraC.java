@@ -1,5 +1,6 @@
 package Vista.Compra;
 
+import Controlador.Compra.CompraN;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -8,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -18,14 +20,17 @@ import javax.swing.JTextField;
 
 public class CompraC extends VistasGenerales.Panel implements ActionListener {
 
-    final String cols[] = {"Codigo", "Producto", "Cantidad",
-        "Tipo", "Piel", "Modelo", "Color", "proveedor", "Descripción"};
+    CompraN comprar = new CompraN();
+    //tipo, modelo, piel, proveedor, nombre, color, descripción, imagen
+    final String cols[] = {"Tipo", "Modelo",
+        "Piel", "Proveedor", "Nombre", "Color", "Descripción"};
 
     JPanel P = new JPanel();
+    JPanel costos = new JPanel();
     JPanel inter1 = new JPanel();
     VistasGenerales.Tabla tab;
     JLabel lproducto, lcantidad, ltipo, lpiel, lproveedor, lcolor,
-            lmodelo, ldescripcion, imagen, lcosto;
+            lmodelo, ldescripcion, imagen, lcosto, lcostov, lcostom;
 
     JComboBox producto, tipo, piel, proveedor, modelo;
     JTextField color, descripcion, productot;
@@ -33,7 +38,7 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
     Nuevos ntipo, npiel, nmodelo;
     Nproveedor nproveedor;
     JCheckBox nuevo;
-    VistasGenerales.Number cantidad, costo;
+    VistasGenerales.Number cantidad, costo, costov, costom;
 
     public CompraC() {
         this.setLayout(new GridBagLayout());
@@ -47,6 +52,33 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         bpiel.addActionListener(this);
         bproveedor.addActionListener(this);
         nuevo.addActionListener(this);
+        npiel.aceptar.addActionListener(this);
+        nmodelo.aceptar.addActionListener(this);
+        ntipo.aceptar.addActionListener(this);
+        nproveedor.aceptar.addActionListener(this);
+        this.agrega.addActionListener(this);
+        this.producto.addActionListener(this);
+        inicia();
+        llena();
+    }
+
+    private void inicia() {
+        llenaPiel();
+        llenaModelo();
+        llenaTipo();
+        llenaProveedor();
+        llenaProdictos();
+    }
+
+    private void llena() {
+        Object o[] = comprar.getDatos(producto.getSelectedIndex());
+        tipo.setSelectedItem(ntipo.nuevo.getName(o[0].toString()));
+        modelo.setSelectedItem(nmodelo.nuevo.getName(o[1].toString()));
+        piel.setSelectedItem(npiel.nuevo.getName(o[2].toString()));
+        proveedor.setSelectedItem(o[3]);
+        color.setText(o[5].toString());
+        descripcion.setText(o[6].toString());
+
     }
 
     private void crea() {
@@ -80,9 +112,15 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         lcantidad = new JLabel("Cantidad   ");
         lcantidad.setHorizontalAlignment(JLabel.RIGHT);
         cantidad = new VistasGenerales.Number();
-        lcosto = new JLabel("Precio  ");
+        lcosto = new JLabel("Compra  ");
         lcosto.setHorizontalAlignment(JLabel.RIGHT);
+        lcostov = new JLabel("Venta  ");
+        lcostov.setHorizontalAlignment(JLabel.RIGHT);
+        lcostom = new JLabel("Mayoreo  ");
+        lcostom.setHorizontalAlignment(JLabel.RIGHT);
         costo = new VistasGenerales.Number("D");
+        costov = new VistasGenerales.Number("D");
+        costom = new VistasGenerales.Number("D");
         acepta = new JButton("Compra");
         acepta.setFocusable(false);
         agrega = new JButton("Agrega");
@@ -95,8 +133,8 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         bproveedor.setFocusable(false);
         bmodelo = new JButton("+");
         bmodelo.setFocusable(false);
-        ntipo = new Nuevos("Tipo Producto");
-        npiel = new Nuevos("Tipo Piel");
+        ntipo = new Nuevos("Tipo");
+        npiel = new Nuevos("Piel");
         nmodelo = new Nuevos("Modelo");
         nproveedor = new Nproveedor();
 
@@ -215,14 +253,27 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         gbc = estilo(8, 6, 2, 1, GridBagConstraints.BOTH);
         inter1.add(descripcion, gbc);
         //Agrega
-        gbc = estilo(10, 8, 2, 1, GridBagConstraints.BOTH);
+        gbc = estilo(10, 9, 2, 1, GridBagConstraints.BOTH);
         inter1.add(agrega, gbc);
 
         //costo
-        gbc = estilo(10, 6, 1, 1, GridBagConstraints.BOTH);
-        inter1.add(lcosto, gbc);
-        gbc = estilo(11, 6, 1, 1, GridBagConstraints.BOTH);
-        inter1.add(costo.tf, gbc);
+        costos.setBorder(BorderFactory.createTitledBorder("Costos"));
+        costos.setLayout(new GridBagLayout());
+        gbc = estilo(0, 0, 1, 1, GridBagConstraints.BOTH);
+        costos.add(lcosto, gbc);
+        gbc = estilo(1, 0, 1, 1, GridBagConstraints.BOTH);
+        costos.add(costo.tf, gbc);
+        gbc = estilo(0, 1, 1, 1, GridBagConstraints.BOTH);
+        costos.add(lcostov, gbc);
+        gbc = estilo(1, 1, 1, 1, GridBagConstraints.BOTH);
+        costos.add(costov.tf, gbc);
+        gbc = estilo(0, 2, 1, 1, GridBagConstraints.BOTH);
+        costos.add(lcostom, gbc);
+        gbc = estilo(1, 2, 1, 1, GridBagConstraints.BOTH);
+        costos.add(costom.tf, gbc);
+
+        gbc = estilo(11, 6, 1, 2, GridBagConstraints.BOTH);
+        inter1.add(costos, gbc);
 
         gbc = estilo(0, 0, 5, 2, GridBagConstraints.BOTH);
         add(inter1, gbc);
@@ -242,11 +293,52 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         proveedor.setEnabled(b);
         piel.setEnabled(b);
         tipo.setEnabled(b);
+        color.setEnabled(b);
+        descripcion.setEnabled(b);
 
+    }
+
+    private void llenaPiel() {
+        Object o[] = npiel.nuevo.getPieles();
+        for (int i = 0; i < o.length; i++) {
+            piel.addItem(o[i]);
+        }
+    }
+
+    private void llenaTipo() {
+        Object o[] = ntipo.nuevo.getTipos();
+        for (int i = 0; i < o.length; i++) {
+            tipo.addItem(o[i]);
+        }
+    }
+
+    private void llenaProdictos() {
+        Object O[] = comprar.getName();
+        for (int i = 0; i < O.length; i++) {
+            producto.addItem(O[i]);
+        }
+    }
+
+    private void llenaModelo() {
+        Object o[] = nmodelo.nuevo.getModelos();
+        for (int i = 0; i < o.length; i++) {
+            modelo.addItem(o[i]);
+        }
+    }
+
+    private void llenaProveedor() {
+        Object o[] = nproveedor.prov.getProveedor();
+        for (int i = 0; i < o.length; i++) {
+            proveedor.addItem(o[i]);
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+
+        if (ae.getSource().equals(this.producto)) {
+            llena();
+        }
         if (ae.getSource().equals(btipo)) {
             ntipo.setVisible(true);
         }
@@ -264,6 +356,85 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         if (ae.getSource().equals(nuevo)) {
 
             vista(nuevo.isSelected());
+
+        }
+
+        if (ae.getSource().equals(npiel.aceptar)) {
+            npiel.b = npiel.nuevo.agrega(npiel.Name, npiel.nombre.getText());
+            if (npiel.b) {
+
+                npiel.dispose();
+            }
+
+            if (npiel.getVal()) {
+                piel.removeAllItems();
+                llenaPiel();
+            }
+        }
+        if (ae.getSource().equals(nmodelo.aceptar)) {
+            nmodelo.b = nmodelo.nuevo.agrega(nmodelo.Name, nmodelo.nombre.getText());
+            if (nmodelo.b) {
+
+                nmodelo.dispose();
+            }
+
+            if (nmodelo.getVal()) {
+                modelo.removeAllItems();
+                llenaModelo();
+            }
+        }
+
+        if (ae.getSource().equals(ntipo.aceptar)) {
+            ntipo.b = ntipo.nuevo.agrega(ntipo.Name, ntipo.nombre.getText());
+            if (ntipo.b) {
+
+                ntipo.dispose();
+            }
+
+            if (ntipo.getVal()) {
+                tipo.removeAllItems();
+                llenaTipo();
+            }
+        }
+
+        if (ae.getSource().equals(nproveedor.aceptar)) {
+            Object O[] = new Object[3];
+            O[0] = nproveedor.nombre.getText();
+            O[1] = nproveedor.telefonos.tf.getText();
+            O[2] = nproveedor.correos.getText();
+            nproveedor.prov.b = nproveedor.prov.agrega(O);
+            if (nproveedor.prov.b) {
+                nproveedor.dispose();
+                nproveedor.limpia();
+                proveedor.removeAllItems();
+                llenaProveedor();
+
+            }
+
+        }
+
+        if (ae.getSource().equals(this.agrega)) {
+
+            if (nuevo.isSelected()) {
+                Object O[] = {color.getText(), descripcion.getText(),
+                    productot.getText(), cantidad.tf.getText(), costo.tf.getText()};
+                if (comprar.valida(O)) {
+//                    "ID_Tipo,ID_Modelo,ID_Piel,"
+//                + "ID_Proveedor,Nombre,Color,Descripcion"
+
+                    Object o[] = {ntipo.nuevo.getID(tipo.getSelectedIndex()),
+                        nmodelo.nuevo.getID(modelo.getSelectedIndex()),
+                        npiel.nuevo.getID(piel.getSelectedIndex()),
+                        nproveedor.prov.getID(proveedor.getSelectedIndex()),
+                        productot.getText(), color.getText(), descripcion.getText()};
+                    comprar.agrega(o);
+                    Object da[] = {tipo.getSelectedItem(), modelo.getSelectedItem(),
+                        piel.getSelectedItem(), proveedor.getSelectedItem(),
+                        productot.getText(), color.getText(), descripcion.getText()};
+                    tab.setRow(da);
+
+                }
+            }
 
         }
     }

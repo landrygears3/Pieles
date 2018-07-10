@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -20,11 +19,10 @@ import javax.swing.JTextField;
  * @author landr
  */
 public class Nproveedor extends JDialog implements ActionListener {
-
+    Controlador.Compra.Proveedor prov=new Controlador.Compra.Proveedor();
     JLabel lnombre, lcorreos, ltelefonos;
     JTextField nombre, correos;
     VistasGenerales.Number telefonos;
-    VistasGenerales.Tabla tTelefono, Tcorreos;
     JButton aceptar, cancelar;
 
     public Nproveedor() {
@@ -52,12 +50,6 @@ public class Nproveedor extends JDialog implements ActionListener {
         telefonos = new VistasGenerales.Number();
         aceptar = new JButton("Agregar");
         cancelar = new JButton("Cancelar");
-        tTelefono = new VistasGenerales.Tabla();
-        String t[] = {"Telefono"};
-        tTelefono.setColum(t);
-        Tcorreos = new VistasGenerales.Tabla();
-        String c[] = {"Correos"};
-        Tcorreos.setColum(c);
 
     }
 
@@ -72,24 +64,20 @@ public class Nproveedor extends JDialog implements ActionListener {
         add(lnombre, estilo(1, 1, 2, 1, GridBagConstraints.CENTER));
         add(nombre, estilo(1, 2, 2, 1, GridBagConstraints.BOTH));
         add(v3, estilo(1, 3, 2, 1, GridBagConstraints.BOTH));
-        add(ltelefonos, estilo(1, 4, 1, 1, GridBagConstraints.CENTER));
-        add(telefonos.tf, estilo(1, 5, 1, 1, GridBagConstraints.BOTH));
-        add(tTelefono, estilo(2, 4, 1, 3, GridBagConstraints.BOTH));
+        add(ltelefonos, estilo(1, 4, 2, 1, GridBagConstraints.CENTER));
+        add(telefonos.tf, estilo(1, 5, 2, 1, GridBagConstraints.BOTH));
         add(v1, estilo(1, 6, 1, 1, GridBagConstraints.BOTH));
-        add(lcorreos, estilo(1, 7, 1, 1, GridBagConstraints.CENTER));
-        add(correos, estilo(1, 8, 1, 1, GridBagConstraints.BOTH));
-        add(Tcorreos, estilo(2, 7, 1, 3, GridBagConstraints.BOTH));
-        add(v2, estilo(1, 9, 1, 1, GridBagConstraints.CENTER));
+        add(lcorreos, estilo(1, 7, 2, 1, GridBagConstraints.CENTER));
+        add(correos, estilo(1, 8, 2, 1, GridBagConstraints.BOTH));
+        add(v2, estilo(1, 9, 2, 1, GridBagConstraints.CENTER));
         add(aceptar, estilo(1, 10, 1, 1, GridBagConstraints.CENTER));
         add(cancelar, estilo(2, 10, 1, 1, GridBagConstraints.CENTER));
     }
 
-    private void limpia() {
+    public void limpia() {
         nombre.setText("");
         telefonos.tf.setText("");
         correos.setText("");
-        Tcorreos.limpa();
-        tTelefono.limpa();
 
     }
 
@@ -113,50 +101,7 @@ public class Nproveedor extends JDialog implements ActionListener {
             limpia();
             this.dispose();
         }
-        if (ae.getSource().equals(aceptar)) {
-            this.dispose();
-        }
-
-        if (ae.getSource().equals(correos)) {
-            if (!correos.getText().equals("")) {
-                boolean d = true;
-                Object aux[][] = Tcorreos.getD();
-                for (int i = 0; i < Tcorreos.DatosC(); i++) {
-                    if (correos.getText().equals(aux[i][0].toString())) {
-                        d = false;
-                        JOptionPane.showMessageDialog(null, "Ya ah ingresado ese coreo");
-                        break;
-                    }
-                }
-                if (d) {
-                    
-                    Object o[][] = new Object[1][1];
-                    o[0][0] = correos.getText();
-                    correos.setText("");
-                    Tcorreos.setRow(o);
-                }
-            }
-        }
-
-        if (ae.getSource().equals(telefonos.tf)) {
-            if (!telefonos.tf.getText().equals("")) {
-                boolean d = true;
-                Object aux[][] = tTelefono.getD();
-                for (int i = 0; i < tTelefono.DatosC(); i++) {
-                    if (telefonos.tf.getText().equals(aux[i][0].toString())) {
-                        d = false;
-                        JOptionPane.showMessageDialog(null, "Ya ah ingresado ese coreo");
-                        break;
-                    }
-                }
-                if (d) {
-                    Object o[][] = new Object[1][1];
-                    o[0][0] = telefonos.tf.getText();
-                    telefonos.tf.setText("");
-                    tTelefono.setRow(o);
-                }
-            }
-        }
+        
 
     }
 }

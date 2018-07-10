@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
 awardspace 	rldlandry55@gmail.com	-	ProyectosLP1
@@ -16,7 +14,7 @@ public class Conexion {
 
     Connection connection = null;
 
-    public void connect() {
+    private void connect() {
         String url = "jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3245955";
         String user = "sql3245955";
         String pass = "V9h6CwafcC";
@@ -30,7 +28,7 @@ public class Conexion {
         }
     }
 
-    public void closed() {
+    private void closed() {
         try {
             connection.close();
         } catch (SQLException e) {
@@ -41,15 +39,32 @@ public class Conexion {
         Statement s;
         ResultSet r = null;
         try {
-
+            this.connect();
             s = connection.createStatement();
             String query2 = "SELECT " + campos + " FROM `" + tabla + "`" + condicion;
             r = s.executeQuery(query2);
+           
+            return r;
 
         } catch (SQLException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
+            return null;
         }
-        return r;
+        
+        
     }
 
+    public void Alta(String tabla, String campos, String valores) {
+
+        try {
+            this.connect();
+            String agregado = "INSERT INTO " + tabla + "(" + campos + ") values (" + valores + ")";
+            Statement comando = connection.createStatement();
+            comando.executeUpdate(agregado);
+            this.closed();
+
+        } catch (SQLException ex) {
+            System.err.println("Error"+ex);
+        }
+    }
 }

@@ -11,10 +11,12 @@ import javax.swing.JTextField;
 
 public class Nuevos extends JDialog implements ActionListener {
 
+    public boolean b = false;
+    Controlador.Compra.Nuevos nuevo = new Controlador.Compra.Nuevos();
     JLabel lnombre;
     JTextField nombre;
     JButton aceptar, cancelar;
-    private String Name;
+    public String Name;
 
     public Nuevos(String Name) {
         this.Name = Name;
@@ -65,9 +67,16 @@ public class Nuevos extends JDialog implements ActionListener {
         return gbc;
     }
 
+    public boolean getVal() {
+        return b;
+    }
+    
+
     @Override
     public void actionPerformed(ActionEvent ae) {
+      
         if (ae.getSource().equals(aceptar)) {
+            nombre.setText("");
             this.dispose();
         }
         if (ae.getSource().equals(cancelar)) {
