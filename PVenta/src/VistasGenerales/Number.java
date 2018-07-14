@@ -19,6 +19,7 @@ public class Number implements KeyListener {
         this.Tipo = "";
     }
 
+    
     @Override
     public void keyTyped(KeyEvent e) {
         switch (Tipo) {
@@ -89,5 +90,13 @@ public class Number implements KeyListener {
             }
         }
         return f;
+    }
+    
+    public int getNum(){
+    try{
+    return Integer.parseInt(tf.getText());
+    }catch(Exception e){
+    return 0;
+    }
     }
 }

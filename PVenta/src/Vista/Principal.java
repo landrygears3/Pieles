@@ -6,7 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class Principal extends JFrame {
-    private String User=null;
+
+    private String User = null;
     private Dimension dim;
     VistasGenerales.Panel gral;
     Vista.Menubar mb;
@@ -18,11 +19,11 @@ public class Principal extends JFrame {
     Vista.Permisos.PermisoAcceso permisos;
 
     public Principal(String User) {
-        this.User=User;
+        this.User = User;
         dim = super.getToolkit().getScreenSize();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setSize(dim);
-        super.setUndecorated(true);
+        //super.setUndecorated(true);
         super.setVisible(true);
         crea();
         setJMenuBar(mb);

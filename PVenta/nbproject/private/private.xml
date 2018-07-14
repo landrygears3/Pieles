@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/landr/OneDrive/Escritorio/Pieles%20local/PVenta/src/Controlador/Compra/Proveedor.java</file>
             <file>file:/C:/Users/landr/OneDrive/Escritorio/Pieles%20local/PVenta/src/Controlador/Compra/CompraN.java</file>
-            <file>file:/C:/Users/landr/OneDrive/Escritorio/Pieles%20local/PVenta/src/Vista/Empleado/EmpleadoA.java</file>
+            <file>file:/C:/Users/landr/OneDrive/Escritorio/Pieles%20local/PVenta/src/Controlador/Compra/Sucursal.java</file>
+            <file>file:/C:/Users/landr/OneDrive/Escritorio/Pieles%20local/PVenta/src/VistasGenerales/Number.java</file>
             <file>file:/C:/Users/landr/OneDrive/Escritorio/Pieles%20local/PVenta/src/Controlador/Inventario/Inventario.java</file>
-            <file>file:/C:/Users/landr/OneDrive/Escritorio/Pieles%20local/PVenta/src/Controlador/Compra/Nuevos.java</file>
+            <file>file:/C:/Users/landr/OneDrive/Escritorio/Pieles%20local/PVenta/src/Vista/Compra/Sucursal.java</file>
             <file>file:/C:/Users/landr/OneDrive/Escritorio/Pieles%20local/PVenta/src/Vista/Compra/CompraC.java</file>
-            <file>file:/C:/Users/landr/OneDrive/Escritorio/Pieles%20local/PVenta/src/Modelo/Conexion.java</file>
+            <file>file:/C:/Users/landr/OneDrive/Escritorio/Pieles%20local/PVenta/src/Vista/Principal.java</file>
         </group>
     </open-files>
 </project-private>

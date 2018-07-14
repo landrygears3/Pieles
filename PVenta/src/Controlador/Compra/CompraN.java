@@ -52,6 +52,12 @@ public class CompraN {
         return name;
     }
 
+    public Object getLastID() {
+        consulta("");
+
+        return datos.get(datos.size() - 1).get(0);
+    }
+
     private void consulta(String cons) {
         datos = new ArrayList<ArrayList>();
         try {
@@ -74,18 +80,26 @@ public class CompraN {
     }
 
     public Object[] getDatos(int index) {
+        Object aux[] = null;
         consulta("");
-        consulta("WHERE ID_Producto='"+datos.get(index).get(0)+"'");
-        Object aux[]=new Object[datos.get(0).size()-2];
-        aux[0]=datos.get(0).get(1);
-        aux[1]=datos.get(0).get(2);
-        aux[2]=datos.get(0).get(3);
-        aux[3]=datos.get(0).get(4);
-        aux[4]=datos.get(0).get(5);
-        aux[5]=datos.get(0).get(6);
-        aux[6]=datos.get(0).get(7);
+        if (!datos.isEmpty()) {
+            consulta("WHERE ID_Producto='" + datos.get(index).get(0) + "'");
+            aux = new Object[datos.get(0).size() - 2];
+            aux[0] = datos.get(0).get(1);
+            aux[1] = datos.get(0).get(2);
+            aux[2] = datos.get(0).get(3);
+            aux[3] = datos.get(0).get(4);
+            aux[4] = datos.get(0).get(5);
+            aux[5] = datos.get(0).get(6);
+            aux[6] = datos.get(0).get(7);
+        }
+
         return aux;
 
+    }
+
+    public Object getId(int index) {
+        return datos.get(index).get(0);
     }
 
 }

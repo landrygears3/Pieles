@@ -1,6 +1,7 @@
 package Vista.Compra;
 
 import Controlador.Compra.CompraN;
+import Controlador.Inventario.Inventario;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -15,12 +16,15 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class CompraC extends VistasGenerales.Panel implements ActionListener {
 
     CompraN comprar = new CompraN();
+    Inventario inv = new Inventario();
+    Vista.Compra.Sucursal suc = new Vista.Compra.Sucursal();
     //tipo, modelo, piel, proveedor, nombre, color, descripción, imagen
     final String cols[] = {"Tipo", "Modelo",
         "Piel", "Proveedor", "Nombre", "Color", "Descripción"};
@@ -58,6 +62,7 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         nproveedor.aceptar.addActionListener(this);
         this.agrega.addActionListener(this);
         this.producto.addActionListener(this);
+        this.acepta.addActionListener(this);
         inicia();
         llena();
     }
@@ -71,13 +76,16 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
     }
 
     private void llena() {
+
         Object o[] = comprar.getDatos(producto.getSelectedIndex());
-        tipo.setSelectedItem(ntipo.nuevo.getName(o[0].toString()));
-        modelo.setSelectedItem(nmodelo.nuevo.getName(o[1].toString()));
-        piel.setSelectedItem(npiel.nuevo.getName(o[2].toString()));
-        proveedor.setSelectedItem(o[3]);
-        color.setText(o[5].toString());
-        descripcion.setText(o[6].toString());
+        if (o != null) {
+            tipo.setSelectedItem(ntipo.nuevo.getName(o[0].toString()));
+            modelo.setSelectedItem(nmodelo.nuevo.getName(o[1].toString()));
+            piel.setSelectedItem(npiel.nuevo.getName(o[2].toString()));
+            proveedor.setSelectedItem(o[3]);
+            color.setText(o[5].toString());
+            descripcion.setText(o[6].toString());
+        }
 
     }
 
@@ -333,8 +341,40 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         }
     }
 
+    private boolean validaCant() {
+        boolean ca;
+        if (cantidad.tf.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingrear una cantidad.");
+            return false;
+        } else {
+            if (cantidad.getNum() == 0) {
+                JOptionPane.showMessageDialog(null, "Debe ingrear una cantidad mayor a 0.");
+                return false;
+            } else {
+                ca = true;
+            }
+        }
+
+        if (costo.tf.getText().equals("") || costov.tf.getText().equals("") || costom.tf.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingrear un costo.");
+            return false;
+        } else {
+            if (costo.getNum() == 0 || costov.getNum() == 0 || costom.getNum() == 0) {
+                JOptionPane.showMessageDialog(null, "Debe ingrear un costo mayor a 0.");
+                return false;
+            } else {
+                ca = true;
+            }
+        }
+        return ca;
+    }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource().equals(acepta)) {
+            suc.setVisible(true);
+            inv.alta(suc.getSucursal());
+        }
 
         if (ae.getSource().equals(this.producto)) {
             llena();
@@ -416,23 +456,32 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         if (ae.getSource().equals(this.agrega)) {
 
             if (nuevo.isSelected()) {
-                Object O[] = {color.getText(), descripcion.getText(),
-                    productot.getText(), cantidad.tf.getText(), costo.tf.getText()};
-                if (comprar.valida(O)) {
+                if (validaCant()) {
+                    Object O[] = {color.getText(), descripcion.getText(),
+                        productot.getText(), cantidad.tf.getText(), costo.tf.getText()};
+                    if (comprar.valida(O)) {
 //                    "ID_Tipo,ID_Modelo,ID_Piel,"
 //                + "ID_Proveedor,Nombre,Color,Descripcion"
 
-                    Object o[] = {ntipo.nuevo.getID(tipo.getSelectedIndex()),
-                        nmodelo.nuevo.getID(modelo.getSelectedIndex()),
-                        npiel.nuevo.getID(piel.getSelectedIndex()),
-                        nproveedor.prov.getID(proveedor.getSelectedIndex()),
-                        productot.getText(), color.getText(), descripcion.getText()};
-                    comprar.agrega(o);
-                    Object da[] = {tipo.getSelectedItem(), modelo.getSelectedItem(),
-                        piel.getSelectedItem(), proveedor.getSelectedItem(),
-                        productot.getText(), color.getText(), descripcion.getText()};
-                    tab.setRow(da);
+                        Object o[] = {ntipo.nuevo.getID(tipo.getSelectedIndex()),
+                            nmodelo.nuevo.getID(modelo.getSelectedIndex()),
+                            npiel.nuevo.getID(piel.getSelectedIndex()),
+                            nproveedor.prov.getID(proveedor.getSelectedIndex()),
+                            productot.getText(), color.getText(), descripcion.getText()};
 
+                        comprar.agrega(o);
+                        Object aux[] = {comprar.getLastID(), cantidad.tf.getText(), costov.tf.getText(), costo.tf.getText(), costom.tf.getText()};
+                        inv.setDatos(aux);
+                        Object da[] = {tipo.getSelectedItem(), modelo.getSelectedItem(),
+                            piel.getSelectedItem(), proveedor.getSelectedItem(),
+                            productot.getText(), color.getText(), descripcion.getText()};
+                        tab.setRow(da);
+                    }
+                }
+            } else {
+                if (validaCant()) {
+                    Object aux[] = {comprar.getId(producto.getSelectedIndex()), cantidad.tf.getText(), costov.tf.getText(), costo.tf.getText(), costom.tf.getText()};
+                    inv.setDatos(aux);
                 }
             }
 

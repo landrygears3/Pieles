@@ -15,9 +15,9 @@ public class Conexion {
     Connection connection = null;
 
     private void connect() {
-        String url = "jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3245955";
-        String user = "sql3245955";
-        String pass = "V9h6CwafcC";
+        String url = "jdbc:mysql://localhost:3306/elpiel";
+        String user = "root";
+        String pass = "";
         System.out.println("Conectando...");
         try {
             connection = DriverManager.getConnection(url, user, pass);
@@ -53,6 +53,8 @@ public class Conexion {
         
         
     }
+    
+    
 
     public void Alta(String tabla, String campos, String valores) {
 
