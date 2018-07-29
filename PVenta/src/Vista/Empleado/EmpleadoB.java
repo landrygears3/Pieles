@@ -13,14 +13,16 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import Controlador.Empleado.AgregaEmpleado;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author landr
  */
-public class EmpleadoB extends VistasGenerales.Panel{
+public class EmpleadoB extends VistasGenerales.Panel implements ActionListener{
     final String cols[] = {"Nombre", "Usuario", "Notas"};
-    final String ns[] = {"Nombre"};
     VistasGenerales.Tabla tab;
     JButton c, ca;
     JLabel u, no, v1, v2, v3, v4, v5, v6, va, vb, vc, vd, ve, vf, el;
@@ -28,15 +30,18 @@ public class EmpleadoB extends VistasGenerales.Panel{
     public Panel Pb = new Panel();
     Container co2 = new Container();
     Container co = new Container();
+    AgregaEmpleado ea = new AgregaEmpleado();
     
     public EmpleadoB(){
         crea();
         carga();
-        
+        llenaNombre();
+        llenaUsuario();
+        n.addActionListener(this);
     }
     
     private void crea(){
-        n = new JComboBox (ns);
+        n = new JComboBox ();
         u = new JLabel ("Usuario");
         u.setHorizontalAlignment(JLabel.CENTER);
         no = new JLabel ("Notas");
@@ -61,6 +66,27 @@ public class EmpleadoB extends VistasGenerales.Panel{
         co.setLayout(new GridLayout(5,1));
     }
     
+    private void llenaNombre() {
+        Object O[] = ea.getName();
+        for (int i = 0; i < O.length; i++) {
+            n.addItem(O[i]);
+        }
+    }
+    
+    private void llenaUsuario() {
+        String Nom = n.getSelectedItem().toString();
+        String con = ea.getUsuario(Nom);
+        u.setText(con);
+    }
+    
+    private void llenaNota() {
+        String Nom = n.getSelectedItem().toString();
+        
+        String con = ea.getNota(Nom);
+        no.setText(con);
+    }
+    
+    
     private GridBagConstraints estilo(int pox, int poy, int tax, int tay) {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = pox;
@@ -74,6 +100,8 @@ public class EmpleadoB extends VistasGenerales.Panel{
 
         return gbc;
     }
+    
+
 
     
     private void carga(){
@@ -102,4 +130,13 @@ public class EmpleadoB extends VistasGenerales.Panel{
         
     }
     
+    
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource().equals(n)) {
+            llenaUsuario();
+            llenaNota();
+        }
+        
+    }
 }

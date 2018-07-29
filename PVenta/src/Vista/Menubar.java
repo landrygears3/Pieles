@@ -64,7 +64,7 @@ public class Menubar extends JMenuBar {
 
         //date
         Date d = new Date();
-        dat = new JMenu(d.getDate() + "/" + d.getMonth() + "/" + d.getYear());
+        dat = new JMenu(d.getDate() + "/" + d.getMonth() + "/" + (d.getYear()%100));
         dat.setEnabled(false);
 
     }

@@ -2,6 +2,7 @@ package Modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,9 +13,9 @@ awardspace 	rldlandry55@gmail.com	-	ProyectosLP1
  */
 public class Conexion {
 
-    Connection connection = null;
+    public Connection connection = null;
 
-    private void connect() {
+    public void connect() {
         String url = "jdbc:mysql://localhost:3306/elpiel";
         String user = "root";
         String pass = "";
@@ -68,7 +69,9 @@ public class Conexion {
             this.connect();
             s = connection.createStatement();
             String query2 = "SELECT " + campos + " FROM `" + tabla + "`" + condicion;
+            System.out.println(query2);
             r = s.executeQuery(query2);
+           
 
             return r;
 
@@ -100,4 +103,21 @@ public class Conexion {
             System.err.println("Error" + ex);
         }
     }
+    
+    public void Modifica(String tabla, String campo, String valor, String usuario) {
+
+        try {
+            this.connect();
+            String agregado = "update " + tabla + " set " + campo + " = '" + valor + "' where Nombre = '" + usuario +"'";
+            Statement comando = connection.createStatement();
+            comando.executeUpdate(agregado);
+            this.closed();
+
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+        
+        
+    }
+    
 }

@@ -12,7 +12,7 @@ import javax.swing.JPasswordField;
 public class Contrasena extends VistasGenerales.Panel implements ActionListener {
 
     char def;
-    JPasswordField pf;
+    public JPasswordField pf;
     JButton b;
     private boolean status = false;
 

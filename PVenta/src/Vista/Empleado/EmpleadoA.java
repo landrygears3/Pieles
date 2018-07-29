@@ -8,28 +8,31 @@ import VistasGenerales.*;
 import com.toedter.calendar.JDateChooser;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import Controlador.Empleado.AgregaEmpleado;
+import static java.util.Calendar.DAY_OF_MONTH;
 
-public class EmpleadoA extends VistasGenerales.Panel {
+public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
 
-    JLabel n, t, c, cc, u, l, f, he, hs, s, tu, v1, v2, v3, v4, v5;
+    JLabel n, t, c, cc, u, l, f, s, tu, v1, v2, v3, v4, v5;
     JTextField N, T, U;
     JComboBox TU, S;
     Contrasena C, CC;
-    String Tu[] = {"Tipo de usuario"};
-    String Su[] = {"Sucursal"};
     private Panel P = new Panel();
     Panel hora;
     Panel contrasenas;
     VistasGenerales.Number tel;
     JButton ag, ca;
     VistasGenerales.Tabla tab;
-    VistasGenerales.TimeChoser horae, horas;
     JDateChooser fecha;
+    AgregaEmpleado ea = new AgregaEmpleado();
     final String cols[] = {"Empleado", "Teléfono", "Usuario", "Contraseña"};
 
     public EmpleadoA() {
@@ -37,6 +40,10 @@ public class EmpleadoA extends VistasGenerales.Panel {
         crea();
         agrega();
         validate();
+        this.ca.addActionListener(this);
+        this.ag.addActionListener(this);
+        llenaSuc();
+        llenaTipo();
 
     }
 
@@ -53,23 +60,33 @@ public class EmpleadoA extends VistasGenerales.Panel {
         cc = new JLabel("Contraseña");
         u = new JLabel("Usuario");
         N = new JTextField();
+        N.setToolTipText("Puede tener nombre y apellido, no deben"
+                + " ser más de 50 caractéres y deben ser nombres únicos");
         tel = new VistasGenerales.Number();
+        tel.tf.setToolTipText("Los números telefónicos tienen 10"
+                + " dígitos sin separaciones ni espacios.");
         C = new Contrasena();
+        C.pf.setToolTipText("Las contraseñas son secretas");
         CC = new Contrasena();
+        CC.pf.setToolTipText("Las contraseñas son secretas");
         U = new JTextField();
-        TU = new JComboBox(Tu);
-        S = new JComboBox(Su);
-        horae = new VistasGenerales.TimeChoser();
-        horas = new VistasGenerales.TimeChoser();
+        U.setToolTipText("El empleado puede escoger su nombre de usuario,"
+                + " con este va a iniciar sesión");
+        TU = new JComboBox();
+        TU.setToolTipText("Los usuarios serán vendedores o administradores,"
+                + " esto garantiza privilegios de modificar el inventario,"
+                + " empleados, y revisar la información importante");
+        S = new JComboBox();
+        S.setToolTipText("Esto indica la sucursal en la que trabaja este empleado");
         fecha = new JDateChooser();
+        fecha.setToolTipText("La fecha es para indicar el día en que"
+                + " el empleado ha sido contratado");
         l = new JLabel("Información del empleado");
         l.setHorizontalAlignment(JLabel.CENTER);
         P.setLayout(new GridBagLayout());
         ag = new JButton("Crear usuario");
         ca = new JButton("Borrar");
         f = new JLabel("Fecha");
-        he = new JLabel("Entrada");
-        hs = new JLabel("Salida");
         s = new JLabel("Sucursal");
         v1 = new JLabel(" ");
         v2 = new JLabel(" ");
@@ -95,6 +112,20 @@ public class EmpleadoA extends VistasGenerales.Panel {
 
         return gbc;
     }
+    
+    private void llenaSuc() {
+        Object O[] = ea.getSuc();
+        for (int i = 0; i < O.length; i++) {
+            S.addItem(O[i]);
+        }
+    }
+    
+    private void llenaTipo() {
+        Object O[] = ea.getTipo();
+        for (int i = 0; i < O.length; i++) {
+            TU.addItem(O[i]);
+        }
+    }
 
     private void agrega() {
         P.add(l, estilo(0, 0, 8, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
@@ -117,16 +148,90 @@ public class EmpleadoA extends VistasGenerales.Panel {
         P.add(tu, estilo(3, 7, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         P.add(TU, estilo(3, 8, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         P.add(v2, estilo(4, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
-        hora.add(he, estilo(0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
-        hora.add(horae, estilo(0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
-        hora.add(hs, estilo(0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
-        hora.add(horas, estilo(0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
-        P.add(hora, estilo(5, 1, 1, 4, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         P.add(ag, estilo(5, 5, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
         P.add(ca, estilo(5, 6, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
         P.add(v3, estilo(0, 10, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         P.add(v4, estilo(8, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         add(P, estilo(0, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         add(tab, estilo(0, 1, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+    }
+
+    
+    
+    private boolean validaCant() {
+        boolean ca;
+        if (tel.tf.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingrear un número válido.");
+            return false;
+        } else {
+            if (tel.tf.getText().length() < 10 || tel.tf.getText().length() > 10) {
+                JOptionPane.showMessageDialog(null, "Debe ingrear un número válido.");
+                return false;
+            } else {
+                ca = true;
+            }
+        }
+        return ca;
+    }
+
+    /*private boolean validaFecha(){
+        boolean f;
+        //if (fecha.)
+        
+    return f;
+    }*/
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource().equals(ca)) {
+            N.setText("");
+            C.setText("");
+            CC.setText("");
+            U.setText("");
+            TU.setSelectedIndex(0);
+            S.setSelectedIndex(0);
+            tel.tf.setText("");
+
+            fecha.repaint();
+
+        }
+        
+        
+        /*Sacar horas trabajadas.
+        horaEntrada = 0:0
+        horaSalida = 7:55
+        horasTrabajadas = horaSalida.hora - horaEntrada.hora : horaSalida.Minutos-horaSalida.Minutos
+        Horas totales para pago
+        htp = sumatoria(horasTrabajadas.hora)+((int)horasTrabajadas.minutos/60): (horasTrabajadas.minutos%60)
+        */
+        
+        
+
+        if (ae.getSource().equals(ag)) {
+            if (validaCant()) {
+                
+                Object O[] = {N.getText(), tel.tf.getText(),
+                    U.getText(), C.pf.getText(), fecha.getDate()};
+                
+                if (C.pf.getText().equals(CC.pf.getText())) {
+
+                    if (ea.valida(O)) {
+                        String f = ("20" +fecha.getDate().getYear()%100)
+                                + "-" + fecha.getDate().getMonth()
+                                + "-" + fecha.getCalendar().get(DAY_OF_MONTH);
+                        Object o[] = {N.getText(), tel.tf.getText(),
+                            U.getText(), C.pf.getText(), TU.getSelectedItem(), S.getSelectedItem().toString(), f};
+                        
+                        ea.agrega(o);
+                        tab.setRow(o);
+                    }
+                } else {
+                    System.out.println("Contraseña no válida");
+                    System.out.println(C.pf.getText());
+                    System.out.println(CC.pf.toString());
+
+                }
+
+            }
+        }
     }
 }

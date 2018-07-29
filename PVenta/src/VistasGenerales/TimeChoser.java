@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 public class TimeChoser extends JPanel implements KeyListener {
 
-    private JTextField time;
+    public JTextField time;
     private JButton despliega;
     private PanelTimeChoser select;
     private String TIME;

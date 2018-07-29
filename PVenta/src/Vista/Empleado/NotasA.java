@@ -5,12 +5,14 @@
  */
 package Vista.Empleado;
 
-import VistasGenerales.Panel;
+import Controlador.Empleado.AgregaEmpleado;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -21,20 +23,24 @@ import javax.swing.border.LineBorder;
  *
  * @author landr
  */
-public class NotasA extends VistasGenerales.Panel{
+public class NotasA extends VistasGenerales.Panel implements ActionListener{
     JLabel u, n, v1, v2, v3, v4, v5, v6, v7, v8, va, vb, vc, vd, ve, vf;
     JTextArea N;
     JComboBox U;
-    String[] us = {"Usuarios"};
     Container c = new Container();
     Container co = new Container();
     Container co2 = new Container();
     JButton ag, bo;
+    AgregaEmpleado ea = new AgregaEmpleado();
+    
     
     public NotasA(){
+        
         crea();
         agrega();
-        
+        llenaNombre();
+        ag.addActionListener(this);
+        bo.addActionListener(this);
     }
     
     private void crea(){
@@ -42,7 +48,7 @@ public class NotasA extends VistasGenerales.Panel{
         u.setHorizontalAlignment(JLabel.CENTER);
         n = new JLabel("Nota");
         n.setHorizontalAlignment(JLabel.CENTER);
-        U = new JComboBox(us);
+        U = new JComboBox();
         N = new JTextArea();
         N.setRows(10);
         N.setColumns(10);
@@ -52,7 +58,7 @@ public class NotasA extends VistasGenerales.Panel{
         co.setLayout(new GridBagLayout());
         co2.setLayout(new GridLayout(1,2));
         ag = new JButton("Guardar nota");
-        bo = new JButton("Borrar nota");
+        bo = new JButton("Cancelar nota");
         
         v2 = new JLabel();      v3 = new JLabel();      
         v4 = new JLabel();      v5 = new JLabel();
@@ -77,6 +83,13 @@ public class NotasA extends VistasGenerales.Panel{
         return gbc;
     }
     
+    private void llenaNombre() {
+        Object O[] = ea.getName();
+        for (int i = 0; i < O.length; i++) {
+            U.addItem(O[i]);
+        }
+    }
+    
     private void agrega(){
         
         co.add(va,estilo(0,0,1,1,GridBagConstraints.BOTH,GridBagConstraints.CENTER));
@@ -98,5 +111,19 @@ public class NotasA extends VistasGenerales.Panel{
         add(v1, estilo(0,0,3,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         add(co2, estilo(1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.WEST));
         add(v3, estilo(0,2,3,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource().equals(ag)) {
+            Object O[] = {N.getText()};
+            if (ea.valida(O)) {
+                String ID = ea.emID(U.getSelectedItem().toString());
+                ea.agNota(N.getText(), ID);
+            }
+        } 
+        if (ae.getSource().equals(bo)){
+            N.setText("");
+        }
     }
 }
