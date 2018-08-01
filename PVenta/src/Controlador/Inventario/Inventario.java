@@ -50,15 +50,25 @@ public class Inventario {
     }
 
     public void alta(Object suc) {
-        System.out.println(suc);
+        String aux = "";
         //al final limpiar array prepara
+        for (int i = 0; i < prepara.size(); i++) {
+            aux = "";
+            for (int j = 0; j < prepara.get(i).size(); j++) {
+                aux += prepara.get(i).get(j)+",";
+                
+            }
+            aux+=suc;
+             con.Alta("inventario", "ID_Producto,Cantidad,Precio,PrecioU,PrecioM,Sucursal", aux);
+
+        }
+        prepara = new ArrayList<ArrayList>();
     }
 
     public void setDatos(Object O[]) {
         prepara.add(new ArrayList());
         for (int i = 0; i < O.length; i++) {
             prepara.get(prepara.size() - 1).add(O[i]);
-            System.out.print(O[i]+"---");
         }
         System.out.println("");
     }

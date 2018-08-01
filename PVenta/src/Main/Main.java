@@ -8,7 +8,7 @@ import Vista.Principal;
 public class Main {
     public static void main(String[] args) {
         //new Login();
-        new Principal("Admin");
+        new Principal("User");
     }
 }
 
@@ -25,4 +25,10 @@ Gasto fijo
 Luz         1001 Luz d = Luz/30
 Tel         2000
 Sueldos     10000
+
+
+
+
+
+
 */

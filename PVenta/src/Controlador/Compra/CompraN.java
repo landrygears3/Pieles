@@ -34,6 +34,8 @@ public class CompraN {
         return b;
     }
 
+    
+    
     public void agrega(Object datos[]) {
         con.Alta("productos", "ID_Tipo,ID_Modelo,ID_Piel,"
                 + "ID_Proveedor,Nombre,Color,Descripcion,Imagen",
@@ -43,6 +45,8 @@ public class CompraN {
                 + datos[6].toString() + "',' '");
     }
 
+    
+    
     public Object[] getName() {
         consulta("");
         Object name[] = new Object[datos.size()];
@@ -52,9 +56,10 @@ public class CompraN {
         return name;
     }
 
+    
+    
     public Object getLastID() {
         consulta("");
-
         return datos.get(datos.size() - 1).get(0);
     }
 
@@ -84,7 +89,7 @@ public class CompraN {
         consulta("");
         if (!datos.isEmpty()) {
             consulta("WHERE ID_Producto='" + datos.get(index).get(0) + "'");
-            aux = new Object[datos.get(0).size() - 2];
+            aux = new Object[datos.get(0).size() - 1];
             aux[0] = datos.get(0).get(1);
             aux[1] = datos.get(0).get(2);
             aux[2] = datos.get(0).get(3);
@@ -99,6 +104,7 @@ public class CompraN {
     }
 
     public Object getId(int index) {
+        consulta("");
         return datos.get(index).get(0);
     }
 

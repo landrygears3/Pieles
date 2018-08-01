@@ -14,8 +14,20 @@ public class Proveedor {
     public Object getID(int index) {
         return arr.get(index).get(0);
     }
-     public Object getName(int index) {
+
+    public Object getName(int index) {
         return arr.get(index).get(1);
+    }
+
+    public Object getName(String con) {
+        Object dat = null;
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).get(0).toString().equals(con)) {
+                dat = arr.get(i).get(1);
+            }
+
+        }
+        return dat;
     }
 
     public Object[] getProveedor() {

@@ -27,7 +27,7 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
     Vista.Compra.Sucursal suc = new Vista.Compra.Sucursal();
     //tipo, modelo, piel, proveedor, nombre, color, descripción, imagen
     final String cols[] = {"Tipo", "Modelo",
-        "Piel", "Proveedor", "Nombre", "Color", "Descripción"};
+        "Piel", "Proveedor", "Nombre", "Color", "Descripción", "Cantidad", "Costo", "Mayoreo", "Venta"};
 
     JPanel P = new JPanel();
     JPanel costos = new JPanel();
@@ -78,11 +78,12 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
     private void llena() {
 
         Object o[] = comprar.getDatos(producto.getSelectedIndex());
+
         if (o != null) {
             tipo.setSelectedItem(ntipo.nuevo.getName(o[0].toString()));
             modelo.setSelectedItem(nmodelo.nuevo.getName(o[1].toString()));
             piel.setSelectedItem(npiel.nuevo.getName(o[2].toString()));
-            proveedor.setSelectedItem(o[3]);
+            proveedor.setSelectedItem(nproveedor.prov.getName(o[3].toString()));
             color.setText(o[5].toString());
             descripcion.setText(o[6].toString());
         }
@@ -321,10 +322,12 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
     }
 
     private void llenaProdictos() {
+        producto.removeAllItems();
         Object O[] = comprar.getName();
         for (int i = 0; i < O.length; i++) {
             producto.addItem(O[i]);
         }
+
     }
 
     private void llenaModelo() {
@@ -369,15 +372,26 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         return ca;
     }
 
+    private void limpiaCant() {
+        cantidad.tf.setText("");
+        costo.tf.setText("");
+        costov.tf.setText("");
+        costom.tf.setText("");
+    }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource().equals(acepta)) {
             suc.setVisible(true);
             inv.alta(suc.getSucursal());
+            
         }
 
         if (ae.getSource().equals(this.producto)) {
-            llena();
+            if (producto.getItemCount() != 0) {
+
+                llena();
+            }
         }
         if (ae.getSource().equals(btipo)) {
             ntipo.setVisible(true);
@@ -474,14 +488,25 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
                         inv.setDatos(aux);
                         Object da[] = {tipo.getSelectedItem(), modelo.getSelectedItem(),
                             piel.getSelectedItem(), proveedor.getSelectedItem(),
-                            productot.getText(), color.getText(), descripcion.getText()};
+                            productot.getText(), color.getText(), descripcion.getText(),
+                            cantidad.tf.getText(), costov.tf.getText(), costo.tf.getText(), costom.tf.getText()};
                         tab.setRow(da);
+                        vista(false);
+                        nuevo.setSelected(false);
+                        llenaProdictos();
+                        limpiaCant();
                     }
                 }
             } else {
                 if (validaCant()) {
                     Object aux[] = {comprar.getId(producto.getSelectedIndex()), cantidad.tf.getText(), costov.tf.getText(), costo.tf.getText(), costom.tf.getText()};
                     inv.setDatos(aux);
+                    Object da[] = {tipo.getSelectedItem(), modelo.getSelectedItem(),
+                        piel.getSelectedItem(), proveedor.getSelectedItem(),
+                        producto.getSelectedItem(), color.getText(), descripcion.getText(),
+                        cantidad.tf.getText(), costov.tf.getText(), costo.tf.getText(), costom.tf.getText()};
+                    tab.setRow(da);
+                    limpiaCant();
                 }
             }
 

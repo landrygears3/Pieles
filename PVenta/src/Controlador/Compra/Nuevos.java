@@ -42,9 +42,12 @@ public class Nuevos {
     public Object getID(int index) {
         return datos.get(index).get(0);
     }
+    
     public Object getName(int index) {
         return datos.get(index).get(1);
     }
+    
+    
     public Object getName(String con) {
         Object dat=null;
         for (int i = 0; i < datos.size(); i++) {
