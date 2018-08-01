@@ -1,11 +1,7 @@
 package Controlador.Empleado;
 
 import Modelo.Conexion;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -147,6 +143,20 @@ public class AgregaEmpleado {
         return P;
     }
 
+    public int vacio(String tabla){
+        int data = 0;
+        System.out.println(con.VerificaVacio(tabla));
+        try {
+            ResultSet R = con.VerificaVacio(tabla);
+            data = R.getInt(1);
+            
+            System.out.println(data);
+            return data;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+    
     private void consulta(String cons) {
         datos = new ArrayList<ArrayList>();
         try {

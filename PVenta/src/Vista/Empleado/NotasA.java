@@ -38,7 +38,9 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
         
         crea();
         agrega();
+        if (ea.vacio("notase")>0){
         llenaNombre();
+        }
         ag.addActionListener(this);
         bo.addActionListener(this);
     }

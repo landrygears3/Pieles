@@ -24,8 +24,6 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
     private JTextField U;
     private JComboBox TU, S, N;
     private Contrasena C, CC;
-    String Tu[] = {"Tipo de usuario"};
-    String Su[] = {"Sucursal"};
     private Panel P = new Panel();
     Panel contrasenas, con;
     VistasGenerales.Number tel;
@@ -46,9 +44,16 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
         N.addActionListener(this);
         contra.addActionListener(this);
         ag.addActionListener(this);
+        if (ea.vacio("sucursal")>0 && ea.vacio("sucursal")>0 && ea.vacio("usuarios")>0){
         llenaNombre();
         llenaSuc();
         llenaTipo();
+        llenaPass();
+        llenaTel();
+        llenaUsuario();
+        selectSuc();
+        selectTU();
+        }
 
     }
 
@@ -227,31 +232,28 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
         if (ae.getSource().equals(ag)) {
             if (validaCant()) {
 
-                
-
                 if (contra.isSelected()) {
                     if (C.pf.getText().equals(CC.pf.getText())) {
                         Object O[] = {tel.tf.getText(),
-                    U.getText(), cona.getText(), C.pf.getText()};
+                            U.getText(), cona.getText(), C.pf.getText()};
                         if (ea.valida(O)) {
                             String campos[] = {"Telefono", "Usuario", "Contrasena", "TipoU", "Sucursal"};
                             Object o[] = {tel.tf.getText(),
                                 U.getText(), C.pf.getText(), TU.getSelectedItem(), S.getSelectedItem().toString()};
                             ea.mod(campos, o, N.getSelectedItem().toString());
                         }
-                    }
-                    else {
+                    } else {
                         JOptionPane.showMessageDialog(null, "Las contraseñas deben coincidir");
                     }
                 } else {
                     Object O[] = {tel.tf.getText(),
-                    U.getText(), cona.getText()};
+                        U.getText(), cona.getText()};
                     if (ea.valida(O)) {
                         String campos[] = {"Telefono", "Usuario", "TipoU", "Sucursal"};
                         Object o[] = {tel.tf.getText(), U.getText(),
-                             TU.getSelectedItem(), S.getSelectedItem()};
+                            TU.getSelectedItem(), S.getSelectedItem()};
                         ea.mod(campos, o, N.getSelectedItem().toString());
-                        
+
                     }
                 }
             }

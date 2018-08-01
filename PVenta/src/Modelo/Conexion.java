@@ -69,7 +69,6 @@ public class Conexion {
             this.connect();
             s = connection.createStatement();
             String query2 = "SELECT " + campos + " FROM `" + tabla + "`" + condicion;
-            System.out.println(query2);
             r = s.executeQuery(query2);
            
 
@@ -118,6 +117,27 @@ public class Conexion {
         }
         
         
+    }
+    
+    public ResultSet VerificaVacio(String tabla){
+        Statement s;
+        ResultSet r = null;
+        int data = 0;
+        try {
+            this.connect();
+            s = connection.createStatement();
+            String query2 = "SELECT COUNT(*) FROM " + tabla + "";
+            r = s.executeQuery(query2);
+            //System.out.println(r.getInt(data));
+            r.beforeFirst();
+            r.next();
+            System.out.println(query2);
+            return r;
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
     }
     
 }

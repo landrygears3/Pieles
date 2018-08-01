@@ -13,10 +13,9 @@ import javax.swing.JTextField;
 public class Agrega extends VistasGenerales.Panel {
     
     JPanel p = new JPanel(new GridBagLayout());
-    JLabel lempleado, ltipo, lmotivo, lhoras, lhorae, lfecha;
+    JLabel lempleado, ltipo, lmotivo, lfecha;
     JComboBox empleado, tipo;
     JTextField motivo;
-    VistasGenerales.TimeChoser horae, horas;
     JDateChooser fecha;
     JButton aceptar;
     
@@ -30,14 +29,10 @@ public class Agrega extends VistasGenerales.Panel {
         lempleado = new JLabel("Empleado");
         ltipo = new JLabel("Tipo de permiso");
         lmotivo = new JLabel("Motivo");
-        lhoras = new JLabel("Hora de entrada");
-        lhorae = new JLabel("Hora de salida");
         lfecha = new JLabel("Fecha");
         empleado = new JComboBox();
         tipo = new JComboBox();
         motivo = new JTextField();
-        horae = new VistasGenerales.TimeChoser();
-        horas = new VistasGenerales.TimeChoser();
         fecha = new JDateChooser();
         aceptar = new JButton("Aceptar");
         aceptar.setFocusable(false);
@@ -58,12 +53,6 @@ public class Agrega extends VistasGenerales.Panel {
         //motivo
         p.add(lmotivo, estilo(2, 2, 1, 1, GridBagConstraints.BOTH));
         p.add(motivo, estilo(2, 3, 1, 1, GridBagConstraints.BOTH));
-        //hora entrada
-        p.add(lhorae, estilo(0, 4, 1, 1, GridBagConstraints.BOTH));
-        p.add(horae, estilo(0, 5, 1, 1, GridBagConstraints.BOTH));
-        //hora salida
-        p.add(lhoras, estilo(2, 4, 1, 1, GridBagConstraints.BOTH));
-        p.add(horas, estilo(2, 5, 1, 1, GridBagConstraints.BOTH));
         //separador
         p.add(v, estilo(1, 6, 1, 1, GridBagConstraints.BOTH));
         //boton
