@@ -44,7 +44,7 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
         N.addActionListener(this);
         contra.addActionListener(this);
         ag.addActionListener(this);
-        if (ea.vacio("sucursal")>0 && ea.vacio("sucursal")>0 && ea.vacio("usuarios")>0){
+        if (ea.vacio("sucursal")>0 && ea.vacio("empleados")>0 && ea.vacio("usuarios")>0){
         llenaNombre();
         llenaSuc();
         llenaTipo();

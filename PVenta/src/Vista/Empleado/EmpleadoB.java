@@ -34,13 +34,14 @@ public class EmpleadoB extends VistasGenerales.Panel implements ActionListener {
     AgregaEmpleado ea = new AgregaEmpleado();
 
     public EmpleadoB() {
-        if (ea.vacio("empleados")>0){
         crea();
         carga();
-        llenaNombre();
-        llenaUsuario();
-        llenaNota();
-       }
+        if (ea.vacio("empleados") > 0) {
+            
+            llenaNombre();
+            llenaUsuario();
+            llenaNota();
+        }
         n.addActionListener(this);
     }
 
@@ -139,8 +140,10 @@ public class EmpleadoB extends VistasGenerales.Panel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource().equals(n)) {
-            llenaUsuario();
-            llenaNota();
+            if (ea.vacio("empleados") > 0) {
+                llenaUsuario();
+                llenaNota();
+            }
         }
 
     }

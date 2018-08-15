@@ -46,13 +46,13 @@ public class AgregaEmpleado {
                 + datos[4].toString() + "','" + datos[5].toString() + "','"
                 + datos[6].toString() + "',true");
     }
-    
-    public String emID(String Nom){
+
+    public String emID(String Nom) {
         con4("ID_empleado", Nom);
         String P = pass;
         return P;
     }
-    
+
     public void agNota(String Nota, String ID) {
         con.Alta("notase", "ID_Empleado,Nota",
                 "'" + ID + "','" + Nota + "'");
@@ -60,7 +60,7 @@ public class AgregaEmpleado {
 
     public void mod(Object campo[], Object valor[], String usuario) {
         for (int i = 0; i < valor.length; i++) {
-            
+
             con.Modifica("empleados", campo[i].toString(), valor[i].toString(), usuario);
 
         }
@@ -109,22 +109,22 @@ public class AgregaEmpleado {
             name[i] = datos.get(i).get(1);
         }
         return name;
-        
+
     }
-    
-    public String selSuc(String Nom){
+
+    public String selSuc(String Nom) {
         con4("Sucursal", Nom);
         String P = pass;
         return P;
     }
-    
-    public String selUs(String Nom){
+
+    public String selUs(String Nom) {
         con4("TipoU", Nom);
         String P = pass;
         return P;
     }
-    
-    public String selNota(String Nom){
+
+    public String selNota(String Nom) {
         con5("Nota", Nom);
         String P = pass;
         return P;
@@ -135,7 +135,7 @@ public class AgregaEmpleado {
         String P = pass;
         return P;
     }
-    
+
     public String getNota(String Nom) {
         Nom = emID(Nom);
         con5("Nota", Nom);
@@ -143,20 +143,17 @@ public class AgregaEmpleado {
         return P;
     }
 
-    public int vacio(String tabla){
+    public int vacio(String tabla) {
         int data = 0;
-        System.out.println(con.VerificaVacio(tabla));
         try {
             ResultSet R = con.VerificaVacio(tabla);
             data = R.getInt(1);
-            
             System.out.println(data);
-            return data;
         } catch (Exception e) {
-            return 0;
         }
+        return data;
     }
-    
+
     private void consulta(String cons) {
         datos = new ArrayList<ArrayList>();
         try {
@@ -205,9 +202,9 @@ public class AgregaEmpleado {
         } catch (Exception e) {
         }
     }
-    
-    private String con4(String campo, String Nom){
-        
+
+    private String con4(String campo, String Nom) {
+
         try {
 
             ResultSet R = con.getConsulta("empleados", campo, "where Nombre = '" + Nom + "'");
@@ -226,8 +223,8 @@ public class AgregaEmpleado {
         return null;
     }
 
-    private String con5(String campo, String Nom){
-        
+    private String con5(String campo, String Nom) {
+
         try {
 
             ResultSet R = con.getConsulta("notase", campo, " where ID_Empleado = '" + Nom + "'");
@@ -235,7 +232,7 @@ public class AgregaEmpleado {
             R.next();
             if (!R.equals(null)) {
                 pass = R.getString(1);
-                
+
                 return pass;
             } else {
                 System.out.println("Nel");
@@ -246,5 +243,5 @@ public class AgregaEmpleado {
         }
         return null;
     }
-   
+
 }
