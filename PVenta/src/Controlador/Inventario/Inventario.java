@@ -57,12 +57,12 @@ public class Inventario {
         //al final limpiar array prepara
         for (int i = 0; i < prepara.size(); i++) {
             aux = "";
-            aux += suc;
             if (prepara.get(i).get(5).equals("N")) {
                 for (int j = 0; j < prepara.get(i).size() - 1; j++) {
                     aux += prepara.get(i).get(j) + ",";
 
                 }
+                 aux += suc;
                 con.Alta("inventario", "ID_Producto,Cantidad,Precio,PrecioU,PrecioM,Sucursal", aux);
             }
 

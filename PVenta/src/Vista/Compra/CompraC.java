@@ -392,9 +392,12 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource().equals(acepta)) {
+            
             suc.setVisible(true);
+            if(suc.getVla()){
             inv.alta(suc.getSucursal());
-            tab.limpa();
+            tab.limpa();}
+            
         }
 
         if (ae.getSource().equals(this.producto)) {
