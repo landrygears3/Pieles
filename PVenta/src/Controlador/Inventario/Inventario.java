@@ -2,7 +2,10 @@ package Controlador.Inventario;
 
 import Modelo.Conexion;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Inventario {
 
@@ -54,12 +57,52 @@ public class Inventario {
         //al final limpiar array prepara
         for (int i = 0; i < prepara.size(); i++) {
             aux = "";
-            for (int j = 0; j < prepara.get(i).size(); j++) {
-                aux += prepara.get(i).get(j)+",";
-                
+            aux += suc;
+            if (prepara.get(i).get(5).equals("N")) {
+                for (int j = 0; j < prepara.get(i).size() - 1; j++) {
+                    aux += prepara.get(i).get(j) + ",";
+
+                }
+                con.Alta("inventario", "ID_Producto,Cantidad,Precio,PrecioU,PrecioM,Sucursal", aux);
             }
-            aux+=suc;
-             con.Alta("inventario", "ID_Producto,Cantidad,Precio,PrecioU,PrecioM,Sucursal", aux);
+
+            if (prepara.get(i).get(5).equals("E")) {
+                ArrayList<ArrayList> da = new ArrayList<ArrayList>();
+                ResultSet r = null;
+
+                r = con.getConsulta("inventario", "*", "where `ID_Producto` = '"
+                        + prepara.get(i).get(0) + "' and `Sucursal`='"
+                        + suc + "'");
+
+                try {
+                    while (r.next()) {
+                        da.add(new ArrayList());
+                        da.get(da.size() - 1).add(r.getInt(3));
+
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("nel prro");
+                }
+
+                if (da.size() > 0) {
+                    int cant = Integer.parseInt(prepara.get(i).get(1).toString())
+                            + Integer.parseInt(da.get(0).get(0).toString());
+                    System.out.println(Integer.parseInt(prepara.get(i).get(1).toString())+" + "+Integer.parseInt(da.get(0).get(0).toString()));
+
+                    con.Modifica("inventario",
+                            "Cantidad='" + cant + "',Precio='"
+                            + prepara.get(i).get(2) + "',PrecioU='" + prepara.get(i).get(3)
+                            + "',PrecioM='" + prepara.get(i).get(4) + "'",
+                            "where ID_Producto = '" + prepara.get(i).get(0) + "' and Sucursal='"
+                            + suc + "'");
+                }
+
+                if (da.isEmpty()) {
+                    prepara.get(i).remove(5);
+                    prepara.get(i).add("N");
+                    alta(suc);
+                }
+            }
 
         }
         prepara = new ArrayList<ArrayList>();
@@ -70,7 +113,6 @@ public class Inventario {
         for (int i = 0; i < O.length; i++) {
             prepara.get(prepara.size() - 1).add(O[i]);
         }
-        System.out.println("");
     }
 
     public void elimina(int index) {

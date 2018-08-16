@@ -291,6 +291,16 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
 
     }
 
+    private void limpia() {
+        productot.setText("");
+        color.setText("");
+        descripcion.setText("");
+        cantidad.tf.setText("");
+        costo.tf.setText("");
+        costov.tf.setText("");
+        costom.tf.setText("");
+    }
+
     private void vista(boolean b) {
         producto.setVisible(!b);
         productot.setVisible(b);
@@ -384,7 +394,7 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         if (ae.getSource().equals(acepta)) {
             suc.setVisible(true);
             inv.alta(suc.getSucursal());
-            
+            tab.limpa();
         }
 
         if (ae.getSource().equals(this.producto)) {
@@ -410,6 +420,7 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
         if (ae.getSource().equals(nuevo)) {
 
             vista(nuevo.isSelected());
+            limpia();
 
         }
 
@@ -484,7 +495,7 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
                             productot.getText(), color.getText(), descripcion.getText()};
 
                         comprar.agrega(o);
-                        Object aux[] = {comprar.getLastID(), cantidad.tf.getText(), costov.tf.getText(), costo.tf.getText(), costom.tf.getText()};
+                            Object aux[] = {comprar.getLastID(), cantidad.tf.getText(), costov.tf.getText(), costo.tf.getText(), costom.tf.getText(),"N"};
                         inv.setDatos(aux);
                         Object da[] = {tipo.getSelectedItem(), modelo.getSelectedItem(),
                             piel.getSelectedItem(), proveedor.getSelectedItem(),
@@ -499,7 +510,7 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
                 }
             } else {
                 if (validaCant()) {
-                    Object aux[] = {comprar.getId(producto.getSelectedIndex()), cantidad.tf.getText(), costov.tf.getText(), costo.tf.getText(), costom.tf.getText()};
+                    Object aux[] = {comprar.getId(producto.getSelectedIndex()), cantidad.tf.getText(), costov.tf.getText(), costo.tf.getText(), costom.tf.getText(),"E"};
                     inv.setDatos(aux);
                     Object da[] = {tipo.getSelectedItem(), modelo.getSelectedItem(),
                         piel.getSelectedItem(), proveedor.getSelectedItem(),
@@ -507,6 +518,7 @@ public class CompraC extends VistasGenerales.Panel implements ActionListener {
                         cantidad.tf.getText(), costov.tf.getText(), costo.tf.getText(), costom.tf.getText()};
                     tab.setRow(da);
                     limpiaCant();
+                   
                 }
             }
 

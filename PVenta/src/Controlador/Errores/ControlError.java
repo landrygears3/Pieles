@@ -55,7 +55,7 @@ public class ControlError {
     public void mod(Object campo[], Object valor[], String usuario) {
         for (int i = 0; i < valor.length; i++) {
             System.out.println(campo[1].toString() + "\n" + campo[2].toString());
-            con.Modifica("empleados", campo[i].toString(), valor[i].toString(), usuario);
+            con.Modifica("empleados", campo[i].toString() + " = '" + valor[i].toString() + "' ", "where Nombre = '" + usuario + "'");
 
         }
 

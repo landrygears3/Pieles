@@ -61,7 +61,7 @@ public class AgregaEmpleado {
     public void mod(Object campo[], Object valor[], String usuario) {
         for (int i = 0; i < valor.length; i++) {
 
-            con.Modifica("empleados", campo[i].toString(), valor[i].toString(), usuario);
+            con.Modifica("empleados", campo[i].toString() + " = '" + valor[i].toString() + "' ", "where Nombre = '" + usuario + "'");
 
         }
 
@@ -148,7 +148,6 @@ public class AgregaEmpleado {
         try {
             ResultSet R = con.VerificaVacio(tabla);
             data = R.getInt(1);
-            System.out.println(data);
         } catch (Exception e) {
         }
         return data;

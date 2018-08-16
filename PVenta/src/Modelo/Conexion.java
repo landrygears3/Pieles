@@ -2,7 +2,6 @@ package Modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,10 +18,8 @@ public class Conexion {
         String url = "jdbc:mysql://localhost:3306/elpiel";
         String user = "root";
         String pass = "";
-        System.out.println("Conectando...");
         try {
             connection = DriverManager.getConnection(url, user, pass);
-            System.out.println("Conectado!!");
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -68,10 +65,8 @@ public class Conexion {
         try {
             this.connect();
             s = connection.createStatement();
-            String query2 = "SELECT " + campos + " FROM `" + tabla + "`" + condicion;
+            String query2 = "SELECT " + campos + " FROM `" + tabla + "` " + condicion;
             r = s.executeQuery(query2);
-           
-
             return r;
 
         } catch (SQLException ex) {
@@ -102,12 +97,12 @@ public class Conexion {
             System.err.println("Error" + ex);
         }
     }
-    
-    public void Modifica(String tabla, String campo, String valor, String usuario) {
+
+    public void Modifica(String tabla, String datos, String condicional) {
 
         try {
             this.connect();
-            String agregado = "update " + tabla + " set " + campo + " = '" + valor + "' where Nombre = '" + usuario +"'";
+            String agregado = "update " + tabla + " set " + datos + condicional;
             Statement comando = connection.createStatement();
             comando.executeUpdate(agregado);
             this.closed();
@@ -115,29 +110,24 @@ public class Conexion {
         } catch (SQLException ex) {
             System.err.println("Error" + ex);
         }
-        
-        
+
     }
-    
-    public ResultSet VerificaVacio(String tabla){
+
+    public ResultSet VerificaVacio(String tabla) {
         Statement s;
         ResultSet r = null;
-        int data = 0;
         try {
             this.connect();
             s = connection.createStatement();
-            String query2 = "SELECT COUNT(*) FROM " + tabla + "";
+            String query2 = "SELECT COUNT(*) FROM " + tabla + " ";
             r = s.executeQuery(query2);
-            //System.out.println(r.getInt(data));
             r.beforeFirst();
             r.next();
-            System.out.println(query2);
-            return r;
 
         } catch (SQLException ex) {
-            System.out.println(ex);
-            return null;
+
         }
+        return r;
     }
-    
+
 }
