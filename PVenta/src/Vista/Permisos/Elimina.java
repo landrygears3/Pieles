@@ -2,28 +2,31 @@
 package Vista.Permisos;
 
 
+import Controlador.Permisos.AgregaPermiso;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import Controlador.General.General;
 
-public class Elimina extends VistasGenerales.Panel {
+public class Elimina extends VistasGenerales.Panel implements ActionListener{
 
-    final String cols[] = {"Codigo", "Tipo", "Empleado", "Fecha",
-        "Hora E", "Hora S"};
-    final Object o[]={"Tipo de busqueda","Codigo", "Tipo","Empleado"};
+    final String cols[] = {"Código", "Empleado", "Permiso", "Fecha", "Motivo"};
 
     JPanel P = new JPanel();
     JPanel inter1 = new JPanel();
     VistasGenerales.Tabla tab;
     JLabel tipobu1;
-    JComboBox tipobu;
-    JTextField Bus;
+    JComboBox Bus;
     JButton elimina;
+    AgregaPermiso ap = new AgregaPermiso();
+    General g = new General();
 
     public Elimina() {
         this.setLayout(new GridBagLayout());
@@ -31,6 +34,10 @@ public class Elimina extends VistasGenerales.Panel {
         inter1.setLayout(new GridBagLayout());
         crea();
         agrega();
+        if (g.vacio("permisos") > 0 && g.vacio("usuarios") > 0) {
+            llenaCodigo();
+        }
+        elimina.addActionListener(this);
 
     }
 
@@ -38,10 +45,9 @@ public class Elimina extends VistasGenerales.Panel {
         tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
         
-        tipobu1 = new JLabel("Buscar ");
+        tipobu1 = new JLabel("Buscar por código de permiso");
         tipobu1.setHorizontalAlignment(JLabel.RIGHT);
-        tipobu = new JComboBox(o);
-        Bus = new JTextField();
+        Bus = new JComboBox();
         elimina=new JButton("Elimina");
 
     }
@@ -59,16 +65,22 @@ public class Elimina extends VistasGenerales.Panel {
 
         return gbc;
     }
+    
+    private void llenaCodigo() {
+        Object o[] = ap.getCode();
+        for (int i = 0; i < o.length; i++) {
+            Bus.addItem(o[i]);
+        }
+        
+    }
 
     private void agrega() {
         
         GridBagConstraints gbc;
         JLabel v1 = new JLabel("  ");
         JLabel v2 = new JLabel("  ");
-        gbc = estilo(0, 0, 1, 1, GridBagConstraints.BOTH);
+        gbc = estilo(0, 0, 2, 1, GridBagConstraints.BOTH);
         inter1.add(tipobu1,gbc);
-        gbc = estilo(1, 0, 1, 1, GridBagConstraints.BOTH);
-        inter1.add(tipobu,gbc);
         gbc = estilo(0, 1, 1, 1, GridBagConstraints.BOTH);
         inter1.add(v1,gbc);
         gbc = estilo(0, 2, 2, 1, GridBagConstraints.BOTH);
@@ -84,4 +96,18 @@ public class Elimina extends VistasGenerales.Panel {
         gbc = estilo(0, 2, 4, 4, GridBagConstraints.BOTH);
         add(tab, gbc);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        
+        if (ae.getSource().equals(elimina)) {
+            if (JOptionPane.showConfirmDialog(null, "Esta a punto de crear un nuevo usuario.\t\n¿Desea continuar?") == 0) {
+                ap.elimina(Bus.getSelectedItem().toString());
+            }
+            
+        }
+        
+    }
+    
+    
 }

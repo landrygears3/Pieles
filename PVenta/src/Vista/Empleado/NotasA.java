@@ -18,6 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
+import Controlador.General.General;
 
 /**
  *
@@ -32,13 +33,14 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
     Container co2 = new Container();
     JButton ag, bo;
     AgregaEmpleado ea = new AgregaEmpleado();
+    General g = new General();
     
     
     public NotasA(){
         
         crea();
         agrega();
-        if (ea.vacio("notase")>0){
+        if (g.vacio("empleados")>0){
         llenaNombre();
         }
         ag.addActionListener(this);
@@ -86,7 +88,7 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
     }
     
     private void llenaNombre() {
-        Object O[] = ea.getName();
+        Object O[] = g.getName();
         for (int i = 0; i < O.length; i++) {
             U.addItem(O[i]);
         }
@@ -119,8 +121,8 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource().equals(ag)) {
             Object O[] = {N.getText()};
-            if (ea.valida(O)) {
-                String ID = ea.emID(U.getSelectedItem().toString());
+            if (g.valida(O)) {
+                String ID = g.emID(U.getSelectedItem().toString());
                 ea.agNota(N.getText(), ID);
             }
         } 

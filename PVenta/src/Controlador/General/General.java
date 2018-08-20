@@ -1,12 +1,7 @@
-package Controlador.Errores;
+package Controlador.General;
 
-import Controlador.Empleado.*;
 import Modelo.Conexion;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -14,12 +9,14 @@ import javax.swing.JOptionPane;
  *
  * @author win 10
  */
-public class ControlError {
-
+public class General {
+    
+    
     Conexion con = new Conexion();
     ArrayList<ArrayList> datos;
     String pass;
 
+    
     public boolean valida(Object datos[]) {
         boolean b = false;
         for (int i = 0; i < datos.length; i++) {
@@ -42,28 +39,8 @@ public class ControlError {
         }
         return b;
     }
-
-    public void agrega(Object datos[]) {
-        con.Alta("defectos", "ID_Producto,Descripcion,"
-                + "Cantidad,ID_Proveedor",
-                "'" + datos[0].toString() + "','" + datos[1].toString() + "','"
-                + datos[2].toString() + "','" + datos[3].toString()+"'");
-    }
-
-    public void mod(Object campo[], Object valor[], String usuario) {
-        for (int i = 0; i < valor.length; i++) {
-            System.out.println(campo[1].toString() + "\n" + campo[2].toString());
-            con.Modifica("empleados", campo[i].toString() + " = '" + valor[i].toString() + "' ", "where Nombre = '" + usuario + "'");
-
-        }
-
-    }
-
-    public void carga(Object datos[], String User) {
-        con.getConsulta("empleados", "Telefono, Usuario,"
-                + " Sucursal, Contratacion", "where Nombre = '" + User + "'");
-    }
-
+    
+    
     public Object[] getName() {
         consulta("");
         Object name[] = new Object[datos.size()];
@@ -72,40 +49,74 @@ public class ControlError {
         }
         return name;
     }
-
-    public String getTel(String Nom) {
-        con4("Telefono", Nom);
+    
+    public Object[] getProv() {
+        conpv("");
+        Object name[] = new Object[datos.size()];
+        for (int i = 0; i < name.length; i++) {
+            name[i] = datos.get(i).get(1);
+        }
+        return name;
+    }
+    
+    public Object[] getProd() {
+        conpd("");
+        Object name[] = new Object[datos.size()];
+        for (int i = 0; i < name.length; i++) {
+            name[i] = datos.get(i).get(5);
+        }
+        return name;
+    }
+    
+    public String getUsuario(String Nom) {
+        con4("Usuario", Nom);
         String P = pass;
         return P;
     }
-
+    
+    
+    public String emID(String Nom){
+        con4("ID_empleado", Nom);
+        String P = pass;
+        return P;
+    }
+    
+    
+    public String getEstado(String Nom) {
+        con4("Estado", Nom);
+        String P = pass;
+        return P;
+    }
+    
     public String getPass(String Nom) {
         con4("Contrasena", Nom);
         String P = pass;
         return P;
     }
-
-    public Object[] getTipo() {
-        con3("");
-        Object name[] = new Object[datos.size()];
-        for (int i = 0; i < name.length; i++) {
-            name[i] = datos.get(i).get(1);
-        }
-        return name;
+    
+    
+    public String getTel(String Nom) {
+        con4("Telefono", Nom);
+        String P = pass;
+        return P;
     }
-
-    public Object[] getSuc() {
-        con2("");
-        Object name[] = new Object[datos.size()];
-        for (int i = 0; i < name.length; i++) {
-            name[i] = datos.get(i).get(1);
-        }
-        return name;
-        
-    }
+    
     
     public String selSuc(String Nom){
         con4("Sucursal", Nom);
+        String P = pass;
+        return P;
+    }
+    
+    public String selNota(String Nom){
+        con5("Nota", Nom);
+        String P = pass;
+        return P;
+    }
+    
+    public String getNota(String Nom) {
+        Nom = emID(Nom);
+        con5("Nota", Nom);
         String P = pass;
         return P;
     }
@@ -115,26 +126,55 @@ public class ControlError {
         String P = pass;
         return P;
     }
-    
-    public Object getId(int index) {
-        consulta("");
-        System.out.println(datos.get(index).get(0));
-        return datos.get(index).get(0);
-    }
-    
-    public Object getIdp(int index) {
-        consultap("");
-        System.out.println(datos.get(index).get(0));
-        return datos.get(index).get(0);
-    }
 
-    public String getUsuario(String Nom) {
-        con4("Usuario", Nom);
-        String P = pass;
-        return P;
+    public int vacio(String tabla){
+        int data = 0;
+        try {
+            ResultSet R = con.VerificaVacio(tabla);
+            data = R.getInt(1);
+            return data;
+        } catch (Exception e) {
+            return 0;
+        }
     }
-
+    
+    
     private void consulta(String cons) {
+        datos = new ArrayList<ArrayList>();
+        try {
+            ResultSet R = con.getConsulta("empleados", "*", cons);
+            while (R.next()) {
+
+                datos.add(new ArrayList());
+                datos.get(datos.size() - 1).add(R.getString(1));
+                datos.get(datos.size() - 1).add(R.getString(2));
+                datos.get(datos.size() - 1).add(R.getString(3));
+                datos.get(datos.size() - 1).add(R.getString(4));
+                datos.get(datos.size() - 1).add(R.getString(5));
+                datos.get(datos.size() - 1).add(R.getString(6));
+                datos.get(datos.size() - 1).add(R.getString(7));
+            }
+        } catch (Exception e) {
+        }
+    }
+    
+    private void conpv(String cons) {
+        datos = new ArrayList<ArrayList>();
+        try {
+            ResultSet R = con.getConsulta("proveedores", "*", cons);
+            while (R.next()) {
+
+                datos.add(new ArrayList());
+                datos.get(datos.size() - 1).add(R.getString(1));
+                datos.get(datos.size() - 1).add(R.getString(2));
+                datos.get(datos.size() - 1).add(R.getString(3));
+                datos.get(datos.size() - 1).add(R.getString(4));
+            }
+        } catch (Exception e) {
+        }
+    }
+    
+    private void conpd(String cons) {
         datos = new ArrayList<ArrayList>();
         try {
             ResultSet R = con.getConsulta("productos", "*", cons);
@@ -153,53 +193,7 @@ public class ControlError {
         }
     }
     
-    private void consultap(String cons) {
-        datos = new ArrayList<ArrayList>();
-        try {
-            ResultSet R = con.getConsulta("proveedores", "*", cons);
-            while (R.next()) {
-
-                datos.add(new ArrayList());
-                datos.get(datos.size() - 1).add(R.getString(1));
-                datos.get(datos.size() - 1).add(R.getString(2));
-                datos.get(datos.size() - 1).add(R.getString(3));
-                datos.get(datos.size() - 1).add(R.getString(4));
-            }
-        } catch (Exception e) {
-        }
-    }
-
-    private void con2(String cons) {
-        datos = new ArrayList<ArrayList>();
-        try {
-            ResultSet R = con.getConsulta("sucursal", "*", cons);
-            while (R.next()) {
-
-                datos.add(new ArrayList());
-                datos.get(datos.size() - 1).add(R.getString(1));
-                datos.get(datos.size() - 1).add(R.getString(2));
-                datos.get(datos.size() - 1).add(R.getString(3));
-                datos.get(datos.size() - 1).add(R.getString(4));
-            }
-        } catch (Exception e) {
-        }
-    }
-
-    private void con3(String cons) {
-        datos = new ArrayList<ArrayList>();
-        try {
-            ResultSet R = con.getConsulta("usuarios", "*", cons);
-            while (R.next()) {
-
-                datos.add(new ArrayList());
-                datos.get(datos.size() - 1).add(R.getString(1));
-                datos.get(datos.size() - 1).add(R.getString(2));
-            }
-        } catch (Exception e) {
-        }
-    }
-    
-    private String con4(String campo, String Nom){
+    public String con4(String campo, String Nom){
         
         try {
 
@@ -214,13 +208,30 @@ public class ControlError {
             }
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
         return null;
     }
+    
+    private String con5(String campo, String Nom){
+        
+        try {
 
-    public void modifica(Object datos[]) {
+            ResultSet R = con.getConsulta("notase", campo, " where ID_Empleado = '" + Nom + "'");
+            R.beforeFirst();
+            R.next();
+            if (!R.equals(null)) {
+                pass = R.getString(1);
+                
+                return pass;
+            } else {
+                System.out.println("Nel");
+            }
 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
     
 }

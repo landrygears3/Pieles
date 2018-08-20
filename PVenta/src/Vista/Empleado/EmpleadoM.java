@@ -15,15 +15,15 @@ import javax.swing.JPasswordField;
 import Controlador.Empleado.AgregaEmpleado;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import Controlador.General.General;
 
-public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
+public final class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
 
-    private char def;
     Admin ad = new Admin();
     private JLabel n, t, c, cc, u, l, a, s, tu, v1, v2, v3, v4, v5;
-    private JTextField U;
-    private JComboBox TU, S, N;
-    private Contrasena C, CC;
+    public JTextField U;
+    public JComboBox TU, S, N;
+    public Contrasena C, CC;
     private Panel P = new Panel();
     Panel contrasenas, con;
     VistasGenerales.Number tel;
@@ -33,29 +33,23 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
     final String cols[] = {"Empleado", "Teléfono", "Usuario", "Contraseña"};
     JCheckBox contra = new JCheckBox();
     AgregaEmpleado ea = new AgregaEmpleado();
+    General g = new General();
 
     public EmpleadoM() {
         this.setLayout(new GridBagLayout());
         crea();
         agrega();
         validate();
+        if (g.vacio("empleados")>0){
+            llenaNombre();
+            
+        }
         adm.addActionListener(this);
         ad.ac.addActionListener(this);
         N.addActionListener(this);
         contra.addActionListener(this);
         ag.addActionListener(this);
-        if (ea.vacio("sucursal")>0 && ea.vacio("empleados")>0 && ea.vacio("usuarios")>0){
-        llenaNombre();
-        llenaSuc();
-        llenaTipo();
-        llenaPass();
-        llenaTel();
-        llenaUsuario();
-        selectSuc();
-        selectTU();
         }
-
-    }
 
     private void crea() {
         con = new Panel();
@@ -78,7 +72,6 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
         TU = new JComboBox();
         S = new JComboBox();
         cona = new JPasswordField();
-        def = cona.getEchoChar();
         l = new JLabel(" ");
         l.setHorizontalAlignment(JLabel.CENTER);
         P.setLayout(new GridBagLayout());
@@ -115,23 +108,31 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
         return gbc;
     }
 
-    private void llenaNombre() {
-        Object O[] = ea.getName();
+    final public void llenaNombre() {
+        if (N.getItemCount()>0){
+            N.removeAllItems();
+        }
+        Object O[] = g.getName();
         for (int i = 0; i < O.length; i++) {
             N.addItem(O[i]);
+            int cba = Integer.parseInt(g.getEstado(O[i].toString()));
+        if (cba < 1) {
+            N.removeItem(O[i]);
+        }
+            
         }
     }
 
-    private void llenaTel() {
+    final public void llenaTel() {
         String Nom = N.getSelectedItem().toString();
-        String con = ea.getTel(Nom);
-        tel.tf.setText(con);
+        String eab = g.getTel(Nom);
+        tel.tf.setText(eab);
     }
 
-    private void llenaUsuario() {
+    final public void llenaUsuario() {
         String Nom = N.getSelectedItem().toString();
-        String con = ea.getUsuario(Nom);
-        U.setText(con);
+        String eab = g.getUsuario(Nom);
+        U.setText(eab);
     }
 
     private void llenaSuc() {
@@ -149,21 +150,21 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
         }
     }
 
-    private void llenaPass() {
+    final public void llenaPass() {
         String Nom = N.getSelectedItem().toString();
-        String con = ea.getPass(Nom);
-        cona.setText(con);
+        String eab = g.getPass(Nom);
+        cona.setText(eab);
     }
 
     private void selectSuc() {
         String Nom = N.getSelectedItem().toString();
-        S.setSelectedItem(ea.selSuc(Nom));
+        S.setSelectedItem(g.selSuc(Nom));
 
     }
 
     private void selectTU() {
         String Nom = N.getSelectedItem().toString();
-        TU.setSelectedItem(ea.selUs(Nom));
+        TU.setSelectedItem(g.selUs(Nom));
 
     }
 
@@ -212,7 +213,11 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
         add(l, estilo(0, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         add(P, estilo(0, 1, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         add(v5, estilo(0, 2, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        
+        
     }
+    
+    
 
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -236,7 +241,7 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
                     if (C.pf.getText().equals(CC.pf.getText())) {
                         Object O[] = {tel.tf.getText(),
                             U.getText(), cona.getText(), C.pf.getText()};
-                        if (ea.valida(O)) {
+                        if (g.valida(O)) {
                             String campos[] = {"Telefono", "Usuario", "Contrasena", "TipoU", "Sucursal"};
                             Object o[] = {tel.tf.getText(),
                                 U.getText(), C.pf.getText(), TU.getSelectedItem(), S.getSelectedItem().toString()};
@@ -248,10 +253,11 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
                 } else {
                     Object O[] = {tel.tf.getText(),
                         U.getText(), cona.getText()};
-                    if (ea.valida(O)) {
+                    if (g.valida(O)) {
                         String campos[] = {"Telefono", "Usuario", "TipoU", "Sucursal"};
                         Object o[] = {tel.tf.getText(), U.getText(),
                             TU.getSelectedItem(), S.getSelectedItem()};
+                        
                         ea.mod(campos, o, N.getSelectedItem().toString());
 
                     }
@@ -259,11 +265,14 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
             }
         }
         if (ae.getSource().equals(N)) {
+            if(N.getItemCount()>0){
+            llenaUsuario();
             llenaPass();
             llenaTel();
             llenaUsuario();
             selectSuc();
             selectTU();
+            }
         }
         if (ae.getSource().equals(contra)) {
             if (contra.isSelected()) {
@@ -274,5 +283,10 @@ public class EmpleadoM extends VistasGenerales.Panel implements ActionListener {
                 C.pf.setEditable(false);
             }
         }
+
+//        if (ae.getSource().equals(bor.c)) {
+//            N.removeItem(M.Nombre);
+//            M.fm(false);
+//        }
     }
 }

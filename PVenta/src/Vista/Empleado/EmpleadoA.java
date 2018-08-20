@@ -18,6 +18,8 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import Controlador.Empleado.AgregaEmpleado;
 import static java.util.Calendar.DAY_OF_MONTH;
+import Controlador.General.General;
+
 
 public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
 
@@ -29,21 +31,32 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
     Panel hora;
     Panel contrasenas;
     VistasGenerales.Number tel;
-    JButton ag, ca;
+    JButton ag, ca, agsu, bosu;
     VistasGenerales.Tabla tab;
     JDateChooser fecha;
     AgregaEmpleado ea = new AgregaEmpleado();
     final String cols[] = {"Empleado", "Teléfono", "Usuario", "Contraseña"};
+    NSucursal nsucursal = new NSucursal();
+    EmpleadoM em = new EmpleadoM();
+    EmpleadoB eb = new EmpleadoB();
+    General g = new General();
+    
 
     public EmpleadoA() {
         this.setLayout(new GridBagLayout());
         crea();
         agrega();
         validate();
-        this.ca.addActionListener(this);
-        this.ag.addActionListener(this);
+        ca.addActionListener(this);
+        ag.addActionListener(this);
+        if (g.vacio("sucursal")>0 && g.vacio("usuarios")>0){
         llenaSuc();
         llenaTipo();
+        }
+        agsu.addActionListener(this);
+        this.bosu.addActionListener(this);
+        nsucursal.aceptar.addActionListener(this);
+        
 
     }
 
@@ -94,6 +107,14 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
         v4 = new JLabel(" ");
         v5 = new JLabel(" ");
         tu = new JLabel("Tipo de usuario");
+        
+        agsu = new JButton("Nueva sucursal");
+        agsu.setFocusable(false);
+        agsu.setToolTipText("Agrega una sucursal");
+        
+        bosu = new JButton("Eliminar sucursal");
+        bosu.setFocusable(false);
+        bosu.setToolTipText("Elimina una sucursal");
 
         tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
@@ -148,6 +169,8 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
         P.add(tu, estilo(3, 7, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         P.add(TU, estilo(3, 8, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         P.add(v2, estilo(4, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        P.add(agsu, estilo(5, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
+        P.add(bosu, estilo(5, 4, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
         P.add(ag, estilo(5, 5, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
         P.add(ca, estilo(5, 6, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
         P.add(v3, estilo(0, 10, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
@@ -170,16 +193,28 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
             } else {
                 ca = true;
             }
+            
+        }
+        return ca;
+    }
+    
+    private boolean validatel() {
+        boolean ca;
+        if (nsucursal.Telefono.tf.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingrear un número válido.");
+            return false;
+        } else {
+            if (nsucursal.Telefono.tf.getText().length() < 10 || nsucursal.Telefono.tf.getText().length() > 10) {
+                JOptionPane.showMessageDialog(null, "Debe ingrear un número válido.");
+                return false;
+            } else {
+                ca = true;
+            }
+            
         }
         return ca;
     }
 
-    /*private boolean validaFecha(){
-        boolean f;
-        //if (fecha.)
-        
-    return f;
-    }*/
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource().equals(ca)) {
@@ -196,15 +231,6 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
         }
         
         
-        /*Sacar horas trabajadas.
-        horaEntrada = 0:0
-        horaSalida = 7:55
-        horasTrabajadas = horaSalida.hora - horaEntrada.hora : horaSalida.Minutos-horaSalida.Minutos
-        Horas totales para pago
-        htp = sumatoria(horasTrabajadas.hora)+((int)horasTrabajadas.minutos/60): (horasTrabajadas.minutos%60)
-        */
-        
-        
 
         if (ae.getSource().equals(ag)) {
             if (validaCant()) {
@@ -214,24 +240,49 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
                 
                 if (C.pf.getText().equals(CC.pf.getText())) {
 
-                    if (ea.valida(O)) {
+                    if (g.valida(O)) {
                         String f = ("20" +fecha.getDate().getYear()%100)
                                 + "-" + fecha.getDate().getMonth()
                                 + "-" + fecha.getCalendar().get(DAY_OF_MONTH);
                         Object o[] = {N.getText(), tel.tf.getText(),
                             U.getText(), C.pf.getText(), TU.getSelectedItem(), S.getSelectedItem().toString(), f};
-                        
                         ea.agrega(o);
                         tab.setRow(o);
+                        
                     }
                 } else {
                     System.out.println("Contraseña no válida");
-                    System.out.println(C.pf.getText());
-                    System.out.println(CC.pf.toString());
 
                 }
 
             }
         }
+        
+        if (ae.getSource().equals(agsu)) {
+            nsucursal.setVisible(true);
+        }
+        if (ae.getSource().equals(bosu)) {
+            nsucursal.setVisible(true);
+        }
+        if (ae.getSource().equals(nsucursal.aceptar)) {
+            
+            Object O[] = new Object[4];
+            O[0] = nsucursal.Nombre.getText();
+            O[1] = nsucursal.Direccion.getText();
+            O[2] = nsucursal.Telefono.tf.getText();
+            if (validatel()){
+            nsucursal.prov.b = nsucursal.prov.agrega(O);
+            if (nsucursal.prov.b) {
+                nsucursal.dispose();
+                nsucursal.limpia();
+                S.removeAllItems();
+                llenaSuc();
+
+            }
+            }
+
+        }
+        
+        
     }
 }
