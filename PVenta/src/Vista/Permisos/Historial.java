@@ -12,8 +12,7 @@ import javax.swing.JTextField;
 
 public class Historial extends VistasGenerales.Panel {
 
-    final String cols[] = {"Codigo", "Tipo", "Empleado", "Fecha",
-        "Hora E", "Hora S"};
+    final String cols[] = {"Empleado", "Permiso", "Fecha", "Motivo"};
     final Object o[]={"Tipo de busqueda","Codigo", "Tipo","Empleado"};
 
     JPanel P = new JPanel();

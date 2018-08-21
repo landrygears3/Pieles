@@ -14,8 +14,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import Controlador.Empleado.AgregaEmpleado;
+import Controlador.Empleado.Modificaciones;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import Controlador.General.General;
 
 /**
  *
@@ -25,24 +28,26 @@ public class EmpleadoB extends VistasGenerales.Panel implements ActionListener {
 
     final String cols[] = {"Nombre", "Usuario", "Notas"};
     VistasGenerales.Tabla tab;
-    JButton c, ca;
+    JButton c, re;
     JLabel u, no, v1, v2, v3, v4, v5, v6, va, vb, vc, vd, ve, vf, el;
     JComboBox n;
     public Panel Pb = new Panel();
     Container co2 = new Container();
     Container co = new Container();
     AgregaEmpleado ea = new AgregaEmpleado();
+    Modificaciones M = new Modificaciones();
+    General g = new General();
 
     public EmpleadoB() {
+        
         crea();
         carga();
-        if (ea.vacio("empleados") > 0) {
-            
-            llenaNombre();
-            llenaUsuario();
-            llenaNota();
-        }
+        if (g.vacio("empleados")>0){
+        llenaNombre();
+       }
         n.addActionListener(this);
+        c.addActionListener(this);
+        re.addActionListener(this);
     }
 
     private void crea() {
@@ -52,8 +57,8 @@ public class EmpleadoB extends VistasGenerales.Panel implements ActionListener {
         no = new JLabel();
         no.setHorizontalAlignment(JLabel.CENTER);
         c = new JButton("Eliminar usuario");
+        re = new JButton("Recontratar usuario");
         el = new JLabel(" ");
-        ca = new JButton("Cancelar");
 
         v1 = new JLabel(" ");
         v2 = new JLabel(" ");
@@ -76,24 +81,29 @@ public class EmpleadoB extends VistasGenerales.Panel implements ActionListener {
         co2.setLayout(new GridLayout(7, 1));
         co.setLayout(new GridLayout(5, 1));
     }
-
-    private void llenaNombre() {
-        Object O[] = ea.getName();
+    
+    
+    final public void llenaNombre() {
+        if (n.getItemCount()>0){
+            n.removeAllItems();
+        }
+        Object O[] = g.getName();
         for (int i = 0; i < O.length; i++) {
             n.addItem(O[i]);
         }
     }
 
-    private void llenaUsuario() {
+    final public void llenaUsuario() {
         String Nom = n.getSelectedItem().toString();
-        String con = ea.getUsuario(Nom);
+        String con = g.getUsuario(Nom);
         u.setText(con);
     }
 
     private void llenaNota() {
         String Nom = n.getSelectedItem().toString();
 
-        String con = ea.getNota(Nom);
+        String con = g.getNota(Nom);
+        g.getEstado(Nom);
         no.setText(con);
     }
 
@@ -119,11 +129,10 @@ public class EmpleadoB extends VistasGenerales.Panel implements ActionListener {
         co.add(v2);
 
         co2.add(v3);
-        co2.add(el);
+        co2.add(re);
         co2.add(v4);
         co2.add(c);
         co2.add(v5);
-        co2.add(ca);
         co2.add(v6);
 
         Pb.add(co);
@@ -140,11 +149,31 @@ public class EmpleadoB extends VistasGenerales.Panel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource().equals(n)) {
-            if (ea.vacio("empleados") > 0) {
-                llenaUsuario();
-                llenaNota();
+            if(n.getItemCount()>0){
+            llenaUsuario();
+            llenaNota();
             }
         }
-
+        
+        if (ae.getSource().equals(c)) {
+            String campos = "Estado";
+            if (JOptionPane.showConfirmDialog(null, "Esta a punto de"
+                    + " dar de baja al usuario." +
+                    n.getSelectedItem().toString() + "\t\n¿Desea continuar?") == 0) {
+                ea.elimina(campos, "0", n.getSelectedItem().toString(), u.getText());
+            }
+                            
+            
+        }
+        if (ae.getSource().equals(re)) {
+            String campos = "Estado";
+            if (JOptionPane.showConfirmDialog(null, "Esta a punto de"
+                    + " dar de Recuperar al usuario." +
+                    n.getSelectedItem().toString() + "\t\n¿Desea continuar?") == 0) {
+                ea.elimina(campos, "1", n.getSelectedItem().toString(), u.getText());
+            }
+                            
+            
+        }
     }
 }

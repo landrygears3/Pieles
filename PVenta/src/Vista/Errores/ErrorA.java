@@ -11,8 +11,13 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
+import Controlador.General.General;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import Controlador.Errores.ControlError;
+import javax.swing.JOptionPane;
 
-public class ErrorA extends VistasGenerales.Panel{
+public class ErrorA extends VistasGenerales.Panel implements ActionListener{
     
     public JLabel id, d, c, v1, v2, v3, v4, v5, va, vb, vc, vd, ve, vf, vg;
     public JComboBox ID, P;
@@ -24,13 +29,17 @@ public class ErrorA extends VistasGenerales.Panel{
     final String cols[] = {"Producto", "Cantidad", "Proveedor", "Descripción"};
     VistasGenerales.Tabla tab;
     VistasGenerales.Number CAN;
-    String[] ids = {"Producto"};
-    String[] ps = {"Proveedores"};
     JButton ag, ca;
+    General g = new General();
+    ControlError e = new ControlError();
     
     public ErrorA(){
         crea();
         agrega();
+        if (g.vacio("productos")>0 && g.vacio("proveedores")>0){
+            llenaProducto();
+            llenaProveedor();
+        }
         
     }
     private void crea(){
@@ -48,8 +57,8 @@ public class ErrorA extends VistasGenerales.Panel{
         ve = new JLabel(" ");       vf = new JLabel(" ");
         
         
-        ID = new JComboBox (ids);
-        P = new JComboBox (ps);
+        ID = new JComboBox ();
+        P = new JComboBox ();
         D = new JTextArea ();
         CAN = new VistasGenerales.Number();
         
@@ -70,7 +79,7 @@ public class ErrorA extends VistasGenerales.Panel{
         tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
         
-        
+        ag.addActionListener(this);
     }
     
     private GridBagConstraints estilo(int pox, int poy, int tax, int tay) {
@@ -117,4 +126,55 @@ public class ErrorA extends VistasGenerales.Panel{
         add(Pb, estilo(2,0,1,1));
         add(tab, estilo(0,2,3,1));
     }
+    
+    public boolean valida(Object datos[]) {
+        boolean b = false;
+        for (int i = 0; i < datos.length; i++) {
+            if (!datos[i].toString().trim().equals("")) {
+
+                b = true;
+                System.out.println("Válido");
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
+                break;
+            }
+
+        }
+
+        if (b) {
+            if (JOptionPane.showConfirmDialog(null, "Esta a punto de crear un nuevo usuario.\t\n¿Desea continuar?") == 1) {
+                b = false;
+            }
+        }
+        return b;
+    }
+        
+    
+    private void llenaProducto() {
+        Object O[] = g.getProd();
+        for (int i = 0; i < O.length; i++) {
+            ID.addItem(O[i]);
+        }
+    }
+    
+    private void llenaProveedor() {
+        Object O[] = g.getProv();
+        for (int i = 0; i < O.length; i++) {
+            P.addItem(O[i]);
+        }
+    }
+    
+    
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource().equals(ag)) {
+            Object O[] = {e.getId(ID.getSelectedIndex()), D.getText(),
+                CAN.tf.getText(), e.getId(P.getSelectedIndex())};
+            if (g.valida(O)){
+                e.agrega(O);
+            }
+        }
+    }
+    
 }

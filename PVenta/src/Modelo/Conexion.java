@@ -112,6 +112,23 @@ public class Conexion {
         }
 
     }
+	
+	public void Modifica2(String tabla, String campo, String valor, String usuario, String cond2) {
+
+        try {
+            this.connect();
+            String agregado = "update " + tabla + " set " + campo + " = '"
+                    + valor + "' where Nombre = '" + usuario +"'" + cond2;
+            Statement comando = connection.createStatement();
+            comando.executeUpdate(agregado);
+            this.closed();
+
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+        
+        
+    }
 
     public ResultSet VerificaVacio(String tabla) {
         Statement s;
@@ -128,6 +145,22 @@ public class Conexion {
 
         }
         return r;
+    }
+    
+    public void Elimina(String tabla, String campo, String usuario) {
+
+        try {
+            this.connect();
+            String agregado = "delete from " + tabla + " where "+campo + " = '" + usuario +"'";
+            Statement comando = connection.createStatement();
+            comando.executeUpdate(agregado);
+            this.closed();
+
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+        
+        
     }
 
 }
