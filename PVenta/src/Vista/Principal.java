@@ -23,7 +23,7 @@ public class Principal extends JFrame {
         dim = super.getToolkit().getScreenSize();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setSize(dim);
-        //super.setUndecorated(true);
+        super.setUndecorated(true);
         super.setVisible(true);
         crea();
         setJMenuBar(mb);

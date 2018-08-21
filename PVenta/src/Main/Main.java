@@ -1,14 +1,14 @@
 
 package Main;
 
-import Modelo.Conexion;
-import Vista.Login;
 import Vista.Principal;
 
 public class Main {
     public static void main(String[] args) {
+        
+        
         //new Login();
-        new Principal("User");
+        new Principal("Admin");
     }
 }
 

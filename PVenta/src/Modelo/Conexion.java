@@ -88,7 +88,7 @@ public class Conexion {
 
         try {
             this.connect();
-            String agregado = "INSERT INTO " + tabla + "(" + campos + ") values (" + valores + ")";
+            String agregado = "INSERT INTO " + tabla + " (" + campos + ") values (" + valores + ")";
             Statement comando = connection.createStatement();
             comando.executeUpdate(agregado);
             this.closed();

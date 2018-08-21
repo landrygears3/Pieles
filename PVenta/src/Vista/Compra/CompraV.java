@@ -10,10 +10,10 @@ import javax.swing.JTextField;
 
 public class CompraV extends VistasGenerales.Panel {
 
-    final String cols[] = {"Codigo", "Producto", "Cantidad", "Fecha",
-        "Tipo", "Piel", "Modelo","Color","proveedor","Descripción" };
-    final Object o[]={"Tipo de busqueda","Codigo", "Producto","Fecha", 
-        "Proveedor","Modelo", "Piel", "Tipo","Color"};
+    final String cols[] = {"ID", "Producto", "Cantidad", "Fecha",
+        "Sucursal",};
+    final Object o[] = {"Tipo de busqueda", "Codigo", "Producto", "Fecha",
+        "Sucursal"};
 
     JPanel P = new JPanel();
     JPanel inter1 = new JPanel();
@@ -21,6 +21,7 @@ public class CompraV extends VistasGenerales.Panel {
     JLabel tipobu1;
     JComboBox tipobu;
     JTextField Bus;
+    Controlador.Compra.ComprasV com = new Controlador.Compra.ComprasV();
 
     public CompraV() {
         this.setLayout(new GridBagLayout());
@@ -28,13 +29,20 @@ public class CompraV extends VistasGenerales.Panel {
         inter1.setLayout(new GridBagLayout());
         crea();
         agrega();
+        if (com.resp()) {
+            llena();
+        }
 
+    }
+
+    private void llena() {
+        tab.setRow(com.getDatos());
     }
 
     private void crea() {
         tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
-        
+
         tipobu1 = new JLabel("Tipo de busqueda ");
         tipobu1.setHorizontalAlignment(JLabel.RIGHT);
         tipobu = new JComboBox(o);
@@ -60,13 +68,13 @@ public class CompraV extends VistasGenerales.Panel {
         GridBagConstraints gbc;
         JLabel v1 = new JLabel("  ");
         gbc = estilo(0, 0, 1, 1, GridBagConstraints.BOTH);
-        inter1.add(tipobu1,gbc);
+        inter1.add(tipobu1, gbc);
         gbc = estilo(1, 0, 1, 1, GridBagConstraints.BOTH);
-        inter1.add(tipobu,gbc);
+        inter1.add(tipobu, gbc);
         gbc = estilo(0, 1, 1, 1, GridBagConstraints.BOTH);
-        inter1.add(v1,gbc);
+        inter1.add(v1, gbc);
         gbc = estilo(0, 2, 2, 1, GridBagConstraints.BOTH);
-        inter1.add(Bus,gbc);
+        inter1.add(Bus, gbc);
         P.add(inter1);
 
         gbc = estilo(0, 0, 4, 2, GridBagConstraints.PAGE_START);

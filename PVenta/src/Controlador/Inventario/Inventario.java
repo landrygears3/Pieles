@@ -3,9 +3,9 @@ package Controlador.Inventario;
 import Modelo.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Date;
 
 public class Inventario {
 
@@ -62,7 +62,7 @@ public class Inventario {
                     aux += prepara.get(i).get(j) + ",";
 
                 }
-                 aux += suc;
+                aux += suc;
                 con.Alta("inventario", "ID_Producto,Cantidad,Precio,PrecioU,PrecioM,Sucursal", aux);
             }
 
@@ -87,7 +87,7 @@ public class Inventario {
                 if (da.size() > 0) {
                     int cant = Integer.parseInt(prepara.get(i).get(1).toString())
                             + Integer.parseInt(da.get(0).get(0).toString());
-                    System.out.println(Integer.parseInt(prepara.get(i).get(1).toString())+" + "+Integer.parseInt(da.get(0).get(0).toString()));
+                    System.out.println(Integer.parseInt(prepara.get(i).get(1).toString()) + " + " + Integer.parseInt(da.get(0).get(0).toString()));
 
                     con.Modifica("inventario",
                             "Cantidad='" + cant + "',Precio='"
@@ -104,7 +104,13 @@ public class Inventario {
                 }
             }
 
+            Date d = new Date();
+            SimpleDateFormat df = new SimpleDateFormat("Y-MM-dd");
+            String da = df.format(d);
+            System.out.println(prepara.get(i).get(1) + ", " + d.getYear() + "-" + d.getMonth() + "-" + d.getDay());
+            con.Alta("compras", "ID_Producto, Cantidad, Fecha, ID_Sucursal", prepara.get(i).get(0) + ", "+da+" , " + suc);
         }
+
         prepara = new ArrayList<ArrayList>();
     }
 

@@ -1,5 +1,6 @@
 package Vista.Compra;
 
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -15,13 +16,15 @@ import javax.swing.JTextField;
 public class GastosA extends VistasGenerales.Panel {
 
     private JPanel pi = new JPanel();
+    private newServ ns = new newServ();
     private boolean dats;
     final String[] d = {"Servicio", "Otros"};
     JLabel ltipo, lconcepto, lcosto, lcantidad;
+    JPanel i = new JPanel(new BorderLayout());
     VistasGenerales.Number can, costo;
     JTextField Tconcepto;
     JComboBox Cconcepto, Ctipo;
-    JButton agrega;
+    JButton agrega, mas;
     JCheckBox varios;
     private JLabel v1;
     private JLabel v2;
@@ -36,36 +39,65 @@ public class GastosA extends VistasGenerales.Panel {
         crea();
         agrega();
         inicializa();
-        varios.addActionListener(new ActionListener(){
-        public void actionPerformed(ActionEvent e){
-            dats=!dats;
-            can.tf.setEnabled(dats);
-        }
+        llena();
+        varios.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dats = !dats;
+                can.tf.setEnabled(dats);
+            }
+        });
+        mas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ns.setVisible(true);
+            }
+        });
+
+        ns.aceptar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ns.addDats();
+                Cconcepto.removeAllItems();
+                Object aux[] = ns.getDats();
+                for (int j = 0; j < aux.length; j++) {
+                    Cconcepto.addItem(aux[j]);
+
+                }
+            }
+        });
+
+        Ctipo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                switch (Ctipo.getSelectedIndex()) {
+                    case 0:
+                        Cconcepto.setVisible(true);
+                        Tconcepto.setVisible(false);
+                        break;
+                    case 1:
+                        Cconcepto.setVisible(false);
+                        Tconcepto.setVisible(true);
+                        break;
+                }
+            }
         });
         
-        Ctipo.addActionListener(new ActionListener(){
-        public void actionPerformed(ActionEvent e){
-            switch(Ctipo.getSelectedIndex()){
-                case 0:
-                Cconcepto.setVisible(true);
-                Tconcepto.setVisible(false);
-                    break;
-                    case 1:
-                Cconcepto.setVisible(false);
-                Tconcepto.setVisible(true);
-                    break;
+        agrega.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ns.addDats();
+                Cconcepto.removeAllItems();
+                Object aux[] = ns.getDats();
+                for (int j = 0; j < aux.length; j++) {
+                    Cconcepto.addItem(aux[j]);
+
+                }
             }
-        }
         });
     }
-    
-    
-    
-    private void inicializa(){
-    dats = false;
-    can.tf.setEnabled(dats);
-    Tconcepto.setVisible(dats);
+
+    private void inicializa() {
+        dats = false;
+        can.tf.setEnabled(dats);
+        Tconcepto.setVisible(dats);
     }
+
     private void crea() {
 
         ltipo = new JLabel("Tipo");
@@ -83,9 +115,11 @@ public class GastosA extends VistasGenerales.Panel {
         Cconcepto.setFocusable(false);
         Ctipo = new JComboBox(d);
         Ctipo.setFocusable(false);
-        varios=new JCheckBox("Varios");
+        varios = new JCheckBox("Varios");
         varios.setFocusable(false);
-        agrega=new JButton("Aceptar");
+        agrega = new JButton("Aceptar");
+        mas = new JButton("+");
+        mas.setFocusable(false);
         agrega.setFocusable(false);
         v1 = new JLabel();
         v2 = new JLabel();
@@ -104,7 +138,9 @@ public class GastosA extends VistasGenerales.Panel {
         pi.add(Ctipo, estilo(0, 1, 3, 1, GridBagConstraints.BOTH));
         pi.add(lconcepto, estilo(0, 2, 3, 1, GridBagConstraints.BOTH));
         pi.add(Tconcepto, estilo(0, 3, 3, 1, GridBagConstraints.BOTH));
-        pi.add(Cconcepto, estilo(0, 3, 3, 1, GridBagConstraints.BOTH));
+        i.add(Cconcepto, BorderLayout.CENTER);
+        i.add(mas, BorderLayout.EAST);
+        pi.add(i, estilo(0, 3, 3, 1, GridBagConstraints.BOTH));
         pi.add(s3, estilo(0, 4, 3, 1, GridBagConstraints.BOTH));
         pi.add(lcosto, estilo(1, 5, 1, 1, GridBagConstraints.BOTH));
         pi.add(costo.tf, estilo(2, 5, 1, 1, GridBagConstraints.BOTH));
@@ -135,6 +171,15 @@ public class GastosA extends VistasGenerales.Panel {
         gbc.weighty = 1.0;
 
         return gbc;
+    }
+
+    private void llena() {
+        Object aux[] = ns.getDats();
+        if(aux!=null){
+        for (int j = 0; j < aux.length; j++) {
+            Cconcepto.addItem(aux[j]);
+
+        }}
     }
 
 }
