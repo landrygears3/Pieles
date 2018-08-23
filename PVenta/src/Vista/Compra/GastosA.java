@@ -1,5 +1,6 @@
 package Vista.Compra;
 
+import Controlador.Compra.ConGastos;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,10 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GastosA extends VistasGenerales.Panel {
+public class GastosA extends VistasGenerales.Panel implements ActionListener {
 
     private JPanel pi = new JPanel();
     private newServ ns = new newServ();
@@ -21,6 +23,7 @@ public class GastosA extends VistasGenerales.Panel {
     final String[] d = {"Servicio", "Otros"};
     JLabel ltipo, lconcepto, lcosto, lcantidad;
     JPanel i = new JPanel(new BorderLayout());
+    ConGastos controler = new ConGastos();
     VistasGenerales.Number can, costo;
     JTextField Tconcepto;
     JComboBox Cconcepto, Ctipo;
@@ -78,18 +81,8 @@ public class GastosA extends VistasGenerales.Panel {
                 }
             }
         });
-        
-        agrega.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ns.addDats();
-                Cconcepto.removeAllItems();
-                Object aux[] = ns.getDats();
-                for (int j = 0; j < aux.length; j++) {
-                    Cconcepto.addItem(aux[j]);
 
-                }
-            }
-        });
+        agrega.addActionListener(this);
     }
 
     private void inicializa() {
@@ -175,11 +168,47 @@ public class GastosA extends VistasGenerales.Panel {
 
     private void llena() {
         Object aux[] = ns.getDats();
-        if(aux!=null){
-        for (int j = 0; j < aux.length; j++) {
-            Cconcepto.addItem(aux[j]);
+        if (aux != null) {
+            for (int j = 0; j < aux.length; j++) {
+                Cconcepto.addItem(aux[j]);
 
-        }}
+            }
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(agrega)) {
+            if (!(Ctipo.getSelectedIndex() == 1 && Tconcepto.getText().equals(""))) {
+                if (!(Ctipo.getSelectedIndex() == 1 && controler.Num(Tconcepto.getText())[1].toString().equals("true"))) {
+
+                    if (controler.isDouble(costo.tf.getText())) {
+                        int tipo = Ctipo.getSelectedIndex();
+                        String concepto = "";
+                        String aux = controler.Num((can.tf.getText()))[0].toString();
+                        System.out.println(aux);
+                        int cantidad = Integer.parseInt(aux);
+                        double precio = Double.parseDouble(costo.tf.getText());
+                        if (tipo == 0) {
+                            concepto = ns.getID(Cconcepto.getSelectedIndex()) + "";
+                        }
+                        if (tipo == 1) {
+                            concepto = Tconcepto.getText();
+
+                        }
+
+                        controler.Alta(tipo, concepto, cantidad, precio);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Debe insertar un costo.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "El concepto no puede ser un numero");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe insertar un concepto.");
+            }
+
+        }
     }
 
 }

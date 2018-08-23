@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 public class newServ extends JDialog implements ActionListener {
 
     public boolean b = false;
-    Controlador.Compra.Nuevos nuevo = new Controlador.Compra.Nuevos();
     JLabel lnombre;
     JTextField nombre;
     JButton aceptar, cancelar;
