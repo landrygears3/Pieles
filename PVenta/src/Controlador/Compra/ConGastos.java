@@ -38,8 +38,10 @@ public class ConGastos {
         ArrayList<ArrayList> arr = new ArrayList<ArrayList>();
 
         try {
-            arr.add(new ArrayList());
+           
             while (r.next()) {
+                 arr.add(new ArrayList());
+                arr.get(arr.size() - 1).add(r.getString(1));
                 arr.get(arr.size() - 1).add(r.getString(2));
                 arr.get(arr.size() - 1).add(r.getString(3));
                 arr.get(arr.size() - 1).add(r.getString(4));
@@ -48,9 +50,9 @@ public class ConGastos {
             }
         } catch (Exception e) {
         }
-        Object o[][] = new Object[arr.size()][5];
+        Object o[][] = new Object[arr.size()][6];
         for (int i = 0; i < o.length; i++) {
-            for (int j = 0; j < o.length; j++) {
+            for (int j = 0; j < o[i].length; j++) {
                 o[i][j] = arr.get(i).get(j);
             }
         }

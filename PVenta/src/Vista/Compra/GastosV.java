@@ -10,10 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class GastosV extends VistasGenerales.Panel {
-
-    final String cols[] = {"Tipo", "Concepto", "Cantidad", "Precio", "Total"};
+    
+    final String cols[] = {"ID", "Tipo", "Concepto", "Cantidad", "Precio", "Total", "Fecha"};
     final Object o[] = {"Tipo de busqueda", "Tipo", "Concepto"};
-
+    
     JPanel P = new JPanel();
     JPanel inter1 = new JPanel();
     VistasGenerales.Tabla tab;
@@ -21,27 +21,28 @@ public class GastosV extends VistasGenerales.Panel {
     JComboBox tipobu;
     JTextField Bus;
     ConGastos controlador = new ConGastos();
-
+    
     public GastosV() {
         setLayout(new GridBagLayout());
         P.setLayout(new GridLayout(2, 2));
         inter1.setLayout(new GridBagLayout());
         crea();
         agrega();
-
+        llena();
+        
     }
-
+    
     private void crea() {
         tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
-
+        
         tipobu1 = new JLabel("Tipo de busqueda ");
         tipobu1.setHorizontalAlignment(JLabel.RIGHT);
         tipobu = new JComboBox(o);
         Bus = new JTextField();
-
+        
     }
-
+    
     private GridBagConstraints estilo(int pox, int poy, int tax, int tay, int fill) {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = pox;
@@ -52,19 +53,22 @@ public class GastosV extends VistasGenerales.Panel {
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
-
+        
         return gbc;
     }
-
+    
     private void llena() {
-        Object dats[] = controlador.getConsulta();
-
+        Object dats[][] = controlador.getConsulta();
+        Object aux[];
         for (int i = 0; i < dats.length; i++) {
-            
-
+            aux = new Object[dats[i].length];
+            for (int j = 0; j < aux.length; j++) {
+                aux[j] = dats[i][j];
+            }
+            tab.setRow(aux);
         }
     }
-
+    
     private void agrega() {
         GridBagConstraints gbc;
         JLabel v1 = new JLabel("  ");
@@ -77,7 +81,7 @@ public class GastosV extends VistasGenerales.Panel {
         gbc = estilo(0, 2, 2, 1, GridBagConstraints.BOTH);
         inter1.add(Bus, gbc);
         P.add(inter1);
-
+        
         gbc = estilo(0, 0, 4, 2, GridBagConstraints.PAGE_START);
         add(P, gbc);
         gbc = estilo(0, 2, 4, 4, GridBagConstraints.BOTH);

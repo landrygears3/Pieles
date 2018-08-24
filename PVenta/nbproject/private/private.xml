@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/landr/Documents/GitHub/Pieles/PVenta/src/Modelo/Conexion.java</file>
-            <file>file:/C:/Users/landr/Documents/GitHub/Pieles/PVenta/src/Controlador/Inventario/Inventario.java</file>
-            <file>file:/C:/Users/landr/Documents/GitHub/Pieles/PVenta/src/Vista/Compra/newServ.java</file>
+            <file>file:/C:/Users/landr/Documents/GitHub/Pieles/PVenta/src/Controlador/Compra/ConGastos.java</file>
             <file>file:/C:/Users/landr/Documents/GitHub/Pieles/PVenta/src/Vista/Compra/GastosA.java</file>
-            <file>file:/C:/Users/landr/Documents/GitHub/Pieles/PVenta/src/Vista/Compra/CompraV.java</file>
+            <file>file:/C:/Users/landr/Documents/GitHub/Pieles/PVenta/src/Vista/Compra/GastosV.java</file>
         </group>
     </open-files>
 </project-private>
