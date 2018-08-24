@@ -3,9 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/landr/Documents/GitHub/Pieles/PVenta/src/Controlador/Compra/ConGastos.java</file>
             <file>file:/C:/Users/landr/Documents/GitHub/Pieles/PVenta/src/Vista/Compra/GastosA.java</file>
             <file>file:/C:/Users/landr/Documents/GitHub/Pieles/PVenta/src/Vista/Compra/GastosV.java</file>
+=======
+            <file>file:/C:/Users/win%2010/Documents/GitHub/Pieles/PVenta/src/Vista/Empleado/NotasA.java</file>
+            <file>file:/C:/Users/win%2010/Documents/GitHub/Pieles/PVenta/src/Vista/Permisos/PermisoAcceso.java</file>
+            <file>file:/C:/Users/win%2010/Documents/GitHub/Pieles/PVenta/src/Vista/Menubar.java</file>
+            <file>file:/C:/Users/win%2010/Documents/GitHub/Pieles/PVenta/src/Vista/Empleado/EmpleadoA.java</file>
+            <file>file:/C:/Users/win%2010/Documents/GitHub/Pieles/PVenta/src/Vista/Principal.java</file>
+>>>>>>> c7c74016d6c84076d02a27a4cf2b1f8751d3ecab
         </group>
     </open-files>
 </project-private>

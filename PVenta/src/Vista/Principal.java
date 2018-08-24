@@ -40,14 +40,12 @@ public class Principal extends JFrame {
         mb.emb.addActionListener(b);
         mb.emm.addActionListener(b);
         mb.noa.addActionListener(b);
-        mb.nov.addActionListener(b);
         mb.era.addActionListener(b);
         mb.erc.addActionListener(b);
         mb.ota.addActionListener(b);
         mb.otv.addActionListener(b);
         mb.pea.addActionListener(b);
         mb.peb.addActionListener(b);
-        mb.pem.addActionListener(b);
         mb.peh.addActionListener(b);
 
     }
@@ -92,9 +90,6 @@ public class Principal extends JFrame {
             if (e.getSource().equals(mb.noa)) {
                 setContentPane(empleado.NotaA);
             }
-            if (e.getSource().equals(mb.nov)) {
-                setContentPane(empleado.NotaV);
-            }
             if (e.getSource().equals(mb.ema)) {
                 setContentPane(empleado.agrega);
             }
@@ -110,9 +105,6 @@ public class Principal extends JFrame {
             }
             if (e.getSource().equals(mb.peb)) {
                 setContentPane(permisos.elimina);
-            }
-            if (e.getSource().equals(mb.pem)) {
-                setContentPane(permisos.modifica);
             }
             if (e.getSource().equals(mb.peh)) {
                 setContentPane(permisos.historial);
