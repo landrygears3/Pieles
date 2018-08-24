@@ -15,5 +15,4 @@ public class EmpleadoAcceso {
    public EmpleadoM modifica = new EmpleadoM();
    public EmpleadoB elimina = new EmpleadoB();
    public NotasA NotaA = new NotasA();
-   public NotasV NotaV = new NotasV();
 }

@@ -31,12 +31,11 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
     Panel hora;
     Panel contrasenas;
     VistasGenerales.Number tel;
-    JButton ag, ca, agsu, bosu;
+    JButton ag, ca;
     VistasGenerales.Tabla tab;
     JDateChooser fecha;
     AgregaEmpleado ea = new AgregaEmpleado();
     final String cols[] = {"Empleado", "Teléfono", "Usuario", "Contraseña"};
-    NSucursal nsucursal = new NSucursal();
     EmpleadoM em = new EmpleadoM();
     EmpleadoB eb = new EmpleadoB();
     General g = new General();
@@ -53,9 +52,6 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
         llenaSuc();
         llenaTipo();
         }
-        agsu.addActionListener(this);
-        this.bosu.addActionListener(this);
-        nsucursal.aceptar.addActionListener(this);
         
 
     }
@@ -107,14 +103,6 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
         v4 = new JLabel(" ");
         v5 = new JLabel(" ");
         tu = new JLabel("Tipo de usuario");
-        
-        agsu = new JButton("Nueva sucursal");
-        agsu.setFocusable(false);
-        agsu.setToolTipText("Agrega una sucursal");
-        
-        bosu = new JButton("Eliminar sucursal");
-        bosu.setFocusable(false);
-        bosu.setToolTipText("Elimina una sucursal");
 
         tab = new VistasGenerales.Tabla();
         tab.setColum(cols);
@@ -169,8 +157,6 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
         P.add(tu, estilo(3, 7, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         P.add(TU, estilo(3, 8, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         P.add(v2, estilo(4, 0, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
-        P.add(agsu, estilo(5, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
-        P.add(bosu, estilo(5, 4, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
         P.add(ag, estilo(5, 5, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
         P.add(ca, estilo(5, 6, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.CENTER));
         P.add(v3, estilo(0, 10, 1, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
@@ -198,22 +184,6 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
         return ca;
     }
     
-    private boolean validatel() {
-        boolean ca;
-        if (nsucursal.Telefono.tf.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Debe ingrear un número válido.");
-            return false;
-        } else {
-            if (nsucursal.Telefono.tf.getText().length() < 10 || nsucursal.Telefono.tf.getText().length() > 10) {
-                JOptionPane.showMessageDialog(null, "Debe ingrear un número válido.");
-                return false;
-            } else {
-                ca = true;
-            }
-            
-        }
-        return ca;
-    }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -258,30 +228,7 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
             }
         }
         
-        if (ae.getSource().equals(agsu)) {
-            nsucursal.setVisible(true);
-        }
-        if (ae.getSource().equals(bosu)) {
-            nsucursal.setVisible(true);
-        }
-        if (ae.getSource().equals(nsucursal.aceptar)) {
-            
-            Object O[] = new Object[4];
-            O[0] = nsucursal.Nombre.getText();
-            O[1] = nsucursal.Direccion.getText();
-            O[2] = nsucursal.Telefono.tf.getText();
-            if (validatel()){
-            nsucursal.prov.b = nsucursal.prov.agrega(O);
-            if (nsucursal.prov.b) {
-                nsucursal.dispose();
-                nsucursal.limpia();
-                S.removeAllItems();
-                llenaSuc();
-
-            }
-            }
-
-        }
+        
         
         
     }

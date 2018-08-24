@@ -10,8 +10,8 @@ public class Menubar extends JMenuBar {
 
     private String User = null;
     JMenu ve, inv, err, s, emp, not, com, dat, gas, otr, per;
-    JMenuItem vev, vec, inm, cs, sa, ema, emb, emm, noa, nov,
-            cmc, cmv, era, erc, ota, otv, pea, peb, pem, peh;
+    JMenuItem vev, vec, inm, cs, sa, ema, emb, emm, noa,
+            cmc, cmv, era, erc, ota, otv, pea, peb, peh;
 
     public Menubar(String User) {
         this.User = User;
@@ -54,12 +54,10 @@ public class Menubar extends JMenuBar {
         emm = new JMenuItem("Modificar");
         not = new JMenu("Notas");
         noa = new JMenuItem("Agregar");
-        nov = new JMenuItem("Revisar");
         //Permisos
         per = new JMenu("Permisos");
         pea = new JMenuItem("Agrega");
         peb = new JMenuItem("Eliminar");
-        pem = new JMenuItem("Modificar");
         peh = new JMenuItem("Historial");
 
         //date
@@ -98,7 +96,6 @@ public class Menubar extends JMenuBar {
         if (User.equals("Admin")) {
             //Empleados
             not.add(noa);
-            not.add(nov);
             emp.add(not);
             emp.add(ema);
             emp.add(emb);
@@ -106,7 +103,6 @@ public class Menubar extends JMenuBar {
             //Permisos
             per.add(pea);
             per.add(peb);
-            per.add(pem);
             per.add(peh);
             add(emp);
             add(per);

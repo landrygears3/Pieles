@@ -34,7 +34,8 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
     JButton ag, bo;
     AgregaEmpleado ea = new AgregaEmpleado();
     General g = new General();
-    
+    VistasGenerales.Tabla tab;
+    final String cols[] = {"Identificador", "Empleado", "Nota"};
     
     public NotasA(){
         
@@ -57,7 +58,7 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
         N.setRows(10);
         N.setColumns(10);
         N.setBorder(new LineBorder(Color.BLACK));
-        setLayout(new GridLayout(3,3));
+        setLayout(new GridLayout(4,3));
         c.setLayout(new GridBagLayout());
         co.setLayout(new GridBagLayout());
         co2.setLayout(new GridLayout(1,2));
@@ -71,6 +72,9 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
         va = new JLabel();      vd = new JLabel();      
         vb = new JLabel();      ve = new JLabel();
         vc = new JLabel();      vf = new JLabel();
+        
+        tab = new VistasGenerales.Tabla();
+        tab.setColum(cols);
     }
     
     private GridBagConstraints estilo(int pox, int poy, int tax, int tay, int fill, int anchor) {
@@ -115,6 +119,8 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
         add(v1, estilo(0,0,3,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
         add(co2, estilo(1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.WEST));
         add(v3, estilo(0,2,3,1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
+        
+        add(tab, estilo(0, 6, 3, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER));
     }
     
     @Override
@@ -124,6 +130,7 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
             if (g.valida(O)) {
                 String ID = g.emID(U.getSelectedItem().toString());
                 ea.agNota(N.getText(), ID);
+                tab.setRow(O);
             }
         } 
         if (ae.getSource().equals(bo)){
