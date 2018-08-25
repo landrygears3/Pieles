@@ -11,7 +11,7 @@ public class Menubar extends JMenuBar {
     private String User = null;
     JMenu ve, inv, err, s, emp, not, com, dat, gas, otr, per;
     JMenuItem vev, vec, inm, cs, sa, ema, emb, emm, noa,
-            cmc, cmv, era, erc, ota, otv, pea, peb, peh;
+            cmc, cmv, era, ota, otv, pea, peb;
 
     public Menubar(String User) {
         this.User = User;
@@ -45,7 +45,6 @@ public class Menubar extends JMenuBar {
         //Errores
         err = new JMenu("Errores");
         era = new JMenuItem("Alta");
-        erc = new JMenuItem("Historial");
 
         //Empleados
         emp = new JMenu("Empleados");
@@ -58,7 +57,6 @@ public class Menubar extends JMenuBar {
         per = new JMenu("Permisos");
         pea = new JMenuItem("Agrega");
         peb = new JMenuItem("Eliminar");
-        peh = new JMenuItem("Historial");
 
         //date
         Date d = new Date();
@@ -86,7 +84,6 @@ public class Menubar extends JMenuBar {
 
         //Errores
         err.add(era);
-        err.add(erc);
 
         //MenuBar
         add(ve);
@@ -103,7 +100,6 @@ public class Menubar extends JMenuBar {
             //Permisos
             per.add(pea);
             per.add(peb);
-            per.add(peh);
             add(emp);
             add(per);
         }

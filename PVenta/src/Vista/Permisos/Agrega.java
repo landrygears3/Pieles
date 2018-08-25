@@ -25,6 +25,7 @@ public class Agrega extends VistasGenerales.Panel implements ActionListener {
     JButton aceptar, bpermiso;
     AgregaPermiso ap = new AgregaPermiso();
     NPermiso npermiso = new NPermiso();
+    
     General g = new General();
 
     public Agrega() {
@@ -35,6 +36,7 @@ public class Agrega extends VistasGenerales.Panel implements ActionListener {
         if (g.vacio("tipo_permiso") > 0 && g.vacio("usuarios") > 0) {
             llenaPermiso();
             llenaEmpleado();
+            
         }
 
         bpermiso.addActionListener(this);
@@ -133,7 +135,7 @@ public class Agrega extends VistasGenerales.Panel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
 
         if (ae.getSource().equals(npermiso.aceptar)) {
-            Object O[] = new Object[3];
+            Object O[] = new Object[2];
             O[0] = npermiso.Perm.getText();
             O[1] = npermiso.Desc.getText();
             npermiso.prov.b = npermiso.prov.agrega(O);

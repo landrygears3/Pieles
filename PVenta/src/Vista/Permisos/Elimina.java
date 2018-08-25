@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Controlador.General.General;
+import Controlador.Permisos.PermisoV;
 
 public class Elimina extends VistasGenerales.Panel implements ActionListener{
 
@@ -26,6 +27,7 @@ public class Elimina extends VistasGenerales.Panel implements ActionListener{
     JComboBox Bus;
     JButton elimina;
     AgregaPermiso ap = new AgregaPermiso();
+    PermisoV pv = new PermisoV();
     General g = new General();
 
     public Elimina() {
@@ -36,6 +38,9 @@ public class Elimina extends VistasGenerales.Panel implements ActionListener{
         agrega();
         if (g.vacio("permisos") > 0 && g.vacio("usuarios") > 0) {
             llenaCodigo();
+            if (pv.respn("permisos", "tipo_permiso", "empleados")) {
+            llena();
+        }
         }
         elimina.addActionListener(this);
 
@@ -64,6 +69,10 @@ public class Elimina extends VistasGenerales.Panel implements ActionListener{
         gbc.weighty = 1.0;
 
         return gbc;
+    }
+    
+    private void llena() {
+        tab.setRow(pv.getDatos());
     }
     
     private void llenaCodigo() {
@@ -101,7 +110,7 @@ public class Elimina extends VistasGenerales.Panel implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         
         if (ae.getSource().equals(elimina)) {
-            if (JOptionPane.showConfirmDialog(null, "Esta a punto de crear un nuevo usuario.\t\n¿Desea continuar?") == 0) {
+            if (JOptionPane.showConfirmDialog(null, "Esta a punto de eliminar un permiso.\t\n¿Desea continuar?") == 0) {
                 ap.elimina(Bus.getSelectedItem().toString());
             }
             

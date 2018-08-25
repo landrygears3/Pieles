@@ -41,12 +41,10 @@ public class Principal extends JFrame {
         mb.emm.addActionListener(b);
         mb.noa.addActionListener(b);
         mb.era.addActionListener(b);
-        mb.erc.addActionListener(b);
         mb.ota.addActionListener(b);
         mb.otv.addActionListener(b);
         mb.pea.addActionListener(b);
         mb.peb.addActionListener(b);
-        mb.peh.addActionListener(b);
 
     }
 
@@ -106,9 +104,6 @@ public class Principal extends JFrame {
             if (e.getSource().equals(mb.peb)) {
                 setContentPane(permisos.elimina);
             }
-            if (e.getSource().equals(mb.peh)) {
-                setContentPane(permisos.historial);
-            }
             //Compras
             if (e.getSource().equals(mb.cmc)) {
                 setContentPane(compras.comprar);
@@ -125,9 +120,6 @@ public class Principal extends JFrame {
             //Erroes
             if (e.getSource().equals(mb.era)) {
                 setContentPane(errores.agrega);
-            }
-            if (e.getSource().equals(mb.erc)) {
-                setContentPane(errores.consulta);
             }
             validate();
         }

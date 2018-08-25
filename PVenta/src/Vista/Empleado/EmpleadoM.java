@@ -42,6 +42,13 @@ public final class EmpleadoM extends VistasGenerales.Panel implements ActionList
         validate();
         if (g.vacio("empleados")>0){
             llenaNombre();
+            llenaTipo();
+            llenaSuc();
+            llenaTel();
+            llenaPass();
+            llenaUsuario();
+            selectSuc();
+            selectTU();
             
         }
         adm.addActionListener(this);
@@ -284,9 +291,5 @@ public final class EmpleadoM extends VistasGenerales.Panel implements ActionList
             }
         }
 
-//        if (ae.getSource().equals(bor.c)) {
-//            N.removeItem(M.Nombre);
-//            M.fm(false);
-//        }
     }
 }

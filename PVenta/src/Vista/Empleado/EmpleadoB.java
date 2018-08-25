@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import Controlador.Empleado.AgregaEmpleado;
+import Controlador.Empleado.EmpleadoV;
 import Controlador.Empleado.Modificaciones;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +27,7 @@ import Controlador.General.General;
  */
 public class EmpleadoB extends VistasGenerales.Panel implements ActionListener {
 
-    final String cols[] = {"Nombre", "Usuario", "Notas"};
+    final String cols[] = {"Empleado", "Teléfono", "Usuario", "Contraseña", "Cargo", "Sucursal", "Contratación"};
     VistasGenerales.Tabla tab;
     JButton c, re;
     JLabel u, no, v1, v2, v3, v4, v5, v6, va, vb, vc, vd, ve, vf, el;
@@ -35,6 +36,7 @@ public class EmpleadoB extends VistasGenerales.Panel implements ActionListener {
     Container co2 = new Container();
     Container co = new Container();
     AgregaEmpleado ea = new AgregaEmpleado();
+    EmpleadoV ev = new EmpleadoV();
     Modificaciones M = new Modificaciones();
     General g = new General();
 
@@ -44,6 +46,9 @@ public class EmpleadoB extends VistasGenerales.Panel implements ActionListener {
         carga();
         if (g.vacio("empleados")>0){
         llenaNombre();
+        if (ev.resp("empleados")) {
+            llena();
+        }
        }
         n.addActionListener(this);
         c.addActionListener(this);
@@ -82,6 +87,10 @@ public class EmpleadoB extends VistasGenerales.Panel implements ActionListener {
         co.setLayout(new GridLayout(5, 1));
     }
     
+    
+    private void llena() {
+        tab.setRow(ev.getDatos());
+    }
     
     final public void llenaNombre() {
         if (n.getItemCount()>0){

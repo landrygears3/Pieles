@@ -6,6 +6,7 @@
 package Vista.Empleado;
 
 import Controlador.Empleado.AgregaEmpleado;
+import Controlador.Empleado.EmpleadoV;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -33,9 +34,10 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
     Container co2 = new Container();
     JButton ag, bo;
     AgregaEmpleado ea = new AgregaEmpleado();
+    EmpleadoV ev = new EmpleadoV();
     General g = new General();
     VistasGenerales.Tabla tab;
-    final String cols[] = {"Identificador", "Empleado", "Nota"};
+    final String cols[] = {"Empleado", "Nota"};
     
     public NotasA(){
         
@@ -43,6 +45,9 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
         agrega();
         if (g.vacio("empleados")>0){
         llenaNombre();
+        if (ev.respn("notase", "empleados")) {
+            llena();
+        }
         }
         ag.addActionListener(this);
         bo.addActionListener(this);
@@ -89,6 +94,10 @@ public class NotasA extends VistasGenerales.Panel implements ActionListener{
         gbc.weighty = 1.0;
 
         return gbc;
+    }
+    
+    private void llena() {
+        tab.setRow(ev.getDatos());
     }
     
     private void llenaNombre() {

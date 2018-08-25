@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import Controlador.Empleado.AgregaEmpleado;
+import Controlador.Empleado.EmpleadoV;
 import static java.util.Calendar.DAY_OF_MONTH;
 import Controlador.General.General;
 
@@ -35,7 +36,8 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
     VistasGenerales.Tabla tab;
     JDateChooser fecha;
     AgregaEmpleado ea = new AgregaEmpleado();
-    final String cols[] = {"Empleado", "Teléfono", "Usuario", "Contraseña"};
+    EmpleadoV ev = new EmpleadoV();
+    final String cols[] = {"Empleado", "Teléfono", "Usuario"};
     EmpleadoM em = new EmpleadoM();
     EmpleadoB eb = new EmpleadoB();
     General g = new General();
@@ -51,6 +53,9 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
         if (g.vacio("sucursal")>0 && g.vacio("usuarios")>0){
         llenaSuc();
         llenaTipo();
+        if (ev.resp("empleados")) {
+            llena();
+        }
         }
         
 
@@ -94,7 +99,7 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
         l.setHorizontalAlignment(JLabel.CENTER);
         P.setLayout(new GridBagLayout());
         ag = new JButton("Crear usuario");
-        ca = new JButton("Borrar");
+        ca = new JButton("Cancelar");
         f = new JLabel("Fecha");
         s = new JLabel("Sucursal");
         v1 = new JLabel(" ");
@@ -120,6 +125,10 @@ public class EmpleadoA extends VistasGenerales.Panel implements ActionListener {
         gbc.weighty = 1.0;
 
         return gbc;
+    }
+    
+    private void llena() {
+        tab.setRow(ev.getDatos());
     }
     
     private void llenaSuc() {

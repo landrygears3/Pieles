@@ -15,6 +15,7 @@ import Controlador.General.General;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Controlador.Errores.ControlError;
+import Controlador.Errores.ErrorV;
 import javax.swing.JOptionPane;
 
 public class ErrorA extends VistasGenerales.Panel implements ActionListener{
@@ -32,6 +33,7 @@ public class ErrorA extends VistasGenerales.Panel implements ActionListener{
     JButton ag, ca;
     General g = new General();
     ControlError e = new ControlError();
+    ErrorV ev = new ErrorV();
     
     public ErrorA(){
         crea();
@@ -39,6 +41,9 @@ public class ErrorA extends VistasGenerales.Panel implements ActionListener{
         if (g.vacio("productos")>0 && g.vacio("proveedores")>0){
             llenaProducto();
             llenaProveedor();
+        if (ev.respn("defectos", "productos", "proveedores")) {
+            llena();
+        }
         }
         
     }
@@ -125,6 +130,10 @@ public class ErrorA extends VistasGenerales.Panel implements ActionListener{
         add(co, estilo(1,0,1,1));
         add(Pb, estilo(2,0,1,1));
         add(tab, estilo(0,2,3,1));
+    }
+    
+    private void llena() {
+        tab.setRow(ev.getDatos());
     }
     
     public boolean valida(Object datos[]) {

@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import Controlador.General.General;
 
 public class GastosV extends VistasGenerales.Panel {
     
@@ -21,6 +22,7 @@ public class GastosV extends VistasGenerales.Panel {
     JComboBox tipobu;
     JTextField Bus;
     ConGastos controlador = new ConGastos();
+    General g = new General();
     
     public GastosV() {
         setLayout(new GridBagLayout());
@@ -28,7 +30,9 @@ public class GastosV extends VistasGenerales.Panel {
         inter1.setLayout(new GridBagLayout());
         crea();
         agrega();
+        if (g.vacio("gastos")>0){
         llena();
+        }
         
     }
     

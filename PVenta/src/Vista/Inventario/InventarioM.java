@@ -1,5 +1,6 @@
 package Vista.Inventario;
 
+import Controlador.Inventario.InventarioV;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -12,7 +13,7 @@ public class InventarioM extends VistasGenerales.Panel {
 
     final String cols[] = {"Inventario", "Producto", "Tipo", "Modelo",
         "Proveedor", "Color", "Piel", "Cantidad", "Precio",
-        "Venta", "Sucursal"};
+        "Venta", "Mayoreo", "Sucursal"};
     final Object o[] = {"Inventario", "Producto", "Tipo", "Modelo",
         "Proveedor", "Color", "Piel", "Cantidad", "Precio",
         "Venta", "Sucursal"};
@@ -23,6 +24,7 @@ public class InventarioM extends VistasGenerales.Panel {
     JLabel tipobu1;
     JComboBox tipobu;
     JTextField Bus;
+    InventarioV iv = new InventarioV();
 
     public InventarioM() {
         this.setLayout(new GridBagLayout());
@@ -30,6 +32,10 @@ public class InventarioM extends VistasGenerales.Panel {
         inter1.setLayout(new GridBagLayout());
         crea();
         agrega();
+        
+        if (iv.respn("inventario", "productos", "tipos", "modelos", "piel", "proveedores", "sucursal")) {
+            llena();
+        }
 
     }
 
@@ -75,5 +81,9 @@ public class InventarioM extends VistasGenerales.Panel {
         add(P, gbc);
         gbc = estilo(0, 2, 4, 4, GridBagConstraints.BOTH);
         add(tab, gbc);
+    }
+    
+    private void llena() {
+        tab.setRow(iv.getDatos());
     }
 }
